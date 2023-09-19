@@ -1,0 +1,68 @@
+﻿@using BlazorServerAppWithIdentity.Pages.PipelineRunForms
+@using BlazorServerAppWithIdentity.Pages.PipelineRunForms.IaC
+@page "/pipelineview/{PipeLineId}/{PipeLineName}"
+@inherits PipelineViewBase
+@attribute [Authorize]
+
+
+@if (PipeLineId == "6067")
+{
+    <DeployVMs PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></DeployVMs>
+}
+else if (PipeLineId == "7764")
+{
+    <TSAuto PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></TSAuto>
+}
+else if (PipeLineId == "10187")
+{
+    <DatabaseLog PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></DatabaseLog>
+}
+else if (PipeLineId == "7763")
+{
+    <LVTS PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></LVTS>
+}
+else if (PipeLineId == "8183")
+{
+    <PropertyLoader PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></PropertyLoader>
+}
+else if (PipeLineId == "7842")
+{
+    <ReportContent PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></ReportContent>
+}
+else if (PipeLineId == "9796")
+{
+    <ReportPath PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></ReportPath>
+}
+else if (PipeLineId == "7765")
+{
+    <TSLV PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></TSLV>
+    
+}
+else if (PipeLineId == "3085")
+{
+    <BuildAndDeploy PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></BuildAndDeploy>
+}
+else if (PipeLineId == "7760")
+{
+    <DeployRunnableExport PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></DeployRunnableExport>
+}
+else if (PipeLineId == "9472")
+{
+    <TSAutoMatrix PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></TSAutoMatrix>
+}
+else if (PipeLineId == "10149" || PipeLineId == "9454" || PipeLineId == "10033" || PipeLineId == "9456" || PipeLineId == "9795" || PipeLineId == "9453" || PipeLineId == "9455")
+{
+    <IacCommonForm PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></IacCommonForm>
+}
+else if (PipeLineId == "13236")
+{
+    <IacTSDU PipeLineId="@PipeLineId" PipeLineName="@PipeLineName" ></IacTSDU>
+}
+else if (PipeLineId == "9457")
+{
+    <IacTSAutoMatrix PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></IacTSAutoMatrix>
+}
+else
+{
+    <PipelineUnavailable PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></PipelineUnavailable>
+}

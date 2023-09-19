@@ -1,0 +1,114 @@
+﻿@inherits DeployVMsBase
+@attribute [Authorize]
+
+
+@if (MachinesList == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="container container-form">
+        <a href="@runsLink" style="float:right">Runs</a>
+        <h4 class="about-head">@PipeLineName </h4>
+        @if (notification != "")
+        {
+            <div class="alert alert-success">
+                @notification
+                <span style="float:right">
+                    <button type="button" class="close icon-button" @onclick="clearNotification">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </span>
+            </div>
+        }
+        <br />
+        <form @onsubmit="RunPipeline">
+
+            <div class="row">
+
+                <div class="col-md-6 col-lg-6">
+
+                    <div class="form-group">
+                        <label for="MachineState" class="control-label">Machine State</label>
+                        <select asp-for="MachineState" class="form-control" @bind="@MachineState" required>
+                            <option value="Clean">Clean</option>
+                            <option value="All TSAuto mainline software">All TSAuto mainline software</option>
+                            <option value="All TSAuto mainline software except TestStand">All TSAuto mainline software except TestStand</option>
+                            <option value="All Framework software except TestStand and LabVIEW">All Framework software except TestStand and LabVIEW</option>
+                            <option value="Latest TestStand">Latest TestStand</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="WindowsImage" class="control-label">Windows Image</label>
+                        <select asp-for="WindowsImage" class="form-control" @bind="@WindowsImage" required>
+                            <option value="windows-10-baseimage">windows-10-baseimage</option>
+                            <option value="windows-10-german-baseimage">windows-10-german-baseimage</option>
+                            <option value="windows-11-baseimage">windows-11-baseimage</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Feeds" class="control-label">Feeds List <span style="font-size:11px; color:#595a5c">(Format: ['feed_url_1', 'feed_url_2'])</span></label>
+                        <input asp-for="Feeds" class="form-control" @bind="@Feeds" required />
+
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label asp-for="CustomSoftwares" class="control-label">Install Software Using Feeds</label>
+                        <select asp-for="CustomSoftwares" class="form-control" @bind="@CustomSoftwares" required>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                    <br />
+                </div>
+                <div class="col-md-6 col-lg-6">
+
+                    <div class="form-group">
+                        <label asp-for="RebuildMachines" class="control-label">Rebuild Machines</label>
+                        <select asp-for="RebuildMachines" class="form-control" @bind="@RebuildMachine" required>
+                            <option value="Single Machine">Single Machine</option>
+                            <option value="Multiple Machines">Multiple Machines</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="SingleMachineName" class="control-label">Single Machine Name</label>
+                        <select asp-for="SingleMachineName" class="form-control" @bind="@SingleMachineName">
+                            <option value="">select machine</option>
+                            @foreach (var _machine in MachinesList)
+                            {
+                                <option value="@_machine.Name">@_machine.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="MultipleMachineNames" class="control-label">Multiple Machines Name <span style="font-size:11px; color:#595a5c">(Format: "ts-test01" "ts-test02") </span></label>
+                        <input asp-for="MultipleMachineNames" class="form-control" @bind="@MultipleMachineNames" />
+
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="Rebuild" class="control-label">ReBuild</label>
+                        <select asp-for="Rebuild" class="form-control" @bind="@Rebuild" required>
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                        </select>
+                    </div>
+
+                    <br />
+
+                </div>
+                <div style="float:right;">
+                    <button class="btn btn-primary btn-md" type="submit" disabled="@isSubmitting" style="float:right;width:80px;">Run</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+}

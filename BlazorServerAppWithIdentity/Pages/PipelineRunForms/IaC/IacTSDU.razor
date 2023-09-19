@@ -1,0 +1,56 @@
+﻿@inherits IacTSDUBase
+@attribute [Authorize]
+
+<div class="container container-form">
+    <a href="@runsLink" style="float:right">Runs</a>
+    <h4 class="about-head">@PipeLineName </h4>
+    @if (notification != "")
+    {
+        <div class="alert alert-success">
+            @notification
+            <span style="float:right">
+                <button type="button" class="close icon-button" @onclick="clearNotification">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </span>
+        </div>
+    }
+    <br />
+    <form @onsubmit="RunPipeline">
+        <div class="row">
+
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Rebuild" class="control-label">ReBuild</label><br /><br />
+                    <select asp-for="Rebuild" class="form-control" @bind="@Rebuild" required>
+                        <option value="True">True</option>
+                        <option value="False">False</option>
+                    </select>
+                </div>
+                <br />
+
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="LVVersion" class="control-label">LabViewVersion<br /><span style="font-size:11px; color:#595a5c">(Latest Labview Version means the current LV version in Development)</span></label>
+                    <select asp-for="LVVersion" class="form-control" @bind="@LVVersion" required>
+                        <option value="20-1-0">20-1-0</option>
+                        <option value="21-1-0">21-1-0</option>
+                        <option value="22-3-0">22-3-0</option>
+                        <option value="23-1-0">23-1-0</option>
+                        <option value="23-3-0">23-3-0</option>
+                        <option value="Latest_LabView">Latest_LabView</option>
+                    </select>
+                </div>
+                <br />
+                <br />
+                <div style="float:right;padding-top:10px;">
+                    <button class="btn btn-primary btn-md" disabled="@isSubmitting" type="submit" style="float:right;width:80px;">Run</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </form>
+</div>

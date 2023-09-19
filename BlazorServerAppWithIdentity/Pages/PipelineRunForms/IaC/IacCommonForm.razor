@@ -1,0 +1,45 @@
+﻿@inherits IacCommonFormBase
+@attribute [Authorize]
+
+<div class="container container-form">
+    <a href="@runsLink" style="float:right">Runs</a>
+    <h4 class="about-head">@PipeLineName </h4>
+    @if (notification != "")
+    {
+        <div class="alert alert-success">
+            @notification
+            <span style="float:right">
+                <button type="button" class="close icon-button" @onclick="clearNotification">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </span>
+        </div>
+    }
+    <br />
+    <form @onsubmit="RunPipeline">
+        <div class="row">
+
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Rebuild" class="control-label">ReBuild</label>
+                    <select asp-for="Rebuild" class="form-control" @bind="@Rebuild" required>
+                        <option value="True">True</option>
+                        <option value="False">False</option>
+                    </select>
+                </div>
+                <br />
+
+            </div>
+            <div class="col-md-6 col-lg-6">
+
+                <br />
+                <div style="float:right;padding-top:10px;">
+                    <button class="btn btn-primary btn-md" disabled="@isSubmitting" type="submit" style="float:right;width:80px;">Run</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </form>
+</div>

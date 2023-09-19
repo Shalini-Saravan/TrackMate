@@ -1,0 +1,13 @@
+﻿@page "/machines"
+@attribute [Authorize]
+
+<TabControl>
+    <TabPage Text="Physical">
+        <PhysicalMachines></PhysicalMachines>
+    </TabPage>
+    <TabPage Text="Virtual">
+        <VirtualMachines></VirtualMachines>
+    </TabPage>
+
+</TabControl>
+

@@ -1,0 +1,458 @@
+﻿@page "/{AgentId}/{AgentName}/capability"
+@inherits CapabilityBase
+@attribute [Authorize]
+
+<style>
+    td{
+        word-break: break-all;
+    }
+</style>
+
+
+@if (message != string.Empty)
+{
+    <p class="error-info">@message</p>
+}
+else if (agentCapability == null || agent == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    @if (machine != null)
+    {
+        <div class="col-md-12 col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="f-right agent-card-detail">
+                       
+                        @if (agent.AssignedRequest == null)
+                        {
+                            <span style="color:green">Idle</span>
+                        }
+                        else
+                        {
+                            <span style="color:orangered">Running Build</span>
+                        }
+                        <br />
+                        @if(machine.Status == "Available")
+                        {
+                            <b>Status &emsp;&emsp;: </b>
+                            <span>Available</span>
+                            <br />
+                            <b>From Time : </b>
+                            <span>Null</span>
+                        }
+                        else
+                        {
+                            <b>Owner &emsp;&emsp;: </b>
+                            @machine.UserName
+                            <br />
+                            <b>From Time : </b>
+                            <span>@machine.FromTime?.ToString("MMM dd, hh:mm tt")</span>
+                        }
+                        
+                    </div>
+
+                    <h5 class="card-title">@AgentName</h5>
+                    <div class="f-left status-text">
+                        &nbsp;@if (agent.Status == "online")
+                        {
+                            <span class="oi oi-media-record" aria-hidden="true" style="color: green; font-size:10px;"></span>
+                        }
+                        else
+                        {
+                            <span class="oi oi-media-record" aria-hidden="true" style="color: red; font-size:10px;"></span>
+                        }
+                        &nbsp;
+                        @agent.Status
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <br/>
+    }
+    <p class="muted-text" style="padding:0px;">System Capabilities</p>
+
+<div class="data-table table-shadow">
+    <table class="table table-striped table-borderless">
+        <thead style="background:#1687A7; color:white">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="td_head">Agent.Name</div>
+                    </td>
+                    <td>
+                        @agentCapability.AgentName
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="td_head">Agent.Version</div>
+                    </td>
+                    <td>
+                        @agentCapability.AgentVersion
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="td_head">Agent.ComputerName</div>
+                    </td>
+                    <td>
+                        @agentCapability.COMPUTERNAME
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="td_head">Agent.HomeDirectory</div>
+                    </td>
+                    <td>
+                        @agentCapability.AgentHomeDirectory
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="td_head">Agent.OS</div>
+                    </td>
+                    <td>
+                        @agentCapability.AgentOS
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="td_head">Agent.OSArchitecture</div>
+                    </td>
+                    <td>
+                        @agentCapability.AgentOSArchitecture
+                    </td>
+                </tr>
+                    <tr>
+                        <td>
+                            <div class="td_head">Agent.OSVersion</div>
+                    </td>
+                    <td>@agentCapability.AgentOSVersion</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="td_head">AGENT_POOL_NAME</div>
+                    </td>
+                    <td>@agentCapability.AGENT_POOL_NAME</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ALLUSERSPROFILE</div></td>
+                    <td>@agentCapability.ALLUSERSPROFILE</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">APPDATA</div></td>
+                    <td>@agentCapability.APPDATA</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ChocolateyInstall</div></td>
+                    <td>@agentCapability.ChocolateyInstall</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">Cmd</div></td>
+                    <td>@agentCapability.Cmd</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">CommonProgramFiles</div></td>
+                    <td>@agentCapability.CommonProgramFiles</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">CommonProgramFiles(x86)</div></td>
+                    <td>@agentCapability.CommonProgramFilesx86</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">CommonProgramW6432</div></td>
+                    <td>@agentCapability.CommonProgramW6432</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">COMPUTERNAME</div></td>
+                    <td>@agentCapability.COMPUTERNAME</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ComSpec</div></td>
+                    <td>@agentCapability.ComSpec</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">DotNetFramework</div></td>
+                    <td>@agentCapability.DotNetFramework</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">DotNetFramework_4.8.0</div></td>
+                    <td>@agentCapability.DotNetFramework_480</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">DotNetFramework_4.8.0_x64</div></td>
+                    <td>@agentCapability.DotNetFramework_480_x64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">DriverData</div></td>
+                    <td>@agentCapability.DriverData</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">FPS_BROWSER_APP_PROFILE_STRING</div></td>
+                    <td>@agentCapability.FPS_BROWSER_APP_PROFILE_STRING</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">FPS_BROWSER_USER_PROFILE_STRING</div></td>
+                    <td>@agentCapability.FPS_BROWSER_USER_PROFILE_STRING</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">HOMEDRIVE</div></td>
+                    <td>@agentCapability.HOMEDRIVE</td>
+                    </tr>
+                <tr>
+                    <td><div class="td_head">HOMEPATH</div></td>
+                    <td>@agentCapability.HOMEPATH</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">InteractiveSession</div></td>
+                    <td>@agentCapability.InteractiveSession</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">LOCALAPPDATA</div></td>
+                    <td>@agentCapability.LOCALAPPDATA</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">LOGONSERVER</div></td>
+                    <td>@agentCapability.LOGONSERVER</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">Machine_Purpose</div></td>
+                    <td>@agentCapability.Machine_Purpose</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">MSBuild</div></td>
+                    <td>@agentCapability.MSBuild</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">MSBuild_17.0</div></td>
+                    <td>@agentCapability.MSBuild_170</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">MSBuild_17.0_x64</div></td>
+                    <td>@agentCapability.MSBuild_170_x64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">MSBuild_4.0</div></td>
+                    <td>@agentCapability.MSBuild_40</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">MSBuild_4.0_x64</div></td>
+                    <td>@agentCapability.MSBuild_40_x64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">MSBuild_x64</div></td>
+                    <td>@agentCapability.MSBuild_x64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">NIEXTCCOMPILERSUPP</div></td>
+                    <td>@agentCapability.NIEXTCCOMPILERSUPP</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">NUMBER_OF_PROCESSORS</div></td>
+                    <td>@agentCapability.NUMBER_OF_PROCESSORS</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">OneDrive</div></td>
+                    <td>@agentCapability.OneDrive</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">OS</div></td>
+                    <td>@agentCapability.OS</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">Path</div></td>
+                    <td>@agentCapability.Path</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PATHEXT</div></td>
+                    <td>@agentCapability.PATHEXT</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PowerShell</div></td>
+                    <td>@agentCapability.PowerShell</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PROCESSOR_ARCHITECTURE</div></td>
+                    <td>@agentCapability.PROCESSOR_ARCHITECTURE</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PROCESSOR_IDENTIFIER</div></td>
+                    <td>@agentCapability.PROCESSOR_IDENTIFIER</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PROCESSOR_LEVEL</div></td>
+                    <td>@agentCapability.PROCESSOR_LEVEL</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PROCESSOR_REVISION</div></td>
+                    <td>@agentCapability.PROCESSOR_REVISION</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ProgramData</div></td>
+                    <td>@agentCapability.ProgramData</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ProgramFiles</div></td>
+                    <td>@agentCapability.ProgramFiles</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ProgramFiles(x86)</div></td>
+                    <td>@agentCapability.CommonProgramFilesx86</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">ProgramW6432</div></td>
+                    <td>@agentCapability.ProgramW6432</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PROMPT</div></td>
+                    <td>@agentCapability.PROMPT</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PUBLIC</div></td>
+                    <td>@agentCapability.PUBLIC</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">PYTHONIOENCODING</div></td>
+                    <td>@agentCapability.PYTHONIOENCODING</td></tr>
+                <tr>
+                    <td><div class="td_head">RUBYOPT</div></td>
+                    <td>@agentCapability.RUBYOPT</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">SESSIONNAME</div></td>
+                    <td>@agentCapability.SESSIONNAME</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">SystemDrive</div></td>
+                    <td>@agentCapability.SystemDrive</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">SystemRoot</div></td>
+                    <td>@agentCapability.SystemRoot</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TEMP</div></td>
+                    <td>@agentCapability.TEMP</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TestStand</div></td>
+                    <td>@agentCapability.TestStand</td></tr>
+                <tr>
+                    <td><div class="td_head">TestStand64</div></td>
+                    <td>@agentCapability.TestStand64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TestStandAppData</div></td>
+                    <td>@agentCapability.TestStandAppData</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TestStandAppData64</div></td>
+                    <td>@agentCapability.TestStandAppData64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TestStandBin</div></td>
+                    <td>@agentCapability.TestStandBin</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TestStandBin64</div></td>
+                    <td>@agentCapability.TestStandBin64</td></tr>
+                <tr>
+                    <td><div class="td_head">TestStandPublic</div></td>
+                    <td>@agentCapability.TestStandPublic</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TestStandPublic64</div></td>
+                    <td>@agentCapability.TestStand64</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TMP</div></td>
+                    <td>@agentCapability.TMP</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TS_KeyFile</div></td>
+                    <td>@agentCapability.TS_KeyFile</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TS_Password</div></td>
+                    <td>@agentCapability.TS_Password</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">TS_User</div></td>
+                    <td>@agentCapability.TS_User</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">USERDOMAIN</div></td>
+                    <td>@agentCapability.USERDOMAIN</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">USERDOMAIN_ROAMINGPROFILE</div></td>
+                    <td>@agentCapability.USERDOMAIN_ROAMINGPROFILE</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">USERNAME</div></td>
+                    <td>@agentCapability.USERNAME</td></tr>
+                <tr>
+                    <td><div class="td_head">USERPROFILE</div></td>
+                    <td>@agentCapability.USERPROFILE</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VERBOSE_ARG</div></td>
+                    <td>@agentCapability.VERBOSE_ARG</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VisualStudio</div></td>
+                    <td>@agentCapability.VisualStudio</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VisualStudio_17.0</div></td>
+                    <td>@agentCapability.VisualStudio_170</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VisualStudio_IDE</div></td>
+                    <td>@agentCapability.VisualStudio_IDE</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VisualStudio_IDE_17.0</div></td>
+                    <td>@agentCapability.VisualStudio_IDE_170</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VS140COMNTOOLS</div></td>
+                    <td>@agentCapability.VS140COMNTOOLS</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VSTest</div></td>
+                    <td>@agentCapability.VSTest</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">VSTest_17.0</div></td>
+                    <td>@agentCapability.VSTest_170</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">windir</div></td>
+                    <td>@agentCapability.Windir</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">WindowsSdk</div></td>
+                    <td>@agentCapability.WindowsSdk</td>
+                </tr>
+                <tr>
+                    <td><div class="td_head">WindowsSdk_10.0</div></td>
+                    <td>@agentCapability.WindowsSdk_100</td></tr>
+            </tbody>
+    </table>
+</div>
+}

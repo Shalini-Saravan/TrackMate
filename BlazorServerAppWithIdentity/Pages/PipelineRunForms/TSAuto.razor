@@ -1,0 +1,84 @@
+﻿@inherits TSAutoBase
+@attribute [Authorize]
+
+@if (MachinesList == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="container container-form">
+        <a href="@runsLink" style="float:right">Runs</a>
+        <h4 class="about-head">@PipeLineName </h4>
+        @if (notification != "")
+        {
+            <div class="alert alert-success">
+                @notification
+                <span style="float:right">
+                    <button type="button" class="close icon-button" @onclick="clearNotification">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </span>
+            </div>
+        }
+        <br />
+        <form @onsubmit="RunPipeline">
+
+            <div class="row">
+
+                <div class="col-md-6 col-lg-6">
+
+                    <div class="form-group">
+                        <label for="Machine_Name" class="control-label">Machine Name</label>
+                        <select asp-for="Machine_Name" class="form-control" @bind="@Machine_Name" @bind:event="oninput" required>
+                            <option value="">select machine</option>
+                            @foreach (var _machine in MachinesList)
+                            {
+                                <option value="@_machine.Name">@_machine.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="TSVersion" class="control-label">Different TS Version <br /><span style="font-size:11px; color:#595a5c">(to be modified only when older version is installed)</span></label>
+                        <input asp-for="TSVersion" class="form-control" @bind="@TSVersion" required />
+
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="RunSetupOnly" class="control-label">Run Till Machine Setup Only</label>
+                        <select asp-for="RunSetupOnly" class="form-control" @bind="@RunSetupOnly" required>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                    <br />
+
+
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Bitness" class="control-label">Bitness</label>
+                        <select asp-for="Bitness" class="form-control" @bind="@Bitness" required>
+                            <option value="32">32</option>
+                            <option value="64">64</option>
+                        </select>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <label asp-for="LVVersion" class="control-label">Different LV Version <br /><span style="font-size:11px; color:#595a5c">(to be modified only when any other version is installed)</span></label>
+                        <input asp-for="LVVersion" class="form-control" @bind="@LVVersion" required />
+
+                    </div>
+                    <br /><br /><br />
+                    <div style="float:right;">
+                        <button class="btn btn-primary btn-md" disabled="@isSubmitting" type="submit" style="float:right;width:80px;">Run</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+}

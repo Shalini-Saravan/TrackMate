@@ -1,0 +1,12 @@
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\bin\Release\net6.0\BlazorServerAppWithIdentity.Models.deps.json
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\bin\Release\net6.0\BlazorServerAppWithIdentity.Models.dll
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\bin\Release\net6.0\BlazorServerAppWithIdentity.Models.pdb
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.csproj.AssemblyReference.cache
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.AssemblyInfoInputs.cache
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.AssemblyInfo.cs
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.csproj.CoreCompileInputs.cache
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.dll
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\refint\BlazorServerAppWithIdentity.Models.dll
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\BlazorServerAppWithIdentity.Models.pdb
+C:\Users\shsarava\source\repos\BlazorServerAppWithIdentity\BlazorServerAppWithIdentity.Models\obj\Release\net6.0\ref\BlazorServerAppWithIdentity.Models.dll

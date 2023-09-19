@@ -1,0 +1,23 @@
+﻿@page
+@using BlazorServerAppWithIdentity.Models;
+@using BlazorServerAppWithIdentity.Services;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Identity
+@attribute [IgnoreAntiforgeryToken]
+@inject SignInManager<ApplicationUser> signInManager
+@inject IGlobalStateService GlobalState;
+@inject NavigationManager NavigationManager
+
+
+@functions {
+    public async Task<IActionResult> OnGet()
+    {
+        if(signInManager.IsSignedIn(User))
+        {
+            await signInManager.SignOutAsync();
+            GlobalState.TokenValue = null;
+            GlobalState.PAT = null;
+        }
+        return Redirect("/");
+    }
+}

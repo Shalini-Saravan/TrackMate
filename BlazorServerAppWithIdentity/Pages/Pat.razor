@@ -1,0 +1,49 @@
+﻿@page "/pat"
+@inherits PatBase
+@attribute [Authorize]
+
+<div class="container container-form">
+    <h4 class="about-head">Add PAT </h4>
+    @if (notification != "")
+    {
+        <div class="alert alert-success">
+            @notification
+            <span style="float:right">
+                <button type="button" class="close icon-button" @onclick="clearNotification">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </span>
+        </div>
+    }
+    <p style="font-weight:400; font-size:13px;">
+        Login to the <a href="https://ni.visualstudio.com/_usersSettings/tokens" target="_blank">site</a> and add token with any name and <b>Full Access</b> scope.
+        <br />Copy the token and add it here.
+    </p>
+    <br />
+    <form @onsubmit="AddPat">
+        <div class="row">
+
+            <div class="col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label asp-for="PAT" class="control-label">PAT</label>
+                    <input asp-for="PAT" class="form-control" @bind="@PAT" required />
+                </div>
+                <br />
+
+            </div>
+            <div class="col-md-6 col-lg-6">
+
+                <div class="form-group">
+                    <label for="ValidUpto" class="control-label">Valid Upto</label>
+                    <input asp-for="ValidUpto" type="date" class="form-control" @bind="@ValidUpto" required />
+                </div>
+                <br /><br />
+                <div style="float:right;">
+                    <button class="btn btn-primary btn-md" disabled="@isSubmitting" type="submit" style="float:right;width:80px;">Add</button>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>
