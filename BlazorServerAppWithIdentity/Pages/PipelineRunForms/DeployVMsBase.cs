@@ -25,9 +25,9 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
         [Parameter]
         public string? PipeLineName { get; set; }
         [Inject]
-        public IHttpContextAccessor? HttpContextAccessor { get; set; }
+        public IHttpContextAccessor HttpContextAccessor { get; set; }
         [Inject]
-        public IConfiguration? configuration { get; set; }
+        public IConfiguration configuration { get; set; }
         public IEnumerable<Machine>? MachinesList { get; set; }
 
         public Machine? machine { get; set; }
@@ -53,7 +53,7 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
             runsLink = "/pipeline/" + PipeLineId + "/" + PipeLineName + "/runs";
             try
             {
-                MachinesList = MachineService?.GetReservedMachines(HttpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "").ToList();
+                MachinesList = MachineService.GetReservedMachines(HttpContextAccessor.HttpContext.User.Identity.Name).ToList();
             }
             catch (Exception)
             {
@@ -74,7 +74,7 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
 
         private void OnMachineLoaded(string machine)
         {
-            MachinesList = MachineService?.GetReservedMachines(HttpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "").ToList();
+            MachineService?.GetReservedMachines(HttpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "").ToList();
             StateHasChanged();
         }
 

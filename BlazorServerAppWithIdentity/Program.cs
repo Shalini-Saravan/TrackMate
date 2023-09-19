@@ -2,6 +2,7 @@ using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Services;
 using BlazorServerAppWithIdentity.Hubs;
 using Microsoft.Extensions.Hosting;
+using Blazored.LocalStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 //string hostUrl = "http://10.164.42.30:7035";
@@ -25,15 +26,15 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
         connectionUri, "IdentityAuthDb"
     );
 
-
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<MachineService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<MachineUsageService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AzureService>();
-builder.Services.AddSingleton<IGlobalStateService, GlobalStateService>();
+builder.Services.AddScoped<IGlobalStateService, GlobalStateService>();
 builder.Services.AddHostedService<MachineBackgroundService>();
 
 builder.Services.AddCors(c =>
@@ -57,6 +58,11 @@ builder.Services.AddHttpClient<AccountService>(client =>
     client.BaseAddress = new Uri(hostUrl);
 });
 builder.Services.AddSignalR();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 var app = builder.Build();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 if (!app.Environment.IsDevelopment())

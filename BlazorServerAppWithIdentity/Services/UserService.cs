@@ -1,9 +1,6 @@
 ﻿using BlazorServerAppWithIdentity.Models;
-using BlazorServerAppWithIdentity.Pages;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
-using System.Security.Claims;
 
 namespace BlazorServerAppWithIdentity.Services
 {
@@ -15,8 +12,6 @@ namespace BlazorServerAppWithIdentity.Services
         {
             this.httpClient = httpClient;
             GlobalState = globalState;
-            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GlobalState.TokenValue);
-
         }
 
         public List<ApplicationRole> GetRoles()
@@ -44,18 +39,6 @@ namespace BlazorServerAppWithIdentity.Services
             JObject responseJson = JObject.Parse(response.Content.ReadAsStringAsync().Result);
             return responseJson["Result"].ToString();
             
-        }
-
-        public string AddPat(ApplicationUser user)
-        {
-            var jsonstring = "{\"user\" : " + JsonConvert.SerializeObject(user) + "}";
-            var response = httpClient.PostAsJsonAsync<string>("api/user/pat", jsonstring).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GlobalState.PAT = user.PAT;
-            }
-            JObject responseJson = JObject.Parse(response.Content.ReadAsStringAsync().Result);
-            return responseJson["Result"].ToString();
         }
 
         public string AddRole(ApplicationRole role)

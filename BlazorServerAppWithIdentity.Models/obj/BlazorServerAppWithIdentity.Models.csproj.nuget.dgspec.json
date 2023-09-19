@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {}
+    "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
+    "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
+        "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
         "projectName": "BlazorServerAppWithIdentity.Models",
-        "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
+        "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
         "packagesPath": "C:\\Users\\shsarava\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\obj\\",
+        "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shsarava\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,4 +1,5 @@
 @using BlazorServerAppWithIdentity.Services;
+@using Blazored.LocalStorage;
 @inject AuthenticationStateProvider _auth
 
 <div class="top-row ps-3 navbar navbar-dark">
@@ -58,7 +59,12 @@
 
 
 @code {
-
+    [Inject]
+    public IHttpContextAccessor HttpContextAccessor { get; set; }
+    [Inject]
+    public AzureService AzureService { get; set; }
+    [Inject]
+    public ILocalStorageService LocalStorage { get; set; }
     private bool collapseNavMenu = true;
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
@@ -66,5 +72,19 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && (await LocalStorage.GetItemAsStringAsync("AzDoToken")) == null)
+        {
+            AzureService.GetToken();
+        }
+        if (!HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+        {
+            await LocalStorage.ClearAsync();
+        }
+
+    }
+    
 
 }

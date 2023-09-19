@@ -33,20 +33,7 @@ namespace BlazorServerAppWithIdentity.Pages
         protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
-            bool? authenticated = HttpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated;
-            if (GlobalStateService?.PAT == null && (authenticated?? false))
-            {
-                string id = HttpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "";
-                ApplicationUser? appuser = UserService?.GetUserById(id);
-                if (appuser?.PAT == null)
-                {
-                    NavigationManager?.NavigateTo("/pat");
-                }
-                else if (GlobalStateService != null)
-                {
-                    GlobalStateService.PAT = appuser.PAT;
-                }
-            }
+           
             try
             {
                 if (AzureService != null)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj": {}
+    "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
+    "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
+        "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
         "projectName": "BlazorServerAppWithIdentity.Models",
-        "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
+        "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj",
         "packagesPath": "C:\\Users\\shsarava\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\obj\\",
+        "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shsarava\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj": {
+    "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj",
+        "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj",
         "projectName": "BlazorServerAppWithIdentity",
-        "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj",
+        "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj",
         "packagesPath": "C:\\Users\\shsarava\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity\\obj\\",
+        "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shsarava\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,8 +93,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
-                "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj"
+              "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
+                "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj"
               }
             }
           }

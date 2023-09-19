@@ -9,173 +9,173 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BlazorServerAppWithIdentity
 build_property.RootNamespace = BlazorServerAppWithIdentity
-build_property.ProjectDir = C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity\
+build_property.ProjectDir = C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity
+build_property.MSBuildProjectDirectory = C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/App.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Capability.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Authorize.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aG9yaXplLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Capability.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FwYWJpbGl0eS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Index.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Machines.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Machines.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFjaGluZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Pat.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PhysicalMachines.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PhysicalMachines.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGh5c2ljYWxNYWNoaW5lcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/BuildAndDeploy.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/BuildAndDeploy.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xCdWlsZEFuZERlcGxveS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/DatabaseLog.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/DatabaseLog.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xEYXRhYmFzZUxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/DeployRunnableExport.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/DeployRunnableExport.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xEZXBsb3lSdW5uYWJsZUV4cG9ydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/DeployVMs.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/DeployVMs.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xEZXBsb3lWTXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/IaC/IacCommonForm.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/IaC/IacCommonForm.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xJYUNcSWFjQ29tbW9uRm9ybS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/IaC/IacTSAutoMatrix.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/IaC/IacTSAutoMatrix.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xJYUNcSWFjVFNBdXRvTWF0cml4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/IaC/IacTSDU.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/IaC/IacTSDU.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xJYUNcSWFjVFNEVS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/LVTS.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/LVTS.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xMVlRTLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/PipelineUnavailable.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/PipelineUnavailable.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xQaXBlbGluZVVuYXZhaWxhYmxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/PropertyLoader.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/PropertyLoader.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xQcm9wZXJ0eUxvYWRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/ReportContent.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/ReportContent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xSZXBvcnRDb250ZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/ReportPath.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/ReportPath.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xSZXBvcnRQYXRoLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/TSAuto.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/TSAuto.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xUU0F1dG8ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/TSAutoMatrix.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/TSAutoMatrix.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xUU0F1dG9NYXRyaXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/TSLV.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineRunForms/TSLV.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVSdW5Gb3Jtc1xUU0xWLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Pipelines.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Pipelines.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/PipelineView.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/PipelineView.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVWaWV3LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Runs.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Runs.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUnVucy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/TabControl.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/TabControl.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFiQ29udHJvbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/TabPage.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/TabPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFiUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Users.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Users.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/VirtualMachines.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/VirtualMachines.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlydHVhbE1hY2hpbmVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Shared/LoginDisplay.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/_Imports.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Shared/MainLayout.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-v8otx28efa
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Shared/NavMenu.razor]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-rkp91xzp5a
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/_IdentityLayout.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/_IdentityLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0lkZW50aXR5TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/Error.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/_Host.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/_Layout.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/shsarava/source/repos/BlazorServerApp/BlazorServerAppWithIdentity/Pages/_ViewStart.cshtml]
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

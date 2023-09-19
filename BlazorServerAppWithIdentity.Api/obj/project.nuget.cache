@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nbCPGnk1mc9HCn08OtYCnJWP/j6KpgE2EzZHQ49Q16q02gQnHVQpDi0rHm0PT232T5oAkcpg4obfDmd1yuPFnw==",
+  "dgSpecHash": "JoNPTRIsCZPadtbT0g5iQBKU5I9sBWNYX/8LDSXj/uA0eOFtVvTKZlf9Bp130Pj8QvNDAL1U71B+hXRjHJ+/7A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
+  "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shsarava\\.nuget\\packages\\aspnetcore.identity.mongodbcore\\3.1.2\\aspnetcore.identity.mongodbcore.3.1.2.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",

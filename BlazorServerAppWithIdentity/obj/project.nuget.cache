@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KMfJ/pjPBD45FUiRblqO1JQKQsR046PMMZek7SF9Jok6iQzLrayDSkTYojqIJZ0x4PWDRyVYcGyV/QRxlhfGCg==",
+  "dgSpecHash": "JmIVRIOlBJuyetUsiT+Q2s1iajHsh+CXqtqhFDTlCSO2aYGlJMA70VoB1Cpv4Tkgn1na2mbIMmKDMqETJgGmzg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj",
+  "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\BlazorServerAppWithIdentity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shsarava\\.nuget\\packages\\aspnetcore.identity.mongodbcore\\3.1.2\\aspnetcore.identity.mongodbcore.3.1.2.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\azure.core\\1.6.0\\azure.core.1.6.0.nupkg.sha512",

@@ -45,19 +45,7 @@ namespace BlazorServerAppWithIdentity.Pages
         protected override async Task OnInitializedAsync()
         {
             base.OnInitializedAsync();
-            if (GlobalStateService.PAT == null && HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
-            {
-                string id = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                ApplicationUser appuser = UserService.GetUserById(id);
-                if (appuser.PAT == null)
-                {
-                    NavigationManager.NavigateTo("/pat");
-                }
-                else
-                {
-                    GlobalStateService.PAT = appuser.PAT;
-                }
-            }
+           
             try
             {
 
@@ -81,7 +69,6 @@ namespace BlazorServerAppWithIdentity.Pages
                 MachineCount = 0;
                 AvailableCount = 0;
                 InUseCount = MachineCount - AvailableCount;
-
             }
            
         }

@@ -58,19 +58,7 @@ namespace BlazorServerAppWithIdentity.Pages
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            if (GlobalStateService?.PAT == null && (HttpContextAccessor?.HttpContext?.User?.Identity?.IsAuthenticated ?? false))
-            {
-                string id = HttpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "";
-                ApplicationUser? appuser = UserService?.GetUserById(id);
-                if (appuser != null && appuser.PAT == null)
-                {
-                    NavigationManager?.NavigateTo("/pat");
-                }
-                else if(GlobalStateService != null)
-                {
-                    GlobalStateService.PAT = appuser?.PAT ?? "";
-                }
-            }
+            
             try
             {
                 UsersList = UserService?.GetUsers().ToList();

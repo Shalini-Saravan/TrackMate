@@ -3291,11 +3291,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
+      "projectUniqueName": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
       "projectName": "BlazorServerAppWithIdentity.Api",
-      "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
+      "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
       "packagesPath": "C:\\Users\\shsarava\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Api\\obj\\",
+      "outputPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shsarava\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3312,8 +3312,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
-              "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorServerApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj"
+            "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj": {
+              "projectPath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Models\\BlazorServerAppWithIdentity.Models.csproj"
             }
           }
         }

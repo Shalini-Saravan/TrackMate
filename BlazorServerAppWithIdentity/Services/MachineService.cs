@@ -20,7 +20,6 @@ namespace BlazorServerAppWithIdentity.Services
             this.httpClient = httpClient;
             _hubContext = hubContext;
             this.GlobalState = GlobalState;
-            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GlobalState.TokenValue);
         }
 
 
@@ -41,8 +40,7 @@ namespace BlazorServerAppWithIdentity.Services
         //returns a list of agents that are reserved by current user or available
         public IEnumerable<Models.Machine> GetReservedMachines(string userName)
         {
-            IEnumerable<Machine> emptyObject = new List<Models.Machine>();
-            return httpClient.GetFromJsonAsync<List<Machine>>("api/machine/agents/reserved/" + userName).Result ?? emptyObject;
+            return httpClient.GetFromJsonAsync<List<Machine>>("api/machine/agents/reserved/" + userName).Result;
         }
         public int GetMachineCount()
         {

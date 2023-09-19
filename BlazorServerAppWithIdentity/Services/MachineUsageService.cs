@@ -12,7 +12,6 @@ namespace BlazorServerAppWithIdentity.Services
         {
             this.httpClient = httpClient;
             GlobalState = globalState;
-            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GlobalState.TokenValue);
 
         }
         public IEnumerable<MachineUsage> GetMachineUsageByUserName(string userName)
