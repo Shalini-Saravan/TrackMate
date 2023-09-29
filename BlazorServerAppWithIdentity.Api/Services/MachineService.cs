@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using MongoDB.Driver;
 using Machine = BlazorServerAppWithIdentity.Models.Machine;
 using BlazorServerAppWithIdentity.Api.Hubs;
+using BlazorServerAppWithIdentity.Services;
 
 namespace BlazorServerAppWithIdentity.Api.Services
 {
@@ -11,11 +12,13 @@ namespace BlazorServerAppWithIdentity.Api.Services
     {
         private readonly BlazorServerAppWithIdentityContext db;
         private readonly IHubContext<BlazorHub> _hubContext;
+        private NotificationService NotificationService;
 
-        public MachineService(IMongoClient client, IHubContext<BlazorHub> hubContext)
+        public MachineService(NotificationService NotificationService, IMongoClient client, IHubContext<BlazorHub> hubContext)
         {
             db = new BlazorServerAppWithIdentityContext(client);
             _hubContext = hubContext;
+            this.NotificationService = NotificationService;
         }
 
         public async Task<IEnumerable<Models.Machine>> GetMachines()
@@ -30,8 +33,8 @@ namespace BlazorServerAppWithIdentity.Api.Services
         {
             return await Task.Run(() =>
             {
-                List<Machine> vmList = db.MachineRecords.Find(m => m.Type == "Virtual").ToList();
-                return vmList.OrderBy(o => o.Name).ToList();
+                List<Machine> vmList = db.MachineRecords.Find(m => m.Type == "Virtual")?.ToList();
+                return vmList?.OrderBy(o => o.Name).ToList();
             });
         }
 
@@ -85,7 +88,7 @@ namespace BlazorServerAppWithIdentity.Api.Services
                 return false;
             });
         }
-
+        
         public async Task<string> AddMachine(Models.Machine? machine)
         {
             try
@@ -141,6 +144,7 @@ namespace BlazorServerAppWithIdentity.Api.Services
                 }
                 db.MachineRecords.DeleteOne(machineData);
                 await _hubContext.Clients.All.SendAsync("MachineLoaded", machineData.ToString());
+                
                 return "Machine Deleted Successfully!";
             }
             catch
@@ -170,8 +174,11 @@ namespace BlazorServerAppWithIdentity.Api.Services
                         StartTime = DateTime.UtcNow.AddMinutes(330),
                         InUse = true
                     };
+
                     await db.MachineUsage.InsertOneAsync(newlog);
                     await _hubContext.Clients.All.SendAsync("MachineLoaded", machine.ToString());
+                    //send Private Notification
+                    await NotificationService.SendPrivateNotification(userName, "Machine " + machine.Name + " has been Reserved till " + machine.EndTime?.ToString("MMM dd, h:mm tt"), "Machine_CheckIns_CheckOuts");
                     return "Machine Assigned Successfully!";
                 }
                 else
@@ -199,6 +206,7 @@ namespace BlazorServerAppWithIdentity.Api.Services
                     var filter3 = Builders<MachineUsage>.Filter.Eq("UserName", machine.UserName);
                     await db.MachineUsage.UpdateOneAsync(filter: filter1 & filter2 & filter3, logupdate);
 
+                    string userName = machine.UserName;
                     var update = Builders<Models.Machine>.Update
                     .Set(m => m.Status, "Available").Set(m => m.UserId, null)
                     .Set(m => m.Comments, "None")
@@ -206,8 +214,9 @@ namespace BlazorServerAppWithIdentity.Api.Services
                     await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
 
                     await _hubContext.Clients.All.SendAsync("MachineLoaded", machine.ToString());
-
-                    return "Machine CheckedOut Successfully!";
+                    //send Private Notification
+                    await NotificationService.SendPrivateNotification(userName, "Access to the Machine " + machine.Name + " has been Revoked!", "Machine_CheckIns_CheckOuts");
+                return "Machine CheckedOut Successfully!";
                 }
                 else
                 {
@@ -220,7 +229,7 @@ namespace BlazorServerAppWithIdentity.Api.Services
                 return "Error: Failed Operation";
             }
         }
-
+        
         public async Task<List<Machine>> GetMachinesByUserId(string id)
         {
             return await Task.Run(() =>
@@ -230,6 +239,8 @@ namespace BlazorServerAppWithIdentity.Api.Services
             });
 
         }
+
+
 
     }
 }

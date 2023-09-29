@@ -8,10 +8,8 @@ namespace BlazorServerAppWithIdentity.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = "Bearer")]
     public class MachineController : ControllerBase
     {
-
         private readonly MachineService MachineService;
 
         public MachineController(MachineService machineService)
@@ -73,7 +71,6 @@ namespace BlazorServerAppWithIdentity.Api.Controllers
             Machine machine = data["machine"].ToObject<Machine>();
             return new JsonResult(MachineService.AddMachine(machine));
         }
-
         [HttpPut]
         public JsonResult UpdateMachine([FromBody] string strdata)
         {

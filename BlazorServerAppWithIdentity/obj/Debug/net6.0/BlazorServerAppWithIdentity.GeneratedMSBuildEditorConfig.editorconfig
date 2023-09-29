@@ -120,6 +120,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFiUGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Token.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVG9rZW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Users.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -135,6 +139,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Pages/Notifications.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90aWZpY2F0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-0i1gl7fp27
 
 [C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/BlazorServerAppWithIdentity/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

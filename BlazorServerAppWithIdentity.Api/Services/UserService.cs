@@ -37,6 +37,7 @@ namespace BlazorServerAppWithIdentity.Services
         {
             return await _userManager.FindByIdAsync(id);
         }
+        
         public async Task<string> AddUser(User user)
         {
             ApplicationUser appUser = new ApplicationUser
@@ -52,22 +53,14 @@ namespace BlazorServerAppWithIdentity.Services
 
             if (result.Succeeded)
             {   
-                result = await _userManager.AddToRoleAsync(appUser, user.Roles);
+                await _userManager.AddToRoleAsync(appUser, user.Roles);
                 return "User added Successfully!";
             }
 
             return "Failed to add new user!";
 
         }
-        public async Task<string> AddPat(ApplicationUser user)
-        {
-            IdentityResult result = await _userManager.UpdateAsync(user);
-            if (result.Succeeded)
-            {
-                return "PAT updated Successfully!";
-            }
-            return "Failed to update PAT!";
-        }
+        
         public async Task<string> AddRole(ApplicationRole role)
         {
             IdentityResult result = await _roleManager.CreateAsync(role);

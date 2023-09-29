@@ -1,4 +1,7 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using Blazored.LocalStorage;
+using BlazorServerAppWithIdentity.Models;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR;
 using System.Net.Http.Headers;
 
 namespace BlazorServerAppWithIdentity.Services
@@ -6,13 +9,11 @@ namespace BlazorServerAppWithIdentity.Services
     public class MachineUsageService
     {
         private readonly HttpClient httpClient;
-        private readonly IGlobalStateService GlobalState;
-
-        public MachineUsageService(HttpClient httpClient, IGlobalStateService globalState)
+        public ILocalStorageService LocalStorageService { get; set; }
+        public MachineUsageService(ILocalStorageService LocalStorageService, HttpClient httpClient)
         {
             this.httpClient = httpClient;
-            GlobalState = globalState;
-
+            this.LocalStorageService = LocalStorageService;
         }
         public IEnumerable<MachineUsage> GetMachineUsageByUserName(string userName)
         { 

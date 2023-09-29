@@ -7,7 +7,6 @@ namespace BlazorServerAppWithIdentity.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = "Bearer")]
     public class MachineUsageController : ControllerBase
     {
         private readonly MachineUsageService MachineUsageService;

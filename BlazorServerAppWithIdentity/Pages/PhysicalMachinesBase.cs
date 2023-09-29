@@ -1,12 +1,14 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using Blazored.LocalStorage;
+using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Net;
 using System.Security.Claims;
 
 namespace BlazorServerAppWithIdentity.Pages
 {
-    public class PhysicalMachinesBase : ComponentBase
+    public class PhysicalMachinesBase : ComponentBase, IAsyncDisposable
     {
         [Inject]
         public MachineService? MachineService { get; set; }
@@ -19,10 +21,13 @@ namespace BlazorServerAppWithIdentity.Pages
         [Inject]
         public IHttpContextAccessor? HttpContextAccessor { get; set; }
 
-        [Inject]
-        IGlobalStateService? GlobalStateService { get; set; }
+       
         [Inject]
         public IConfiguration? configuration { get; set; }
+        [Inject]
+        public ILocalStorageService? LocalStorage { get; set; }
+        [Inject]
+        public ILocalStorageService LocalStorageService { get; set; }
         public IEnumerable<Machine>? MachinesList { get; set; }
         public IEnumerable<ApplicationUser>? UsersList { get; set; }
 
@@ -43,6 +48,8 @@ namespace BlazorServerAppWithIdentity.Pages
         protected Boolean isAdd = false;
         protected Boolean isAssign = false;
         protected Boolean isSubmitting = false;
+        protected string conId;
+        private HubConnection hubConnection { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -58,21 +65,26 @@ namespace BlazorServerAppWithIdentity.Pages
                 UsersList = new List<ApplicationUser>();
                 MachinesList = new List<Machine>();
             }
-
             //connecting to the blazor hub 
             if (configuration != null)
             {
-                var hubConnection = new HubConnectionBuilder()
-                    .WithUrl(configuration["HubUrl"])
+                string TokenValue = await LocalStorageService.GetItemAsStringAsync("TokenValue");
+                hubConnection = new HubConnectionBuilder()
+                    .WithUrl(configuration["HubUrl"], options =>
+                    {
+                        options.AccessTokenProvider = () => Task.FromResult(TokenValue ?? null);
+                    })
                     .Build();
-
                 hubConnection.On<String>("MachineLoaded", OnMachineLoaded);
                 hubConnection.On<String>("UserLoaded", OnUserLoaded);
-
+                hubConnection.On<String>("privateNotification", OnNotificationReceived);
                 await hubConnection.StartAsync();
             }
         }
-
+        private void OnNotificationReceived(string message)
+        {
+            OnMachineLoaded(null);
+        }
         private void OnMachineLoaded(string machine)
         {
             MachinesList = MachineService?.GetMachines().ToList();
@@ -248,6 +260,11 @@ namespace BlazorServerAppWithIdentity.Pages
                 closeModal();
             }
 
+        }
+        
+        public async ValueTask DisposeAsync()
+        {
+            await hubConnection.DisposeAsync();
         }
     }
 }

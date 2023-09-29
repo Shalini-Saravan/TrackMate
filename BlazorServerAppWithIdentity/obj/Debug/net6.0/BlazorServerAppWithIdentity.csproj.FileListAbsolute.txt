@@ -931,3 +931,4 @@ C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIden
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\BlazorServerAppWithIdentity.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\BlazorServerAppWithIdentity.genruntimeconfig.cache
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\ref\BlazorServerAppWithIdentity.dll
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\scopedcss\Pages\Notifications.razor.rz.scp.css

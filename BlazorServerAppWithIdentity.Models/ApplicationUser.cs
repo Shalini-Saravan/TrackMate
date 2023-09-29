@@ -11,8 +11,5 @@ namespace BlazorServerAppWithIdentity.Models
         public string Department { get; set; }
         public string Team { get; set; }
 
-        public string PAT { get; set; }
-        public DateTime? ValidUpto { get; set; }
-
     }
 }

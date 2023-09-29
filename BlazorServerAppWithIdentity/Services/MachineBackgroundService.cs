@@ -11,7 +11,7 @@ namespace BlazorServerAppWithIdentity.Services
         private Timer _timer;
         private HttpClient httpClient { get; set; }
         
-        private string PAT { get; set; } = "u3ocufvclhwkytmjxndlt3a3ad2zvfdu4ahh5q3ou44ew3zkpkja";
+        private string PAT { get; set; } = "uglgunvohxdewpe2swfxtvf6ho2zk7feg6xdsufsimnomyengaca";
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {

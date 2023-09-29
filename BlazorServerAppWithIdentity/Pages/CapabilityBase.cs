@@ -8,10 +8,7 @@ namespace BlazorServerAppWithIdentity.Pages
 {
     public class CapabilityBase :ComponentBase
     {
-        [Inject]
-        IGlobalStateService? GlobalStateService { get; set; }
-        [Inject]
-        NavigationManager? NavigationManager { get; set; }
+       
         [Inject]
         MachineService? MachineService { get; set; }
 

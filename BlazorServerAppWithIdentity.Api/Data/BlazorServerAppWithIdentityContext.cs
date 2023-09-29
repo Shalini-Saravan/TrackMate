@@ -38,7 +38,19 @@ namespace BlazorServerAppWithIdentity.Api.Data
                 return _mongoDatabase.GetCollection<MachineUsage>("MachineUsage");
             }
         }
-
-
+        public IMongoCollection<Notification> Notifications
+        {
+            get
+            {
+                return _mongoDatabase.GetCollection<Notification>("Notifications");
+            }
+        }
+        public IMongoCollection<Subscription> Subscription
+        {
+            get
+            {
+                return _mongoDatabase.GetCollection<Subscription>("Subscription");
+            }
+        }
     }
 }

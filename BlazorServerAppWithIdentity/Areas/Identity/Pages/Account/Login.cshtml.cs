@@ -1,8 +1,10 @@
+using Blazored.LocalStorage;
 using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.JSInterop;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
@@ -13,14 +15,10 @@ namespace BlazorServerAppWithIdentity.Areas.Identity.Pages.Account
 
         private readonly AccountService AccountService;
         private readonly UserService UserService;
-        private readonly IGlobalStateService GlobalStateService;
-        private readonly IHttpContextAccessor HttpContextAccessor;
-        public LoginModel(AccountService AccountService, UserService UserService, IGlobalStateService globalStateService, IHttpContextAccessor HttpContextAccessor)
+        public LoginModel(AccountService AccountService, UserService UserService)
         {
             this.AccountService = AccountService;
             this.UserService = UserService;
-            this.GlobalStateService = globalStateService;
-            this.HttpContextAccessor = HttpContextAccessor;
         }
 
         [BindProperty]
@@ -39,16 +37,16 @@ namespace BlazorServerAppWithIdentity.Areas.Identity.Pages.Account
             if (isSubmitting) return Page();
             isSubmitting = true;
 
-            ReturnUrl = Url.Content("~/");
+            ReturnUrl = Url.Content("~/token?token=");
             try
             {
                 if (ModelState.IsValid)
                 {
 
                     var result = AccountService.Login(Input.UserName, Input.Password);
-                    if (result.Succeeded)
+                    if (result != null)
                     {
-                        return LocalRedirect(ReturnUrl);
+                        return LocalRedirect(ReturnUrl+result);
                     }
                 }
                 ViewData["Message"] = "Login Failed: Invalid Email or Password";
@@ -58,7 +56,7 @@ namespace BlazorServerAppWithIdentity.Areas.Identity.Pages.Account
             }
             finally { isSubmitting = false; }
         }
-
+       
         public class InputModel
         {
             [Required]

@@ -1,4 +1,5 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using BlazorServerAppWithIdentity.Api.Hubs;
+using BlazorServerAppWithIdentity.Models;
 using Microsoft.AspNetCore.SignalR;
 using MongoDB.Driver;
 using Newtonsoft.Json.Linq;
@@ -14,7 +15,12 @@ namespace BlazorServerAppWithIdentity.Api.Services.BackgroundServices
         private IMongoDatabase MongoDatabase { get; set; }
         private IMongoCollection<Machine> MachineRecords { get; set; }
         private IMongoCollection<MachineUsage> MachineUsageRecords { get; set; }
-
+        private IMongoCollection<Notification> NotificationRecords { get; set; }
+        private IHubContext<BlazorHub> _hubContext { get; set; }
+        public MachineTimeout(IHubContext<BlazorHub> HubContext)
+        {
+            this._hubContext = HubContext;
+        }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var settings = MongoClientSettings.FromConnectionString("mongodb+srv://shalini:T3874ve7Dt5nfsOd@cluster0.isgqskk.mongodb.net/?retryWrites=true&w=majority");
@@ -23,6 +29,8 @@ namespace BlazorServerAppWithIdentity.Api.Services.BackgroundServices
             MongoDatabase = client.GetDatabase("IdentityAuthDb");
             MachineRecords = MongoDatabase.GetCollection<Machine>("MachineRecords");
             MachineUsageRecords = MongoDatabase.GetCollection<MachineUsage>("MachineUsage");
+            NotificationRecords = MongoDatabase.GetCollection<Notification>("Notifications");
+
             await Task.Delay(1000);
             _timer = new Timer(UpdateTimeoutMachine, null, TimeSpan.Zero, TimeSpan.FromHours(2));
         }
@@ -41,13 +49,44 @@ namespace BlazorServerAppWithIdentity.Api.Services.BackgroundServices
                         var filter2 = Builders<MachineUsage>.Filter.Eq("Machine.Id", record.Id);
                         var filter3 = Builders<MachineUsage>.Filter.Eq("UserName", record.UserName);
                         MachineUsageRecords?.UpdateOneAsync(filter: filter1 & filter2 & filter3, logupdate);
-
+                        
+                        string userName = record.UserName;
                         var update = Builders<Models.Machine>.Update
                         .Set(m => m.Status, "Available").Set(m => m.UserId, null)
                         .Set(m => m.Comments, "None")
                         .Set(m => m.UserName, null)
                         .Set(m => m.UserId, null);
                         MachineRecords.UpdateOneAsync(filter: g => g.Id == record.Id, update);
+
+                        //Adding notification to the user record
+                        Notification notificationRec = NotificationRecords.Find(Builders<Notification>.Filter.Eq("UserName", userName)).FirstOrDefault();
+                        if(notificationRec != null)
+                        {
+                            notificationRec.Messages.Add(new Message
+                            {
+                                Body = "Machine has been Timedout!",
+                                TimeStamp = DateTime.UtcNow.AddMinutes(330)
+                            });
+                            var Notificationupdate = Builders<Notification>.Update
+                                .Set(m => m.Messages,notificationRec.Messages);
+
+                            NotificationRecords.UpdateOneAsync(filter: g => g.UserName == userName, Notificationupdate);
+                        }
+                        else
+                        {
+                            NotificationRecords.InsertOneAsync(new Notification
+                            {
+                                UserName = userName,
+                                Messages = new List<Message>{
+                                            new Message {
+                                                Body = "Machine has been Timedout!",
+                                                TimeStamp = DateTime.UtcNow.AddMinutes(330)
+                                            }
+                                        }
+                            });
+                        }
+                        _hubContext.Clients.User(userName).SendAsync("privateNotification",
+                        userName);
                     }
                     catch (Exception ex)
                     {

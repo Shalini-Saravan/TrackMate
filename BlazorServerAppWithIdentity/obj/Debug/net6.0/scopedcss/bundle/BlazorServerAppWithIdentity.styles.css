@@ -1,3 +1,129 @@
+/* _content/BlazorServerAppWithIdentity/Pages/Notifications.razor.rz.scp.css */
+
+.notification-leftpanel[b-0i1gl7fp27] {
+    padding: 20px;
+    box-shadow: 2px 2px 10px #DADADA;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 1px;
+    min-height: 80vh;
+}
+
+.notification-rightpanel[b-0i1gl7fp27] {
+    padding: 20px;
+    box-shadow: 2px 2px 10px #DADADA;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 1px;
+    min-height: 80vh;
+}
+
+.alert[b-0i1gl7fp27] {
+    padding: 20px;
+    box-shadow: 1px 1px 10px #e8e8e8;
+    background-color: #f7fbfc;
+    color: black;
+    margin-bottom: 15px;
+    font-size:12px;
+}
+.notification-time[b-0i1gl7fp27] {
+    color: gray;
+    padding-bottom: 2px;
+    
+}
+.notification-clear[b-0i1gl7fp27] {
+    float: right;
+    font-size: 12px;
+    color: #0071c1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* The close button */
+.closebtn[b-0i1gl7fp27] {
+    margin-left: 15px;
+    color: #5b5c5c;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    /* When moving the mouse over the close button */
+    .closebtn:hover[b-0i1gl7fp27] {
+        color: black;
+    }
+.switch[b-0i1gl7fp27] {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input[b-0i1gl7fp27] {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* The slider */
+.slider[b-0i1gl7fp27] {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider[b-0i1gl7fp27]:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 15px;
+        left: 2px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider[b-0i1gl7fp27] {
+    background-color: #0e415c;
+}
+
+input:focus + .slider[b-0i1gl7fp27] {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider[b-0i1gl7fp27]:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round[b-0i1gl7fp27] {
+    border-radius: 34px;
+}
+
+    .slider.round[b-0i1gl7fp27]:before {
+        border-radius: 50%;
+    }
+
+.btn-primary:disabled[b-0i1gl7fp27] {
+    background-color: #9E9FA5;
+    border: none;
+}
+button:focus[b-0i1gl7fp27]{
+    outline:0;
+    box-shadow: none;
+}
 /* _content/BlazorServerAppWithIdentity/Shared/MainLayout.razor.rz.scp.css */
 .page[b-v8otx28efa] {
     position: relative;

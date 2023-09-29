@@ -1,4 +1,5 @@
 ﻿using BlazorServerAppWithIdentity.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorServerAppWithIdentity.Api.Controllers
@@ -6,6 +7,7 @@ namespace BlazorServerAppWithIdentity.Api.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AccountController : ControllerBase
     {
         private readonly AccountService AccountService;

@@ -1,25 +1,30 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using Blazored.LocalStorage;
+using BlazorServerAppWithIdentity.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Http.Headers;
 
 namespace BlazorServerAppWithIdentity.Services
 {
     public class UserService
     {
         private readonly HttpClient httpClient;
-        private readonly IGlobalStateService GlobalState;
-        public UserService(HttpClient httpClient, IGlobalStateService globalState)
+        private readonly ILocalStorageService LocalStorage;
+        public UserService( ILocalStorageService LocalStorage, HttpClient httpClient)
         {
             this.httpClient = httpClient;
-            GlobalState = globalState;
+            this.LocalStorage = LocalStorage;
         }
-
+        
+       
         public List<ApplicationRole> GetRoles()
         {
             return httpClient.GetFromJsonAsync<List<ApplicationRole>>("api/user/roles").Result;
         }
         public List<ApplicationUser> GetUsers()
-        {   
+        {
             return httpClient.GetFromJsonAsync<List<ApplicationUser>>("api/user").Result;
         }
         public int GetUsersCount()
@@ -38,14 +43,14 @@ namespace BlazorServerAppWithIdentity.Services
             var response = httpClient.PostAsJsonAsync<string>("api/user", jsonstring).Result;
             JObject responseJson = JObject.Parse(response.Content.ReadAsStringAsync().Result);
             return responseJson["Result"].ToString();
-            
+
         }
 
         public string AddRole(ApplicationRole role)
         {
             var jsonstring = "{\"role\" : " + JsonConvert.SerializeObject(role) + "}";
             var response = httpClient.PostAsJsonAsync<string>("api/user/role", jsonstring).Result;
-            
+
             JObject responseJson = JObject.Parse(response.Content.ReadAsStringAsync().Result);
             return responseJson["Result"].ToString();
         }

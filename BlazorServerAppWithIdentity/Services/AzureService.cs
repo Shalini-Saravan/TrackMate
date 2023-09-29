@@ -20,23 +20,25 @@ namespace BlazorServerAppWithIdentity.Services
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IConfiguration _configuration;
         private readonly IMemoryCache _memoryCache;
-        private IGlobalStateService GlobalStateService;
         private UserService UserService;
         private NavigationManager NavigationManager;
         private ILocalStorageService LocalStorage;
-        public AzureService(ILocalStorageService localStorage ,NavigationManager NavigationManager, UserService UserService, IGlobalStateService GlobalStateService, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMemoryCache memoryCache)
+        public AzureService(ILocalStorageService localStorage ,NavigationManager NavigationManager, UserService UserService, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMemoryCache memoryCache)
         {
             this.httpClient = httpClient;
             _configuration = configuration;
             this.httpContextAccessor = httpContextAccessor;
             this._memoryCache = memoryCache;
-            this.GlobalStateService = GlobalStateService;
             this.UserService = UserService;
             this.NavigationManager = NavigationManager;
             this.LocalStorage = localStorage;
             httpClient.DefaultRequestHeaders.Accept.Add(
                   new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            AddTokenHeader();
+            if(httpContextAccessor.HttpContext != null && httpContextAccessor.HttpContext.User.Identity.IsAuthenticated ) 
+            {
+                AddTokenHeader();
+            }
+            
         }
         public async Task AddTokenHeader()
         {

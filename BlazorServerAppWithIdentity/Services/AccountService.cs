@@ -1,6 +1,9 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using Azure;
+using Blazored.LocalStorage;
+using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Pages;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.JSInterop;
 using System.Security.Claims;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -10,26 +13,27 @@ namespace BlazorServerAppWithIdentity.Services
     {
         private readonly HttpClient httpClient;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IGlobalStateService GlobalState;
-        private readonly IHttpContextAccessor HttpContextAccessor;
-        private readonly UserService UserService;
-        public AccountService(UserService UserService, IHttpContextAccessor HttpContextAccessor, HttpClient httpClient, SignInManager<ApplicationUser> signInManager, IGlobalStateService globalState)
+        private readonly ILocalStorageService _localStorage;
+        protected IJSRuntime JSRuntime;
+        public AccountService(IJSRuntime JSRuntime, ILocalStorageService localStorage, HttpClient httpClient, SignInManager<ApplicationUser> signInManager)
         {
             this.httpClient = httpClient;
             _signInManager = signInManager;
-            GlobalState = globalState;
-            this.HttpContextAccessor = HttpContextAccessor;
-            this.UserService = UserService;
+            _localStorage = localStorage;
+            this.JSRuntime = JSRuntime;
         }
 
-        public SignInResult Login(string userName, string password)
+        public string Login(string userName, string password)
         {
             string response = httpClient.GetFromJsonAsync<string>("api/account/login/" + userName + "/" + password).Result;
             var result = _signInManager.PasswordSignInAsync(userName, password, false, false);
-            GlobalState.TokenValue = response ?? "";
-
-            return result.Result;
+            if (result.Result.Succeeded)
+            {
+                return response;
+            }
+            return null;
         }
-       
+        
+
     }
 }

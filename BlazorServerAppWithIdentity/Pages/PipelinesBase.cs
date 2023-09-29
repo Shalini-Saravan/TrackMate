@@ -10,8 +10,7 @@ namespace BlazorServerAppWithIdentity.Pages
     {
         [Inject]
         public AzureService AzureService { get; set; }
-        [Inject]
-        public IGlobalStateService GlobalStateService { get; set; }
+       
         [Inject]
         public IHttpContextAccessor HttpContextAccessor { get; set; }
         [Inject]

@@ -12,10 +12,11 @@ using System.Security.Claims;
 using System.Net.Security;
 using Newtonsoft.Json.Linq;
 using Azure;
+using Blazored.LocalStorage;
 
 namespace BlazorServerAppWithIdentity.Pages
 {
-    public class UsersBase : ComponentBase
+    public class UsersBase : ComponentBase, IAsyncDisposable
     {
         [Inject]
         public UserService? UserService { get; set; }
@@ -24,13 +25,13 @@ namespace BlazorServerAppWithIdentity.Pages
         [Inject]
         public NavigationManager? NavigationManager { get; set; }
 
-        [Inject]
-        IGlobalStateService? GlobalStateService { get; set; }
+        
         [Inject]
         public IHttpContextAccessor? HttpContextAccessor { get; set; }
         [Inject]
         public IConfiguration? configuration { get; set; }
-
+        [Inject]
+        public ILocalStorageService LocalStorageService { get; set; }
         public IEnumerable<ApplicationUser>? UsersList { get; set; }
 
 
@@ -53,9 +54,9 @@ namespace BlazorServerAppWithIdentity.Pages
         protected string isModalActive = "";
         protected bool isSubmitting = false;
         protected ApplicationUser? appuser;
-        
+        private HubConnection hubConnection { get; set; }
 
-        protected override void OnInitialized()
+        protected async override void OnInitialized()
         {
             base.OnInitialized();
             
@@ -72,9 +73,13 @@ namespace BlazorServerAppWithIdentity.Pages
 
             if (configuration != null)
             {
-                var hubConnection = new HubConnectionBuilder()
-                    .WithUrl(configuration["HubUrl"])
-                    .Build();
+                string TokenValue = await LocalStorageService.GetItemAsStringAsync("TokenValue");
+                hubConnection = new HubConnectionBuilder()
+                   .WithUrl(configuration["HubUrl"], options =>
+                   {
+                       options.AccessTokenProvider = () => Task.FromResult(TokenValue ?? null);
+                   })
+                   .Build();
 
                 hubConnection.On<String>("UserLoaded", OnUserLoaded);
                 hubConnection.StartAsync();
@@ -254,6 +259,9 @@ namespace BlazorServerAppWithIdentity.Pages
         {
             this.message = null;
         }
-
+        public async ValueTask DisposeAsync()
+        {
+            await hubConnection.DisposeAsync();
+        }
     }
 }

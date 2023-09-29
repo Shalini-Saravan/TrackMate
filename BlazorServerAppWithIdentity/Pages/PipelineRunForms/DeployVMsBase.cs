@@ -1,4 +1,5 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using Blazored.LocalStorage;
+using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -9,7 +10,7 @@ using System.Security.Claims;
 
 namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
 {
-    public class DeployVMsBase : ComponentBase
+    public class DeployVMsBase : ComponentBase, IAsyncDisposable
     {
         [Inject]
         public AzureService? AzureService { get; set; }
@@ -28,6 +29,8 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
         public IHttpContextAccessor HttpContextAccessor { get; set; }
         [Inject]
         public IConfiguration configuration { get; set; }
+        [Inject]
+        ILocalStorageService LocalStorage { get; set; }
         public IEnumerable<Machine>? MachinesList { get; set; }
 
         public Machine? machine { get; set; }
@@ -46,10 +49,11 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
         public Boolean isSubmitting { get; set; } = false;
         public string notification { get; set; } = "";
         public string? runsLink { get; set; }
-
+        private HubConnection hubConnection { get; set; }
         protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
+            string TokenValue = await LocalStorage.GetItemAsStringAsync("TokenValue");
             runsLink = "/pipeline/" + PipeLineId + "/" + PipeLineName + "/runs";
             try
             {
@@ -62,9 +66,12 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
 
             if (configuration != null)
             {
-                var hubConnection = new HubConnectionBuilder()
-                    .WithUrl(configuration["HubUrl"])
-                    .Build();
+                hubConnection = new HubConnectionBuilder()
+                   .WithUrl(configuration["HubUrl"], options =>
+                   {
+                       options.AccessTokenProvider = () => Task.FromResult(TokenValue ?? null);
+                   })
+                   .Build();
 
                 hubConnection.On<string>("MachineLoaded", OnMachineLoaded);
 
@@ -128,6 +135,10 @@ namespace BlazorServerAppWithIdentity.Pages.PipelineRunForms
         protected void clearNotification()
         {
             this.notification = string.Empty;
+        }
+        public async ValueTask DisposeAsync()
+        {
+            await hubConnection.DisposeAsync();
         }
     }
 }

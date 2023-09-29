@@ -13,11 +13,13 @@ namespace BlazorServerAppWithIdentity.Api.Services
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly UserService UserService;
 
-        public AccountService(SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
+        public AccountService(UserService UserService, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
         {
             _signInManager = signInManager;
             _configuration = configuration;
+            this.UserService = UserService;
         }
 
         public async Task<string> Login(string userName, string password)
@@ -25,12 +27,11 @@ namespace BlazorServerAppWithIdentity.Api.Services
             var result = await _signInManager.PasswordSignInAsync(userName, password, false, false);
             if (result.Succeeded)
             {
-
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSecurityKey"]));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
                 var claims = new[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, userName)
+                    new Claim(ClaimTypes.NameIdentifier, userName.ToLower())
                 };
 
                 var token = new JwtSecurityToken(_configuration["JwtIssuer"],

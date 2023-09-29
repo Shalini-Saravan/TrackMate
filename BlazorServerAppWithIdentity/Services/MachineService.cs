@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using Azure;
 using System.Collections.Generic;
+using Blazored.LocalStorage;
 
 namespace BlazorServerAppWithIdentity.Services
 {
@@ -14,14 +15,13 @@ namespace BlazorServerAppWithIdentity.Services
     {
         private readonly HttpClient httpClient;
         private readonly IHubContext<BlazorHub> _hubContext;
-        private readonly IGlobalStateService GlobalState;
-        public MachineService(HttpClient httpClient, IHubContext<BlazorHub> hubContext, IGlobalStateService GlobalState)
+        protected ILocalStorageService LocalStorageService;
+        public MachineService(ILocalStorageService LocalStorageService, HttpClient httpClient, IHubContext<BlazorHub> hubContext)
         {
             this.httpClient = httpClient;
             _hubContext = hubContext;
-            this.GlobalState = GlobalState;
+            this.LocalStorageService = LocalStorageService;
         }
-
 
         public IEnumerable<Models.Machine> GetMachines()
         {

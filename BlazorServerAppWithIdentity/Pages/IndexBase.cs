@@ -25,9 +25,6 @@ namespace BlazorServerAppWithIdentity.Pages
         AuthenticationStateProvider auth { get; set; }
 
         [Inject]
-        IGlobalStateService GlobalStateService { get; set; }
-
-        [Inject]
         NavigationManager NavigationManager { get; set; }
         [Inject]
         public IHttpContextAccessor HttpContextAccessor { get; set; }
@@ -48,7 +45,6 @@ namespace BlazorServerAppWithIdentity.Pages
            
             try
             {
-
                 UserCount = UserService.GetUsersCount();
                 MachineCount = MachineService.GetMachineCount();
                 AvailableCount = MachineService.GetAvailableMachineCount();

@@ -13,7 +13,7 @@ namespace BlazorServerAppWithIdentity.Models
         public string Email { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string Password { get; set; } = "Welcome@2023";
 
         [Required]
         public string Team { get; set; }

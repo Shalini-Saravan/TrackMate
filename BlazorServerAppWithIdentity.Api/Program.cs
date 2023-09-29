@@ -32,8 +32,10 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
 // Add services to the container.
 builder.Services.AddSingleton<MachineService>();
 builder.Services.AddSingleton<MachineUsageService>();
+builder.Services.AddSingleton<NotificationService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<SubscriptionService>();
 builder.Services.AddHostedService<MachineTimeout>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -45,19 +47,19 @@ builder.Services.AddCors(c =>
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore).
     AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
-builder.Services.AddAuthentication();
-/*builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = true,
+        ValidateLifetime = false,
         ValidateIssuerSigningKey = true,
         ValidIssuer = Configuration["JwtIssuer"],
         ValidAudience = Configuration["JwtAudience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSecurityKey"]))
     };
-});*/
+});
 var app = builder.Build();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 if (app.Environment.IsDevelopment())

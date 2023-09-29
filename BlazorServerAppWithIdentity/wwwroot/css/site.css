@@ -7,7 +7,9 @@ html, body {
     word-spacing: 0.4px;
     color: #062230;
 }
-
+button:focus{
+    box-shadow:none;
+}
 .body-blur{
     filter:blur(5px);
 }
@@ -104,11 +106,11 @@ main {
 }
 
 .spinner {
-    border: 10px solid silver;
-    border-top: 10px solid #337AB7;
+    border: 5px solid silver;
+    border-top: 5px solid #337AB7;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     animation: spin 700ms linear infinite;
     top: 40%;
     left: 55%;
@@ -152,8 +154,6 @@ main {
 
 
 .btn {
-    -webkit-border-radius: 21;
-    -moz-border-radius: 21;
     border-radius: 21px;
     color: #ffffff;
     padding: 2px;
@@ -357,7 +357,7 @@ main {
 }
     .card-counter .count-numbers {
         position:relative;
-        paddind-right: 2px;
+        padding-right: 2px;
         font-size: 32px;
     }
 

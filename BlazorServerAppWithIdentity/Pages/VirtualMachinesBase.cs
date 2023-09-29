@@ -1,4 +1,5 @@
-﻿using BlazorServerAppWithIdentity.Models;
+﻿using Blazored.LocalStorage;
+using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -6,7 +7,7 @@ using System.Security.Claims;
 
 namespace BlazorServerAppWithIdentity.Pages
 {
-    public class VirtualMachinesBase : ComponentBase
+    public class VirtualMachinesBase : ComponentBase, IAsyncDisposable
     {
         [Inject]
         MachineService? MachineService { get; set; }
@@ -22,9 +23,9 @@ namespace BlazorServerAppWithIdentity.Pages
         public IConfiguration? configuration { get; set; }
         [Inject]
         public IHttpContextAccessor? HttpContextAccessor { get; set; }
+        
         [Inject]
-        IGlobalStateService? GlobalStateService { get; set; }
-
+        public ILocalStorageService LocalStorageService { get; set; }
 
         protected Filter filter { get; set; } = new Filter();
         protected int appliedFilters = 0;
@@ -50,6 +51,7 @@ namespace BlazorServerAppWithIdentity.Pages
         protected Boolean isFilter = false;
         protected Boolean isAssign = false;
         protected Boolean isSubmitting = false;
+        private HubConnection hubConnection { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -69,17 +71,25 @@ namespace BlazorServerAppWithIdentity.Pages
             //connecting to the blazor hub 
             if (configuration != null)
             {
-                var hubConnection = new HubConnectionBuilder()
-                   .WithUrl(configuration["HubUrl"])
+                string TokenValue = await LocalStorageService.GetItemAsStringAsync("TokenValue");
+                hubConnection = new HubConnectionBuilder()
+                   .WithUrl(configuration["HubUrl"], options =>
+                   {
+                       options.AccessTokenProvider = () => Task.FromResult(TokenValue ?? null);
+                   })
                    .Build();
 
                 hubConnection.On<string>("MachineLoaded", OnMachineLoaded);
                 hubConnection.On<String>("UserLoaded", OnUserLoaded);
+                hubConnection.On<String>("privateNotification", OnNotificationReceived);
 
                 await hubConnection.StartAsync();
             }
         }
-
+        private void OnNotificationReceived(string message)
+        {
+            OnMachineLoaded(null);
+        }
         private void OnMachineLoaded(string machine)
         {
             AllMachinesList = MachineService?.GetVirtualMachines().OrderBy(o => o.Name).ToList();
@@ -243,6 +253,10 @@ namespace BlazorServerAppWithIdentity.Pages
             public string MachinePurpose { get; set; } = "Any";
             public string NoOfProcessors { get; set; } = "Any";
 
+        }
+        public async ValueTask DisposeAsync()
+        {
+            await hubConnection.DisposeAsync();
         }
     }
 }
