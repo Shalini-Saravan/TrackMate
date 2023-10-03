@@ -1,6 +1,7 @@
 ﻿using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,12 +13,14 @@ namespace BlazorServerAppWithIdentity.Api.Services
     public class AccountService
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly UserService UserService;
 
-        public AccountService(UserService UserService, SignInManager<ApplicationUser> signInManager, IConfiguration configuration)
+        public AccountService(UserService UserService, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _configuration = configuration;
             this.UserService = UserService;
         }
@@ -44,6 +47,13 @@ namespace BlazorServerAppWithIdentity.Api.Services
                 return tokenValue;
             }
             return new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken()).ToString();
+        }
+        public async Task<IdentityResult> ChangePassword(string newPassword, string oldPassword, string userName)
+        {
+            ApplicationUser user = UserService.GetUserByUserName(userName).Result;
+            var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+            return result;
+                
         }
 
     }

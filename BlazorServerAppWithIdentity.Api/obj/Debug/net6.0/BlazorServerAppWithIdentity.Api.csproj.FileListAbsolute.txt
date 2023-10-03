@@ -142,13 +142,12 @@ C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity.Api\o
 C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\BlazorServerAppWithIdentity.Api.pdb
 C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\BlazorServerAppWithIdentity.Api.genruntimeconfig.cache
 C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\ref\BlazorServerAppWithIdentity.Api.dll
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.exe
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.deps.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.runtimeconfig.json
-C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.dll
-C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\AspNetCore.Identity.MongoDbCore.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\DnsClient.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -213,4 +212,5 @@ C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIden
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\refint\BlazorServerAppWithIdentity.Api.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\BlazorServerAppWithIdentity.Api.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\BlazorServerAppWithIdentity.Api.genruntimeconfig.cache
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\bin\Debug\net6.0\BlazorServerAppWithIdentity.Api.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api\obj\Debug\net6.0\ref\BlazorServerAppWithIdentity.Api.dll

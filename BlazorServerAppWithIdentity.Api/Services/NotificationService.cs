@@ -36,7 +36,7 @@ namespace BlazorServerAppWithIdentity.Services
                 {
                     notification.Messages.RemoveAt(int.Parse(id));
                     await db.Notifications.ReplaceOneAsync(filter: g => g.UserName == userName, replacement: notification);
-                    await _hubContext.Clients.User(userName.ToLower()).SendAsync("privateNotification", userName);
+                    await _hubContext.Clients.User(userName.ToLower()).SendAsync("privateNotification-clear", userName);
                 }
               
             }
@@ -54,7 +54,7 @@ namespace BlazorServerAppWithIdentity.Services
                 {
                     notification.Messages.Clear();
                     await db.Notifications.ReplaceOneAsync(filter: g => g.UserName == userName, replacement: notification);
-                    await _hubContext.Clients.User(userName.ToLower()).SendAsync("privateNotification", userName);
+                    await _hubContext.Clients.User(userName.ToLower()).SendAsync("privateNotification-clear", userName);
                 }
 
             }
@@ -74,6 +74,7 @@ namespace BlazorServerAppWithIdentity.Services
                 {
                     subscribed = false;
                 }
+                
             }
             if (subscribed)
             {

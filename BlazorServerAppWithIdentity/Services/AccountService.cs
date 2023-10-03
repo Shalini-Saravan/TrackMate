@@ -4,6 +4,8 @@ using BlazorServerAppWithIdentity.Models;
 using BlazorServerAppWithIdentity.Pages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.JSInterop;
+using Newtonsoft.Json.Linq;
+using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -32,6 +34,21 @@ namespace BlazorServerAppWithIdentity.Services
                 return response;
             }
             return null;
+        }
+        public string ChangePassword(string newPassword, string oldPassword, string userName)
+        {
+            var jsonString = "{'newPassword' :'" + newPassword + "', 'oldPassword' : '" + oldPassword + "', 'userName' : '" + userName + "'}";
+            var response = httpClient.PostAsJsonAsync("api/account/changepassword", jsonString).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = response.Content.ReadAsStringAsync().Result;
+                return responseContent.ToString(); 
+            }
+            else
+            {
+                return "false";
+            }
+
         }
         
 

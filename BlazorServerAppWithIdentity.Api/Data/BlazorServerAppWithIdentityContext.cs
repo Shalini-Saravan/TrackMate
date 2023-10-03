@@ -52,5 +52,12 @@ namespace BlazorServerAppWithIdentity.Api.Data
                 return _mongoDatabase.GetCollection<Subscription>("Subscription");
             }
         }
+        public IMongoCollection<RunsLog> RunsLog
+        {
+            get
+            {
+                return _mongoDatabase.GetCollection<RunsLog>("RunsLog");
+            }
+        }
     }
 }

@@ -49,6 +49,7 @@ namespace BlazorServerAppWithIdentity.Pages
                    .Build();
 
                 hubConnection.On<string>("privateNotification", OnNotificationReceived);
+                hubConnection.On<string>("privateNotification-clear", OnNotificationCleared);
                 hubConnection.StartAsync();
             }
         }
@@ -63,10 +64,7 @@ namespace BlazorServerAppWithIdentity.Pages
             finally { isSubmitting = false; }
 
         }
-        public void EditSubscription()
-        {
-            this.displayButton = "block";
-        }
+        
         public void OnNotificationReceived(string userName)
         {
             try
@@ -79,11 +77,11 @@ namespace BlazorServerAppWithIdentity.Pages
             }
             StateHasChanged();
         }
-        public void ReloadNotifications()
+        public void OnNotificationCleared(string userName)
         {
             try
             {
-                NotificationsList = NotificationService.GetNotificationsByUserName(HttpContextAccessor.HttpContext?.User?.Identity.Name);
+                NotificationsList = NotificationService.GetNotificationsByUserName(userName);
             }
             catch (Exception)
             {
@@ -94,12 +92,10 @@ namespace BlazorServerAppWithIdentity.Pages
         public void clearAllNotification ()
         {
             NotificationService.ClearAllNotificationByUserName(HttpContextAccessor.HttpContext?.User?.Identity.Name);
-            ReloadNotifications();
         }
         public void clearNotification(int id)
         {
             NotificationService.ClearNotificationById(HttpContextAccessor.HttpContext?.User?.Identity.Name, id);
-            ReloadNotifications();
         }
 
         public async ValueTask DisposeAsync()

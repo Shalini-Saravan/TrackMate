@@ -34,8 +34,7 @@
     <div class="col-lg-6">
         <div class="notification-rightpanel">
             <p style="font-weight:bold; font-size:12px; padding-bottom:6px;">
-                Subscriptions &emsp;
-                <span class="icon-button" style="outline:none; box-shadow:none;" @onclick="EditSubscription"><span class="oi oi-body oi-pencil" aria-hidden="true"></span></span>
+                Subscriptions
             </p>
             <form @onsubmit="UpdateSubscription">
             <table class="table table-borderless" style="font-size:13px">
@@ -49,11 +48,19 @@
                             </label>
                         </td>
                     </tr>
-                    
+                        <tr>
+                            <td>Pipeline Build Completion</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" @bind="subscription.Pipeline_Build_Completion" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
                 </tbody>
                 
             </table>
-            <button type="submit" class="btn btn-primary btn-md" disabled="@isSubmitting" style="outline:none; box-shadow:none; display: @displayButton">Save</button>
+            <button type="submit" class="btn btn-primary btn-md" disabled="@isSubmitting" style="outline:none; box-shadow:none;">Save</button>
                 </form>
             <br />
         </div>

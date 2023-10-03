@@ -37,7 +37,10 @@ namespace BlazorServerAppWithIdentity.Services
         {
             return await _userManager.FindByIdAsync(id);
         }
-        
+        public async Task<ApplicationUser> GetUserByUserName(string name)
+        {
+            return await _userManager.FindByNameAsync(name);
+        }
         public async Task<string> AddUser(User user)
         {
             ApplicationUser appUser = new ApplicationUser

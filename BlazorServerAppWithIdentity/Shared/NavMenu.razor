@@ -149,6 +149,7 @@
                     })
                     .Build();
                 hubConnection.On<String>("privateNotification", OnNotificationReceived);
+                hubConnection.On<String>("privateNotification-clear", OnNotificationCleared);
                 await hubConnection.StartAsync();
             }
 
@@ -162,19 +163,23 @@
     {
         NotificationCount = NotificationService.GetNotificationsCount(userName);
         Notification latest = NotificationService.GetNotificationsByUserName(userName);
-        SendNotification(latest.Messages.Last()?.Body);
+        if (latest.Messages.Count > 0)
+        {
+            SendNotification(latest.Messages.Last().Body);
+        }
         StateHasChanged();
 
     }
+    public void OnNotificationCleared(string userName)
+    {
+        NotificationCount = NotificationService.GetNotificationsCount(userName);
+        StateHasChanged();
+    }
     private void SendNotification(string body)
     {
-        if (body != null)
-        {
             var title = "BlazorWebApp - NI";
             var options = new { body = body, icon = "icon.png" };
             JSRuntime.InvokeVoidAsync("showNotification", title, options);
-        }
-
     }
 
 }

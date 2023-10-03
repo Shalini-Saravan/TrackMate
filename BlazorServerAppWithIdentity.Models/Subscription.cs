@@ -15,5 +15,6 @@ namespace BlazorServerAppWithIdentity.Models
         public string Id { get; set; }
         public string UserName { get; set; }
         public bool Machine_CheckIns_CheckOuts { get; set; } = true;
+        public bool Pipeline_Build_Completion { get; set; } = false;
     }
 }

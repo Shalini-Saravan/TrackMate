@@ -34,6 +34,7 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<MachineUsageService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<SubscriptionService>();
+builder.Services.AddScoped<RunsLogService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AzureService>();
 builder.Services.AddHostedService<MachineBackgroundService>();
@@ -55,6 +56,10 @@ builder.Services.AddHttpClient<UserService>(client =>
     client.BaseAddress = new Uri(hostUrl);
 });
 builder.Services.AddHttpClient<AccountService>(client =>
+{
+    client.BaseAddress = new Uri(hostUrl);
+});
+builder.Services.AddHttpClient<RunsLogService>(client =>
 {
     client.BaseAddress = new Uri(hostUrl);
 });

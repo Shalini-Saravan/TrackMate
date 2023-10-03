@@ -23,7 +23,6 @@ namespace BlazorServerAppWithIdentity.Api.Hubs
 
             string UserId = Context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = ConnectedUsers.Where(cu => cu.UserIdentifier == UserId).FirstOrDefault();
-            System.Diagnostics.Debug.WriteLine(" -- hub connected -- " + UserId);
             if (user == null) // user does not exist
             {
                 ConnectedUser connecteduser = new ConnectedUser
@@ -42,7 +41,6 @@ namespace BlazorServerAppWithIdentity.Api.Hubs
         }
         public override Task OnDisconnectedAsync(Exception? exception)
         {
-            System.Diagnostics.Debug.WriteLine(" -- hub disconnected -- " + Context.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             ConnectedUsers.Find(o => o.UserIdentifier == Context.User.FindFirst(ClaimTypes.NameIdentifier).Value).connections.RemoveAll(o => o.ConnectionId == Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
         }

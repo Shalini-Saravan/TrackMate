@@ -40,7 +40,11 @@ namespace BlazorServerAppWithIdentity.Services
         //returns a list of agents that are reserved by current user or available
         public IEnumerable<Models.Machine> GetReservedMachines(string userName)
         {
-            return httpClient.GetFromJsonAsync<List<Machine>>("api/machine/agents/reserved/" + userName).Result;
+            if (userName != null)
+            {
+                return httpClient.GetFromJsonAsync<List<Machine>>("api/machine/agents/reserved/" + userName).Result;
+            }
+            else { return new List<Models.Machine>(); }
         }
         public int GetMachineCount()
         {

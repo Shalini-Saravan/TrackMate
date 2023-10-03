@@ -620,14 +620,13 @@ C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity\obj\D
 C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\BlazorServerAppWithIdentity.pdb
 C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\BlazorServerAppWithIdentity.genruntimeconfig.cache
 C:\Users\shsarava\source\repos\BlazorServerApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\ref\BlazorServerAppWithIdentity.dll
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\appsettings.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.staticwebassets.runtime.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.exe
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.deps.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.runtimeconfig.json
-C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.dll
-C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\AspNetCore.Identity.MongoDbCore.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\Azure.Identity.dll
@@ -921,6 +920,7 @@ C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIden
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\staticwebassets.pack.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\scopedcss\Pages\Notifications.razor.rz.scp.css
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\scopedcss\bundle\BlazorServerAppWithIdentity.styles.css
@@ -930,5 +930,5 @@ C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIden
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\refint\BlazorServerAppWithIdentity.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\BlazorServerAppWithIdentity.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\BlazorServerAppWithIdentity.genruntimeconfig.cache
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\bin\Debug\net6.0\BlazorServerAppWithIdentity.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\ref\BlazorServerAppWithIdentity.dll
-C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity\obj\Debug\net6.0\scopedcss\Pages\Notifications.razor.rz.scp.css

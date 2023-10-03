@@ -20,22 +20,24 @@ namespace BlazorServerAppWithIdentity.Services
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IConfiguration _configuration;
         private readonly IMemoryCache _memoryCache;
-        private UserService UserService;
+        private RunsLogService RunsLogService;
         private NavigationManager NavigationManager;
         private ILocalStorageService LocalStorage;
-        public AzureService(ILocalStorageService localStorage ,NavigationManager NavigationManager, UserService UserService, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMemoryCache memoryCache)
+        private string userName;
+        public AzureService(ILocalStorageService localStorage ,NavigationManager NavigationManager, RunsLogService RunsLogService, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMemoryCache memoryCache)
         {
             this.httpClient = httpClient;
             _configuration = configuration;
             this.httpContextAccessor = httpContextAccessor;
             this._memoryCache = memoryCache;
-            this.UserService = UserService;
+            this.RunsLogService = RunsLogService;
             this.NavigationManager = NavigationManager;
             this.LocalStorage = localStorage;
             httpClient.DefaultRequestHeaders.Accept.Add(
                   new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             if(httpContextAccessor.HttpContext != null && httpContextAccessor.HttpContext.User.Identity.IsAuthenticated ) 
             {
+                userName = httpContextAccessor.HttpContext.User.Identity.Name??"";
                 AddTokenHeader();
             }
             
@@ -161,7 +163,18 @@ namespace BlazorServerAppWithIdentity.Services
                     GetRefreshToken();
                     response = httpClient.PostAsync("https://dev.azure.com/ni/DevCentral/_apis/pipelines/" + pipelineId + "/runs?api-version=7.1", content).Result;
                 }
-                
+
+                if (response.IsSuccessStatusCode)
+                {
+                    JObject resp = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+                    RunsLog log = new RunsLog
+                    {
+                        RunId = resp["id"].ToString(),
+                        PipelineId = pipelineId,
+                        UserName = userName
+                    };
+                    RunsLogService.AddRunsLog(log);
+                }
                 return response;
             }
             catch
