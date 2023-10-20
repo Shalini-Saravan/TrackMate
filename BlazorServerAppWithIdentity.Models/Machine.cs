@@ -25,6 +25,5 @@ namespace BlazorServerAppWithIdentity.Models
         public string Purpose { get; set; }
         public string Comments { get; set; }
 
-
     }
 }

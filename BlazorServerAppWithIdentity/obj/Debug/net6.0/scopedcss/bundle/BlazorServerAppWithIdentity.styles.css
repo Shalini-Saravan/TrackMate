@@ -124,6 +124,63 @@ button:focus[b-0i1gl7fp27]{
     outline:0;
     box-shadow: none;
 }
+/* _content/BlazorServerAppWithIdentity/Pages/VirtualMachines.razor.rz.scp.css */
+.form-popup[b-uy32ge92kg] {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 102px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    display: block
+}
+
+.form-container[b-uy32ge92kg] {
+    max-width: 300px;
+    min-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+.filter-badge[b-uy32ge92kg] {
+    background-color: #f5f4f2;
+    color: gray;
+    border: black;
+    font-size: 10px;
+}
+
+    .filter-badge:hover[b-uy32ge92kg] {
+        box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
+    }
+.textTooltip[b-uy32ge92kg] {
+    position: relative;
+    text-decoration:none;
+
+}
+
+    .textTooltip:hover[b-uy32ge92kg]::after {
+        background: #FFEEF4;
+        color: #262f1d;
+        border-radius: 4px;
+        bottom: 100%;
+        content: attr(titleContent);
+        display: block;
+        left: 100%;
+        padding: 1em;
+        padding-left: 1.5em;
+        position: absolute;
+        width: 250px;
+        z-index: 1;
+        white-space: pre-line;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
+    }
 /* _content/BlazorServerAppWithIdentity/Shared/MainLayout.razor.rz.scp.css */
 .page[b-v8otx28efa] {
     position: relative;
@@ -176,7 +233,7 @@ main[b-v8otx28efa] {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 100px;
+    min-width: inherit;
     box-shadow: 0px 8px 12px 0px rgba(0,0,0,0.1);
     z-index: 1;
     font-size:12px;
@@ -292,6 +349,28 @@ main[b-v8otx28efa] {
             color: white;
         }
 
+.numberCircle[b-rkp91xzp5a] {
+    font-family: "OpenSans-Semibold", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    line-height: 0px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 15px;
+    min-height: 16px;
+    color: #0e415c;
+    background: white;
+}
+
+    .numberCircle span[b-rkp91xzp5a] {
+        display: inline-block;
+        padding-top: 50%;
+        padding-bottom: 50%;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
 @media (min-width: 641px) {
     .navbar-toggler[b-rkp91xzp5a] {
         display: none;

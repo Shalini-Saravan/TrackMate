@@ -50,6 +50,7 @@ namespace BlazorServerAppWithIdentity.Pages
         protected string? modalTitle { get; set; }
         protected Boolean isFilter = false;
         protected Boolean isAssign = false;
+        protected Boolean isEditAssign = false;
         protected Boolean isSubmitting = false;
         private HubConnection hubConnection { get; set; }
 
@@ -61,6 +62,7 @@ namespace BlazorServerAppWithIdentity.Pages
                 UsersList = UserService?.GetUsers().ToList();
                 AllMachinesList = MachineService?.GetVirtualMachines().OrderBy(o => o.Name).ToList();
                 MachinesList = AllMachinesList?.ToList();
+                VirtualMachinesList = AzureService?.GetAgentsWithCapability();
             }
             catch (Exception)
             {
@@ -90,6 +92,7 @@ namespace BlazorServerAppWithIdentity.Pages
         {
             OnMachineLoaded(null);
         }
+        
         private void OnMachineLoaded(string machine)
         {
             AllMachinesList = MachineService?.GetVirtualMachines().OrderBy(o => o.Name).ToList();
@@ -121,7 +124,38 @@ namespace BlazorServerAppWithIdentity.Pages
             this.endTime = DateTime.UtcNow.AddDays(2).AddMinutes(330);
             this.isAssign = true;
         }
+        protected void EditAssignedMachine(Machine machine)
+        {
+            this.machine = machine;
+            this.comments = "None";
+            this.modalTitle = "Edit Machine Assignment";
+            this.isModalActive = "page-container";
+            this.isEditAssign = true;
+        }
+        protected void ExtendTimeout()
+        {
+            if (isSubmitting) return;
+            this.isSubmitting = true;
 
+            try
+            {
+                if (machine != null)
+                {
+                    machine.LastAccessed = DateTime.UtcNow;
+                    string response = MachineService?.UpdateAssignedMachine(machine) ?? "Failed Operation!";
+                    this.notification = response;
+                }
+
+            }
+            catch (Exception)
+            {
+                this.message = "Error! Please Retry";
+            }
+            finally
+            {
+                closeModal();
+            }
+        }
         protected void AssignToUser()
         {
             if (isSubmitting) return;
@@ -183,7 +217,30 @@ namespace BlazorServerAppWithIdentity.Pages
             finally { closeModal(); }
 
         }
+        
+        protected void ClearFilter()
+        {
+            if (isSubmitting) return;
+            isSubmitting = true;
+            try
+            {
+                filter = new Filter();
+                appliedFilters = 0;
+                AllMachinesList = MachineService?.GetVirtualMachines().OrderBy(o => o.Name).ToList();
+                MachinesList = AllMachinesList?.ToList();
+            }
+            catch (Exception)
+            {
+                isSubmitting = false;
+                this.CloseFilter();
+            }
+            finally
+            {
+                isSubmitting = false;
+                this.CloseFilter();
+            }
 
+        }
         protected void ApplyFilter()
         {
             if (isSubmitting) return;
@@ -192,7 +249,6 @@ namespace BlazorServerAppWithIdentity.Pages
             try
             {
                 appliedFilters = 0;
-                VirtualMachinesList = AzureService?.GetAgentsWithCapability();
                 if (filter.MachinePurpose != "Any")
                 {
                     appliedFilters += 1;
@@ -220,6 +276,7 @@ namespace BlazorServerAppWithIdentity.Pages
 
                         }
                     }
+                    VirtualMachinesList = AzureService?.GetAgentsWithCapability();
                 }
                 else
                 {
@@ -238,11 +295,31 @@ namespace BlazorServerAppWithIdentity.Pages
             }
 
         }
+        protected String DisplayCapabilityToolTip(string AgentId)
+        {
+            Agent hoverAgent = VirtualMachinesList.Find(o => o.Id.ToString() == AgentId);
+            string content = "";
+            if (hoverAgent != null)
+            {
+                content += "Agent Version: " + hoverAgent.Capability.AgentVersion;
+                content += "\nAgent OS: " + hoverAgent.Capability.AgentOS;
+                content += "\nAgent OS Architecture: " + hoverAgent.Capability.AgentOSArchitecture;
+                content += "\nAgent OS Version: " + hoverAgent.Capability.AgentOSVersion;
+                content += "\nMachine Purpose: " + hoverAgent.Capability.Machine_Purpose;
+                content += "\nNo of Processors: " + hoverAgent.Capability.NUMBER_OF_PROCESSORS;
+                content += "\nProcessor Architecture: " + hoverAgent.Capability.PROCESSOR_ARCHITECTURE;
+                content += "\nProcessor Level: " + hoverAgent.Capability.PROCESSOR_LEVEL;
+
+            }
+            return content == string.Empty? "None" : content;
+        }
+
         protected void closeModal()
         {
             this.isAssign = false;
             this.isModalActive = "";
             this.isSubmitting = false;
+            this.isEditAssign = false;
         }
         protected void clearNotification()
         {
@@ -252,7 +329,8 @@ namespace BlazorServerAppWithIdentity.Pages
         {
             public string MachinePurpose { get; set; } = "Any";
             public string NoOfProcessors { get; set; } = "Any";
-
+            public string FilterType { get; set; } = "MachinePurpose";
+           
         }
         public async ValueTask DisposeAsync()
         {

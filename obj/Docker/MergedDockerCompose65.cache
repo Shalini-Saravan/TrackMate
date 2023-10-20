@@ -1,0 +1,12 @@
+name: dockercompose11995320196555523729
+services:
+  blazorserverappwithidentity:
+    build:
+      context: C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp
+      dockerfile: BlazorServerAppWithIdentity/Dockerfile
+    image: blazorserverappwithidentity
+    networks:
+      default: null
+networks:
+  default:
+    name: dockercompose11995320196555523729_default

@@ -132,6 +132,29 @@ namespace BlazorServerAppWithIdentity.Api.Services
             }
         }
 
+        public async Task<string> UpdateAssignedMachine(Models.Machine? machine)
+        {
+            try
+            {
+                if (machine != null)
+                {
+                    await db.MachineRecords.ReplaceOneAsync(filter: g => g.Id == machine.Id, replacement: machine);
+                    await _hubContext.Clients.All.SendAsync("MachineLoaded", machine.ToString());
+                    //send Private Notification
+                    await NotificationService.SendPrivateNotification(machine.UserName, "Machine " + machine.Name + " has been Reserved till " + machine.EndTime?.ToString("MMM dd, h:mm tt"), "Machine_CheckIns_CheckOuts");
+
+                    return "Machine Updated Successfully!";
+                }
+                else
+                {
+                    return "Failed Operation!";
+                }
+            }
+            catch
+            {
+                return "Error: Machine Update Failed";
+            }
+        }
         public async Task<string> RemoveMachine(String id)
         {
             try
@@ -164,7 +187,7 @@ namespace BlazorServerAppWithIdentity.Api.Services
                         .Set(m => m.UserName, userName)
                         .Set(m => m.Comments, comments)
                         .Set(m => m.FromTime, DateTime.UtcNow.AddMinutes(330))
-                        .Set(m => m.EndTime, endTime.AddMinutes(330));
+                        .Set(m => m.EndTime, endTime);
                     await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
                     //inserting machine usage log
                     var newlog = new MachineUsage
@@ -178,7 +201,7 @@ namespace BlazorServerAppWithIdentity.Api.Services
                     await db.MachineUsage.InsertOneAsync(newlog);
                     await _hubContext.Clients.All.SendAsync("MachineLoaded", machine.ToString());
                     //send Private Notification
-                    await NotificationService.SendPrivateNotification(userName, "Machine " + machine.Name + " has been Reserved till " + machine.EndTime?.ToString("MMM dd, h:mm tt"), "Machine_CheckIns_CheckOuts");
+                    await NotificationService.SendPrivateNotification(userName, "Machine " + machine.Name + " has been Reserved till " + endTime.ToString("MMM dd, h:mm tt"), "Machine_CheckIns_CheckOuts");
                     return "Machine Assigned Successfully!";
                 }
                 else

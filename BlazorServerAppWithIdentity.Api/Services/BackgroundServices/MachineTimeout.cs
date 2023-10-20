@@ -38,7 +38,7 @@ namespace BlazorServerAppWithIdentity.Api.Services.BackgroundServices
         {
             foreach (var record in MachineRecords.Find(m => m.Status == "Not Available").ToList())
             {
-                if (record.EndTime < DateTime.UtcNow.AddMinutes(330))
+                if (record.EndTime < DateTime.UtcNow.AddMinutes(330) || (record.EndTime < DateTime.UtcNow.AddMinutes(330).AddDays(1) && record.EndTime?.AddMinutes(121) > DateTime.UtcNow.AddDays(1).AddMinutes(330) ))
                 {
                     try
                     {
@@ -62,11 +62,22 @@ namespace BlazorServerAppWithIdentity.Api.Services.BackgroundServices
                         Notification notificationRec = NotificationRecords.Find(Builders<Notification>.Filter.Eq("UserName", userName)).FirstOrDefault();
                         if(notificationRec != null)
                         {
-                            notificationRec.Messages.Add(new Message
+                            if (record.EndTime < DateTime.UtcNow.AddMinutes(330))
                             {
-                                Body = "Machine has been Timedout!",
-                                TimeStamp = DateTime.UtcNow.AddMinutes(330)
-                            });
+                                notificationRec.Messages.Add(new Message
+                                {
+                                    Body = "Machine" + record.Name + " has been Timedout!",
+                                    TimeStamp = DateTime.UtcNow.AddMinutes(330)
+                                });
+                            }
+                            else
+                            {
+                                notificationRec.Messages.Add(new Message
+                                {
+                                    Body = "Remainder: Reservation for the Machine " + record.Name + " will be expired in a day!",
+                                    TimeStamp = DateTime.UtcNow.AddMinutes(330)
+                                });
+                            }
                             var Notificationupdate = Builders<Notification>.Update
                                 .Set(m => m.Messages,notificationRec.Messages);
 

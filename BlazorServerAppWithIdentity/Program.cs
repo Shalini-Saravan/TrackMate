@@ -3,12 +3,12 @@ using BlazorServerAppWithIdentity.Services;
 using BlazorServerAppWithIdentity.Hubs;
 using Microsoft.Extensions.Hosting;
 using Blazored.LocalStorage;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
-//string hostUrl = "http://10.164.42.30:7035";
-string hostUrl = "https://localhost:7035";
-//builder.WebHost.UseUrls("http://10.164.42.30:1035");
-
+//string hostUrl = "https://" + System.Environment.MachineName + ":7035";
+string hostUrl = "http://api:443";
+//builder.WebHost.UseUrls("https://inrd-shsarava.apac.corp.natinst.com:1035");
 
 // Add services to the container.
 builder.Services.AddRazorPages();

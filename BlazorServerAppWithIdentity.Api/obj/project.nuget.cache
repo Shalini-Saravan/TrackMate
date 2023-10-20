@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JoNPTRIsCZPadtbT0g5iQBKU5I9sBWNYX/8LDSXj/uA0eOFtVvTKZlf9Bp130Pj8QvNDAL1U71B+hXRjHJ+/7A==",
+  "dgSpecHash": "dg31ILgw5Q7zdOif+Tqq4M00O8CZZPm/tP5VftNiXd62u2NO2UF9LyDXx6xv7HFGOhGiU12Z08U8ma6/RNAz2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity.Api\\BlazorServerAppWithIdentity.Api.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\mongodb.bson\\2.13.2\\mongodb.bson.2.13.2.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\mongodb.driver\\2.13.2\\mongodb.driver.2.13.2.nupkg.sha512",

@@ -33,7 +33,12 @@ else
                             <option value="">select machine</option>
                             @foreach (var _machine in MachinesList)
                             {
-                                <option value="@_machine.Name">@_machine.Name</option>
+                                <option value="@_machine.Name">
+                                    @_machine.Name@if (_machine.Status == "Not Available")
+                                    {
+                                        <span> (Reserved by you)</span>
+                                    }
+                                </option>
                             }
                         </select>
                     </div>

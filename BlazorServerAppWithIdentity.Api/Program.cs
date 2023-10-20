@@ -11,7 +11,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServerSideBlazor();
-//builder.WebHost.UseUrls("http://10.164.42.30:7035");
+builder.WebHost.UseUrls("http://api:443");
 var Configuration = builder.Configuration;
 
 //connection to mongo db ATLAS

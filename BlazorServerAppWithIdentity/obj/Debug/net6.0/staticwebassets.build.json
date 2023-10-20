@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "phvgjKUY5Ma/kpS8Lw4e4JOKaDsGccT98ySgKCmhrLk=",
+  "Hash": "YqmLdgTB2HxGSuS2aWyDP68D3cwurWye5s3SKH1sbvc=",
   "Source": "BlazorServerAppWithIdentity",
   "BasePath": "_content/BlazorServerAppWithIdentity",
   "Mode": "Default",
@@ -525,6 +525,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\web-background2.png"
+    },
+    {
+      "Identity": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\wwwroot\\JavaScript.js",
+      "SourceId": "BlazorServerAppWithIdentity",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\BlazorServerAppWithIdentity\\wwwroot\\",
+      "BasePath": "_content/BlazorServerAppWithIdentity",
+      "RelativePath": "JavaScript.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\JavaScript.js"
     }
   ]
 }

@@ -33,7 +33,7 @@ namespace BlazorServerAppWithIdentity.Api.Services.BackgroundServices
             NotificationRecords = MongoDatabase.GetCollection<Notification>("Notifications");
 
             httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7035/");
+            httpClient.BaseAddress = new Uri("http://api:443");
             httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(":" + PAT)));
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
            

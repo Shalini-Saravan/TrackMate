@@ -50,6 +50,28 @@
             color: white;
         }
 
+.numberCircle {
+    font-family: "OpenSans-Semibold", Arial, "Helvetica Neue", Helvetica, sans-serif;
+    display: inline-block;
+    color: #fff;
+    text-align: center;
+    line-height: 0px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 15px;
+    min-height: 16px;
+    color: #0e415c;
+    background: white;
+}
+
+    .numberCircle span {
+        display: inline-block;
+        padding-top: 50%;
+        padding-bottom: 50%;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
 @media (min-width: 641px) {
     .navbar-toggler {
         display: none;

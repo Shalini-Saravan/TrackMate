@@ -89,6 +89,8 @@ else
             </tr>
         </thead>
             <tbody>
+                @if (agentCapability.AgentName != null)
+                {
                 <tr>
                     <td>
                         <div class="td_head">Agent.Name</div>
@@ -97,6 +99,9 @@ else
                         @agentCapability.AgentName
                     </td>
                 </tr>
+                    }
+                @if (agentCapability.AgentVersion != null)
+                {
                 <tr>
                     <td>
                         <div class="td_head">Agent.Version</div>
@@ -105,6 +110,9 @@ else
                         @agentCapability.AgentVersion
                     </td>
                 </tr>
+                }
+                @if (agentCapability.COMPUTERNAME != null)
+                {
                 <tr>
                     <td>
                         <div class="td_head">Agent.ComputerName</div>
@@ -113,345 +121,594 @@ else
                         @agentCapability.COMPUTERNAME
                     </td>
                 </tr>
-                <tr>
-                    <td>
+                }
+                @if (agentCapability.AgentHomeDirectory != null)
+                {
+                    <tr>
+                        <td>
                         <div class="td_head">Agent.HomeDirectory</div>
                     </td>
                     <td>
                         @agentCapability.AgentHomeDirectory
                     </td>
                 </tr>
-                <tr>
-                    <td>
+                }
+                @if (agentCapability.AgentOS != null)
+                {
+                    <tr>
+                        <td>
                         <div class="td_head">Agent.OS</div>
                     </td>
                     <td>
                         @agentCapability.AgentOS
                     </td>
                 </tr>
-                <tr>
-                    <td>
+                }
+                @if (agentCapability.AgentOSArchitecture != null)
+                {
+                    <tr>
+                        <td>
                         <div class="td_head">Agent.OSArchitecture</div>
                     </td>
                     <td>
                         @agentCapability.AgentOSArchitecture
                     </td>
                 </tr>
+                }
+                @if (agentCapability.AgentOSVersion != null)
+                {
                     <tr>
                         <td>
                             <div class="td_head">Agent.OSVersion</div>
                     </td>
                     <td>@agentCapability.AgentOSVersion</td>
                 </tr>
-                <tr>
-                    <td>
+                }
+                @if (agentCapability.AGENT_POOL_NAME != null)
+                {
+                    <tr>
+                        <td>
                         <div class="td_head">AGENT_POOL_NAME</div>
                     </td>
                     <td>@agentCapability.AGENT_POOL_NAME</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">ALLUSERSPROFILE</div></td>
+                }
+                @if (agentCapability.ALLUSERSPROFILE != null)
+                {
+                    <tr>
+                        <td><div class="td_head">ALLUSERSPROFILE</div></td>
                     <td>@agentCapability.ALLUSERSPROFILE</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">APPDATA</div></td>
+                }
+                @if (agentCapability.APPDATA != null)
+                {
+                    <tr>
+                        <td><div class="td_head">APPDATA</div></td>
                     <td>@agentCapability.APPDATA</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">ChocolateyInstall</div></td>
+                }
+                @if (agentCapability.ChocolateyInstall != null)
+                {
+                    <tr>
+                        <td><div class="td_head">ChocolateyInstall</div></td>
                     <td>@agentCapability.ChocolateyInstall</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">Cmd</div></td>
+                }
+                @if (agentCapability.Cmd != null)
+                {
+                    <tr>
+                        <td><div class="td_head">Cmd</div></td>
                     <td>@agentCapability.Cmd</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">CommonProgramFiles</div></td>
+                }
+                @if (agentCapability.CommonProgramFiles != null)
+                {
+                    <tr>
+                        <td><div class="td_head">CommonProgramFiles</div></td>
                     <td>@agentCapability.CommonProgramFiles</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">CommonProgramFiles(x86)</div></td>
+                }
+                @if (agentCapability.CommonProgramFilesx86 != null)
+                {
+                    <tr>
+                        <td><div class="td_head">CommonProgramFiles(x86)</div></td>
                     <td>@agentCapability.CommonProgramFilesx86</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">CommonProgramW6432</div></td>
+                }
+                @if (agentCapability.CommonProgramW6432 != null)
+                {
+                    <tr>
+                        <td><div class="td_head">CommonProgramW6432</div></td>
                     <td>@agentCapability.CommonProgramW6432</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">COMPUTERNAME</div></td>
+                }
+                @if (agentCapability.COMPUTERNAME != null)
+                {
+                    <tr>
+                        <td><div class="td_head">COMPUTERNAME</div></td>
                     <td>@agentCapability.COMPUTERNAME</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">ComSpec</div></td>
+                }
+                @if (agentCapability.ComSpec != null)
+                {
+                    <tr>
+                        <td><div class="td_head">ComSpec</div></td>
                     <td>@agentCapability.ComSpec</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">DotNetFramework</div></td>
+                }
+                @if (agentCapability.DotNetFramework != null)
+                {
+                    <tr>
+                        <td><div class="td_head">DotNetFramework</div></td>
                     <td>@agentCapability.DotNetFramework</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">DotNetFramework_4.8.0</div></td>
+                }
+                @if (agentCapability.DotNetFramework_480 != null)
+                {
+                    <tr>
+                        <td><div class="td_head">DotNetFramework_4.8.0</div></td>
                     <td>@agentCapability.DotNetFramework_480</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">DotNetFramework_4.8.0_x64</div></td>
+                }
+                @if (agentCapability.DotNetFramework_480_x64 != null)
+                {
+                    <tr>
+                        <td><div class="td_head">DotNetFramework_4.8.0_x64</div></td>
                     <td>@agentCapability.DotNetFramework_480_x64</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">DriverData</div></td>
+                }
+                @if (agentCapability.DriverData != null)
+                {
+                    <tr>
+                        <td><div class="td_head">DriverData</div></td>
                     <td>@agentCapability.DriverData</td>
                 </tr>
+                }
+                @if (agentCapability.FPS_BROWSER_APP_PROFILE_STRING != null)
+                {
                 <tr>
                     <td><div class="td_head">FPS_BROWSER_APP_PROFILE_STRING</div></td>
                     <td>@agentCapability.FPS_BROWSER_APP_PROFILE_STRING</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">FPS_BROWSER_USER_PROFILE_STRING</div></td>
+                }
+                @if (agentCapability.FPS_BROWSER_USER_PROFILE_STRING != null)
+                {
+                    <tr>
+                        <td><div class="td_head">FPS_BROWSER_USER_PROFILE_STRING</div></td>
                     <td>@agentCapability.FPS_BROWSER_USER_PROFILE_STRING</td>
                 </tr>
+                }
+                @if (agentCapability.HOMEDRIVE != null)
+                {
                 <tr>
                     <td><div class="td_head">HOMEDRIVE</div></td>
                     <td>@agentCapability.HOMEDRIVE</td>
                     </tr>
+                }
+                @if (agentCapability.HOMEPATH != null)
+                {
                 <tr>
                     <td><div class="td_head">HOMEPATH</div></td>
                     <td>@agentCapability.HOMEPATH</td>
                 </tr>
+                }
+                @if (agentCapability.InteractiveSession != null)
+                {
                 <tr>
                     <td><div class="td_head">InteractiveSession</div></td>
                     <td>@agentCapability.InteractiveSession</td>
                 </tr>
+                }
+                @if (agentCapability.LOCALAPPDATA != null)
+                {
                 <tr>
                     <td><div class="td_head">LOCALAPPDATA</div></td>
                     <td>@agentCapability.LOCALAPPDATA</td>
                 </tr>
+                }
+                @if (agentCapability.LOGONSERVER != null)
+                {
                 <tr>
                     <td><div class="td_head">LOGONSERVER</div></td>
                     <td>@agentCapability.LOGONSERVER</td>
                 </tr>
+                }
+                @if (agentCapability.Machine_Purpose != null)
+                {
                 <tr>
                     <td><div class="td_head">Machine_Purpose</div></td>
                     <td>@agentCapability.Machine_Purpose</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">MSBuild</div></td>
+                }
+                @if (agentCapability.MSBuild != null)
+                {
+                    <tr>
+                        <td><div class="td_head">MSBuild</div></td>
                     <td>@agentCapability.MSBuild</td>
                 </tr>
+                }
+                @if (agentCapability.MSBuild_170 != null)
+                {
                 <tr>
                     <td><div class="td_head">MSBuild_17.0</div></td>
                     <td>@agentCapability.MSBuild_170</td>
                 </tr>
+                }
+                @if (agentCapability.MSBuild_170_x64 != null)
+                {
                 <tr>
                     <td><div class="td_head">MSBuild_17.0_x64</div></td>
                     <td>@agentCapability.MSBuild_170_x64</td>
                 </tr>
+                }
+                @if (agentCapability.MSBuild_40 != null)
+                {
                 <tr>
                     <td><div class="td_head">MSBuild_4.0</div></td>
                     <td>@agentCapability.MSBuild_40</td>
                 </tr>
+                }
+                @if (agentCapability.MSBuild_40_x64 != null)
+                {
                 <tr>
                     <td><div class="td_head">MSBuild_4.0_x64</div></td>
                     <td>@agentCapability.MSBuild_40_x64</td>
                 </tr>
+                }
+                @if (agentCapability.MSBuild_x64 != null)
+                {
                 <tr>
                     <td><div class="td_head">MSBuild_x64</div></td>
                     <td>@agentCapability.MSBuild_x64</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">NIEXTCCOMPILERSUPP</div></td>
+                }
+                @if (agentCapability.NIEXTCCOMPILERSUPP != null)
+                {
+                    <tr>
+                        <td><div class="td_head">NIEXTCCOMPILERSUPP</div></td>
                     <td>@agentCapability.NIEXTCCOMPILERSUPP</td>
                 </tr>
+                }
+                @if (agentCapability.NUMBER_OF_PROCESSORS != null)
+                {
                 <tr>
                     <td><div class="td_head">NUMBER_OF_PROCESSORS</div></td>
                     <td>@agentCapability.NUMBER_OF_PROCESSORS</td>
                 </tr>
+                }
+                @if (agentCapability.OneDrive != null)
+                {
                 <tr>
                     <td><div class="td_head">OneDrive</div></td>
                     <td>@agentCapability.OneDrive</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">OS</div></td>
+                }
+                @if (agentCapability.OS != null)
+                {
+                    <tr>
+                        <td><div class="td_head">OS</div></td>
                     <td>@agentCapability.OS</td>
                 </tr>
+                }
+                @if (agentCapability.Path != null)
+                {
                 <tr>
                     <td><div class="td_head">Path</div></td>
                     <td>@agentCapability.Path</td>
                 </tr>
+                }
+                @if (agentCapability.PATHEXT != null)
+                {
                 <tr>
                     <td><div class="td_head">PATHEXT</div></td>
                     <td>@agentCapability.PATHEXT</td>
                 </tr>
+                }
+                @if (agentCapability.PowerShell != null)
+                {
                 <tr>
                     <td><div class="td_head">PowerShell</div></td>
                     <td>@agentCapability.PowerShell</td>
                 </tr>
-                <tr>
-                    <td><div class="td_head">PROCESSOR_ARCHITECTURE</div></td>
+                }
+                @if (agentCapability.PROCESSOR_ARCHITECTURE != null)
+                {
+                    <tr>
+                        <td><div class="td_head">PROCESSOR_ARCHITECTURE</div></td>
                     <td>@agentCapability.PROCESSOR_ARCHITECTURE</td>
                 </tr>
+                }
+                @if (agentCapability.PROCESSOR_IDENTIFIER != null)
+                {
                 <tr>
                     <td><div class="td_head">PROCESSOR_IDENTIFIER</div></td>
                     <td>@agentCapability.PROCESSOR_IDENTIFIER</td>
                 </tr>
+                }
+                @if (agentCapability.PROCESSOR_LEVEL != null)
+                {
                 <tr>
                     <td><div class="td_head">PROCESSOR_LEVEL</div></td>
                     <td>@agentCapability.PROCESSOR_LEVEL</td>
                 </tr>
+                }
+                @if (agentCapability.PROCESSOR_REVISION != null)
+                {
                 <tr>
                     <td><div class="td_head">PROCESSOR_REVISION</div></td>
                     <td>@agentCapability.PROCESSOR_REVISION</td>
                 </tr>
+                }
+                @if (agentCapability.ProgramData != null)
+                {
                 <tr>
                     <td><div class="td_head">ProgramData</div></td>
                     <td>@agentCapability.ProgramData</td>
                 </tr>
+                }
+                @if (agentCapability.ProgramFiles != null)
+                {
                 <tr>
                     <td><div class="td_head">ProgramFiles</div></td>
                     <td>@agentCapability.ProgramFiles</td>
                 </tr>
+                }
+                @if (agentCapability.CommonProgramFilesx86 != null)
+                {
                 <tr>
                     <td><div class="td_head">ProgramFiles(x86)</div></td>
                     <td>@agentCapability.CommonProgramFilesx86</td>
                 </tr>
+                }
+                @if (agentCapability.ProgramW6432 != null)
+                {
                 <tr>
                     <td><div class="td_head">ProgramW6432</div></td>
                     <td>@agentCapability.ProgramW6432</td>
                 </tr>
+                }
+                @if (agentCapability.PROMPT != null)
+                {
                 <tr>
                     <td><div class="td_head">PROMPT</div></td>
                     <td>@agentCapability.PROMPT</td>
                 </tr>
+                }
+                @if (agentCapability.PUBLIC != null)
+                {
                 <tr>
                     <td><div class="td_head">PUBLIC</div></td>
                     <td>@agentCapability.PUBLIC</td>
                 </tr>
+                }
+                @if (agentCapability.PYTHONIOENCODING != null)
+                {
                 <tr>
                     <td><div class="td_head">PYTHONIOENCODING</div></td>
                     <td>@agentCapability.PYTHONIOENCODING</td></tr>
+                }
+                @if (agentCapability.RUBYOPT != null)
+                {
                 <tr>
+                        
                     <td><div class="td_head">RUBYOPT</div></td>
                     <td>@agentCapability.RUBYOPT</td>
                 </tr>
+                }
+                @if (agentCapability.SESSIONNAME != null)
+                {
                 <tr>
                     <td><div class="td_head">SESSIONNAME</div></td>
                     <td>@agentCapability.SESSIONNAME</td>
                 </tr>
+                }
+                @if (agentCapability.SystemDrive != null)
+                {
                 <tr>
                     <td><div class="td_head">SystemDrive</div></td>
                     <td>@agentCapability.SystemDrive</td>
                 </tr>
+                }
+                @if (agentCapability.SystemRoot != null)
+                {
                 <tr>
                     <td><div class="td_head">SystemRoot</div></td>
                     <td>@agentCapability.SystemRoot</td>
                 </tr>
+                }
+                @if (agentCapability.TEMP != null)
+                {
                 <tr>
                     <td><div class="td_head">TEMP</div></td>
                     <td>@agentCapability.TEMP</td>
                 </tr>
+                }
+                @if (agentCapability.TestStand != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStand</div></td>
                     <td>@agentCapability.TestStand</td></tr>
+                }
+                @if (agentCapability.TestStand64 != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStand64</div></td>
                     <td>@agentCapability.TestStand64</td>
                 </tr>
+                }
+                @if (agentCapability.TestStandAppData != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStandAppData</div></td>
                     <td>@agentCapability.TestStandAppData</td>
                 </tr>
+                }
+                @if (agentCapability.TestStandAppData64 != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStandAppData64</div></td>
                     <td>@agentCapability.TestStandAppData64</td>
                 </tr>
+                }
+                @if (agentCapability.TestStandBin != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStandBin</div></td>
                     <td>@agentCapability.TestStandBin</td>
                 </tr>
+                }
+                @if (agentCapability.TestStandBin64 != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStandBin64</div></td>
                     <td>@agentCapability.TestStandBin64</td></tr>
+                }
+                @if (agentCapability.TestStandPublic != null)
+                {
                 <tr>
+
                     <td><div class="td_head">TestStandPublic</div></td>
                     <td>@agentCapability.TestStandPublic</td>
                 </tr>
+                }
+                @if (agentCapability.TestStandPublic64 != null)
+                {
                 <tr>
                     <td><div class="td_head">TestStandPublic64</div></td>
                     <td>@agentCapability.TestStand64</td>
                 </tr>
+                }
+                @if (agentCapability.TMP != null)
+                {
                 <tr>
                     <td><div class="td_head">TMP</div></td>
                     <td>@agentCapability.TMP</td>
                 </tr>
+                }
+                @if (agentCapability.TS_KeyFile != null)
+                {
                 <tr>
                     <td><div class="td_head">TS_KeyFile</div></td>
                     <td>@agentCapability.TS_KeyFile</td>
                 </tr>
+                }
+                @if (agentCapability.TS_Password != null)
+                {
                 <tr>
                     <td><div class="td_head">TS_Password</div></td>
                     <td>@agentCapability.TS_Password</td>
                 </tr>
+                }
+                @if (agentCapability.TS_User != null)
+                {
                 <tr>
                     <td><div class="td_head">TS_User</div></td>
                     <td>@agentCapability.TS_User</td>
                 </tr>
+                }
+                @if (agentCapability.USERDOMAIN != null)
+                {
                 <tr>
                     <td><div class="td_head">USERDOMAIN</div></td>
                     <td>@agentCapability.USERDOMAIN</td>
                 </tr>
+                }
+                @if (agentCapability.USERDOMAIN_ROAMINGPROFILE != null)
+                {
                 <tr>
                     <td><div class="td_head">USERDOMAIN_ROAMINGPROFILE</div></td>
                     <td>@agentCapability.USERDOMAIN_ROAMINGPROFILE</td>
                 </tr>
+                }
+                @if (agentCapability.USERNAME != null)
+                {
                 <tr>
                     <td><div class="td_head">USERNAME</div></td>
                     <td>@agentCapability.USERNAME</td></tr>
+                }
+                @if (agentCapability.USERPROFILE != null)
+                {
                 <tr>
                     <td><div class="td_head">USERPROFILE</div></td>
                     <td>@agentCapability.USERPROFILE</td>
                 </tr>
+                }
+                @if (agentCapability.VERBOSE_ARG != null)
+                {
                 <tr>
                     <td><div class="td_head">VERBOSE_ARG</div></td>
                     <td>@agentCapability.VERBOSE_ARG</td>
                 </tr>
+                }
+                @if (agentCapability.VisualStudio != null)
+                {
                 <tr>
                     <td><div class="td_head">VisualStudio</div></td>
                     <td>@agentCapability.VisualStudio</td>
                 </tr>
+                }
+                @if (agentCapability.VisualStudio_170 != null)
+                {
                 <tr>
                     <td><div class="td_head">VisualStudio_17.0</div></td>
                     <td>@agentCapability.VisualStudio_170</td>
                 </tr>
+                }
+                @if (agentCapability.VisualStudio_IDE != null)
+                {
                 <tr>
                     <td><div class="td_head">VisualStudio_IDE</div></td>
                     <td>@agentCapability.VisualStudio_IDE</td>
                 </tr>
+                }
+                @if (agentCapability.VisualStudio_IDE_170 != null)
+                {
                 <tr>
                     <td><div class="td_head">VisualStudio_IDE_17.0</div></td>
                     <td>@agentCapability.VisualStudio_IDE_170</td>
                 </tr>
+                }
+                @if (agentCapability.VS140COMNTOOLS != null)
+                {
                 <tr>
                     <td><div class="td_head">VS140COMNTOOLS</div></td>
                     <td>@agentCapability.VS140COMNTOOLS</td>
                 </tr>
+                }
+                @if (agentCapability.VSTest != null)
+                {
                 <tr>
                     <td><div class="td_head">VSTest</div></td>
                     <td>@agentCapability.VSTest</td>
                 </tr>
+                }
+                @if (agentCapability.VSTest_170 != null)
+                {
                 <tr>
                     <td><div class="td_head">VSTest_17.0</div></td>
                     <td>@agentCapability.VSTest_170</td>
                 </tr>
+                }
+                @if (agentCapability.Windir != null)
+                {
                 <tr>
                     <td><div class="td_head">windir</div></td>
                     <td>@agentCapability.Windir</td>
                 </tr>
+                }
+                @if (agentCapability.WindowsSdk != null)
+                {
                 <tr>
                     <td><div class="td_head">WindowsSdk</div></td>
                     <td>@agentCapability.WindowsSdk</td>
                 </tr>
+                }
+                @if (agentCapability.WindowsSdk_100 != null)
+                {
                 <tr>
                     <td><div class="td_head">WindowsSdk_10.0</div></td>
                     <td>@agentCapability.WindowsSdk_100</td></tr>
+                }
             </tbody>
     </table>
 </div>

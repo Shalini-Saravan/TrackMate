@@ -1,0 +1,28 @@
+version: '3.4'
+
+networks:
+  blazor_web_app_network:
+    driver: bridge
+
+services:
+  blazorserverappwithidentity:
+    ports:
+        - 7195:443
+        - 5137:80
+    image: shalinisaravanan/app:latest
+    networks:
+        - blazor_web_app_network
+    volumes:
+      - ${APPDATA}\Microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "7195"
+      ASPNETCORE_ENVIRONMENT: "Development"
+
+  blazorserverappwithidentity.api:
+    container_name: api
+    image: shalinisaravanan/api:latest
+    networks:
+        - blazor_web_app_network
+

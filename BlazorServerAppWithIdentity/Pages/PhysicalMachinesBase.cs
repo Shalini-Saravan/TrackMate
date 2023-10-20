@@ -21,7 +21,7 @@ namespace BlazorServerAppWithIdentity.Pages
         [Inject]
         public IHttpContextAccessor? HttpContextAccessor { get; set; }
 
-       
+
         [Inject]
         public IConfiguration? configuration { get; set; }
         [Inject]
@@ -48,13 +48,14 @@ namespace BlazorServerAppWithIdentity.Pages
         protected Boolean isAdd = false;
         protected Boolean isAssign = false;
         protected Boolean isSubmitting = false;
+        protected Boolean isEditAssign = false;
         protected string conId;
         private HubConnection hubConnection { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
-            
+
             try
             {
                 UsersList = UserService?.GetUsers().ToList();
@@ -124,7 +125,38 @@ namespace BlazorServerAppWithIdentity.Pages
             this.endTime = DateTime.UtcNow.AddDays(2).AddMinutes(330);
             this.isAssign = true;
         }
+        protected void EditAssignedMachine(Machine machine)
+        {
+            this.machine = machine;
+            this.comments = "None";
+            this.modalTitle = "Edit Machine Assignment";
+            this.isModalActive = "page-container";
+            this.isEditAssign = true;
+        }
+        protected void ExtendTimeout()
+        {
+            if (isSubmitting) return;
+            this.isSubmitting = true;
 
+            try
+            {
+                    if (machine != null)
+                    {
+                        machine.LastAccessed = DateTime.UtcNow;
+                        string response = MachineService?.UpdateAssignedMachine(machine) ?? "Failed Operation!";
+                        this.notification = response;
+                    }
+               
+            }
+            catch (Exception)
+            {
+                this.message = "Error! Please Retry";
+            }
+            finally
+            {
+                closeModal();
+            }
+        }
         protected void AssignToUser()
         {
             if (isSubmitting) return;
@@ -197,6 +229,7 @@ namespace BlazorServerAppWithIdentity.Pages
             this.isAssign = false;
             this.isModalActive = "";
             this.isSubmitting = false;
+            this.isEditAssign = false;
         }
         protected void clearNotification()
         {

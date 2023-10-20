@@ -19,7 +19,7 @@
             }
             else
             {
-                @foreach (var message in NotificationsList.Messages.OrderByDescending(o => o.TimeStamp).ToList())
+                @foreach (var message in NotificationsList.Messages.OrderByDescending(o => o.TimeStamp).ToList().Take(5))
                 {
                     <div class="alert">
                         <span class="closebtn" @onclick="() => clearNotification(NotificationsList.Messages.FindIndex(o => o == message))">&times;</span>

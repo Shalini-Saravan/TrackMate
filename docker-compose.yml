@@ -1,0 +1,28 @@
+version: '3.4'
+
+networks:
+  blazor_web_app_network:
+    driver: bridge
+
+services:
+  blazorserverappwithidentity:
+    ports:
+        - 7195:443
+    image: ${DOCKER_REGISTRY-}blazorserverappwithidentity
+    build:
+      context: .
+      dockerfile: BlazorServerAppWithIdentity/Dockerfile
+    depends_on:
+        - blazorserverappwithidentity.api
+    networks:
+        - blazor_web_app_network
+
+  blazorserverappwithidentity.api:
+    container_name: api
+    image: ${DOCKER_REGISTRY-}blazorserverappwithidentityapi
+    build:
+      context: .
+      dockerfile: BlazorServerAppWithIdentity.Api/Dockerfile
+    networks:
+        - blazor_web_app_network
+

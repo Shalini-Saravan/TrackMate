@@ -23,7 +23,6 @@ namespace BlazorServerAppWithIdentity.Api.Controllers
         public JsonResult Login(string userName, string password)
         {
             string result = AccountService.Login(userName, password).Result;
-
             return new JsonResult(result);
         }
 

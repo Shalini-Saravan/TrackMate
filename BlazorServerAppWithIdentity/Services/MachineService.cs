@@ -82,6 +82,15 @@ namespace BlazorServerAppWithIdentity.Services
             return responseJson["Result"]?.ToString() ?? "Failed Operation";
         }
 
+        public String UpdateAssignedMachine(Models.Machine machine)
+        {
+            var jsonString = "{'machine' :" + JsonConvert.SerializeObject(machine) + "}";
+
+            var response = httpClient.PutAsJsonAsync("api/machine/assigned", jsonString).Result;
+            JObject responseJson = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+            return responseJson["Result"]?.ToString() ?? "Failed Operation";
+        }
+
         public String RemoveMachine(String id)
         {
             var response = httpClient.DeleteAsync("api/machine/"+id).Result;

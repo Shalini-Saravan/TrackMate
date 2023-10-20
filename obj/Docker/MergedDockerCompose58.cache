@@ -1,0 +1,56 @@
+name: dockercompose11995320196555523729
+services:
+  blazorserverappwithidentity:
+    depends_on:
+      blazorserverappwithidentity.api:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: shalinisaravanan/blazorserverappwithidentity:dev
+    networks:
+      blazor_web_app_network: null
+    ports:
+      - mode: ingress
+        target: 443
+        published: "7195"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\shsarava\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shsarava\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  blazorserverappwithidentity.api:
+    container_name: api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: shalinisaravanan/blazorserverappwithidentityapi:dev
+    networks:
+      blazor_web_app_network: null
+    volumes:
+      - type: bind
+        source: C:\Users\shsarava\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shsarava\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+networks:
+  blazor_web_app_network:
+    name: dockercompose11995320196555523729_blazor_web_app_network
+    driver: bridge

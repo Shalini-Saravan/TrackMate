@@ -1,38 +1,6 @@
 ﻿@inherits VirtualMachinesBase
 @attribute [Authorize]
 
-<style>
-    .form-popup {
-        display: none;
-        position: fixed;
-        right: 0;
-        top: 102px;
-        border: 3px solid #f1f1f1;
-        z-index: 9;
-        display: block
-    }
-
-    .form-container {
-        max-width: 300px;
-        min-width: 300px;
-        padding: 10px;
-        background-color: white;
-    }
-
-    .filter-badge {
-        background-color: #f5f4f2;
-        color: gray;
-        border: black;
-        font-size: 10px;
-    }
-
-        .filter-badge:hover {
-            box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
-            -webkit-box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
-            -moz-box-shadow: 0px 0px 5px 0px rgba(212,212,212,0.75);
-        }
-</style>
-
 <div class="@isModalActive">
 
     @if (isSubmitting)
@@ -84,6 +52,7 @@
             </div>
         }
         <div class="data-table">
+            
             <table class="table table-striped table-borderless">
                 <thead style="background:#1687A7; color:white">
 
@@ -122,8 +91,11 @@
                                     @item.AgentId
                                 </td>
                                 <td>
+
                                     <a href="/@item.AgentId/@item.Name/Capability">
-                                        @item.Name
+                                        <span class="textTooltip" titleContent=@DisplayCapabilityToolTip(item.AgentId)>
+                                            @item.Name
+                                        </span>
                                     </a>
                                 </td>
 
@@ -170,7 +142,7 @@
                                     {
                                         <AuthorizeView Roles="Admin">
                                             <Authorized>
-                                                <button class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() =>RevokeMachine(item)">Revoke</button>
+                                                <button class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() =>EditAssignedMachine(item)">Reserved</button>
                                             </Authorized>
                                             <NotAuthorized>
                                                 @if (item.UserName != context?.User?.Identity?.Name)
@@ -180,7 +152,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <button class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() =>RevokeMachine(item)">Checkout</button>
+                                                    <button class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() =>EditAssignedMachine(item)">Reserved</button>
                                                 }
                                             </NotAuthorized>
                                         </AuthorizeView>
@@ -198,25 +170,33 @@
 {
     <div class="form-popup">
         <form class="form-container" @onsubmit="ApplyFilter">
-
             <div class="form-group">
-                <label asp-for="machinePurpose" class="control-label">Machine Purpose</label>
-                <select asp-for="machinePurpose" class="form-control" @bind="@filter.MachinePurpose" @bind:event="oninput" required>
-                    <option value="Any" selected>Any</option>
-                    <option value="Used">Used</option>
-                    <option value="Manual">Manual</option>
-                    <option value="Support">Support</option>
+                <label asp-for="FilterType" class="control-label">Select Category</label>
+                <select asp-for="FilterType" class="form-control" @bind="@filter.FilterType" @bind:event="oninput" required>
+                    <option value="MachinePurpose">Machine Purpose</option>
+                    <option value="NoOfProcessors">No of Processors</option>
                 </select>
             </div>
-
             <div class="form-group">
-                <label asp-for="NoOfProcessors" class="control-label">No of Processors <span class="muted-text" style="font-size:10px">(Default: Any)</span></label>
-                <input asp-for="NoOfProcessors" class="form-control" @bind="@filter.NoOfProcessors" required />
+                <label asp-for="FilterType" class="control-label">Value</label>
+                @if(filter.FilterType == "MachinePurpose")
+                {
+                    <select asp-for="machinePurpose" class="form-control" @bind="@filter.MachinePurpose" @bind:event="oninput" required>
+                        <option value="Any" selected>Any</option>
+                        <option value="Used">Used</option>
+                        <option value="Manual">Manual</option>
+                        <option value="Support">Support</option>
+                    </select>
+                }
+                else if(filter.FilterType == "NoOfProcessors")
+                {
+                    <input asp-for="NoOfProcessors" class="form-control" @bind="@filter.NoOfProcessors" required />
+                }
             </div>
-
+           
             <div>
                 <br />
-                <button type="button" class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="CloseFilter">Cancel</button>
+                <button type="button" class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="ClearFilter">Clear</button>
                 <button class="btn btn-green btn-md" type="submit" disabled="@isSubmitting" data-dismiss="modal">Apply</button>
             </div>
 
@@ -267,3 +247,35 @@
         </div>
     </div>
 }
+@if (isEditAssign)
+{
+    <div class="modal" tabindex="-1" style="display:block" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@modalTitle</h5>
+                    <button type="button" class="close icon-button" @onclick="closeModal">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <form @onsubmit="ExtendTimeout">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label asp-for="Comments" class="control-label">Comments</label>
+                            <input asp-for="Comments" class="form-control" @bind="@machine.Comments" required />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="endTime" class="control-label">End Time</label>
+                            <input type="datetime-local" asp-for="endTime" class="form-control" @bind="@machine.EndTime" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() => RevokeMachine(machine)" data-dismiss="modal">Checkout</button>
+                        <button class="btn btn-green btn-md" type="submit" disabled="@isSubmitting" data-dismiss="modal">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+

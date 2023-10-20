@@ -16,7 +16,7 @@ namespace BlazorServerAppWithIdentity.Services
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:7035/");
+            httpClient.BaseAddress = new Uri("http://api:443/");
 
             httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(":" + PAT)));
             httpClient.DefaultRequestHeaders.Accept.Add( new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));

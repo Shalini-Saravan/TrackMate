@@ -80,6 +80,15 @@ namespace BlazorServerAppWithIdentity.Api.Controllers
             return new JsonResult(MachineService.UpdateMachine(machine));
         }
 
+        [HttpPut("assigned")]
+        public JsonResult UpdateAssignedMachine([FromBody] string strdata)
+        {
+            JObject data = JObject.Parse(strdata);
+            Machine machine = data["machine"].ToObject<Machine>();
+
+            return new JsonResult(MachineService.UpdateAssignedMachine(machine));
+        }
+
         [HttpDelete("{id}")]
         [AllowAnonymous]
         public JsonResult DeleteMachine(string id)
