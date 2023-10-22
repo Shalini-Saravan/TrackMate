@@ -104,7 +104,7 @@ password for the self-signed certificate for localhost.
     PowerShell and type the following command:
 
 > *dotnet dev-certs https -ep
-> $env:USERPROFILE\\.aspnet\\https\\BlazorServerAppWithIdentity.pfx -p
+> $env:USERPROFILE\\.aspnet\\https\\TrackMate.pfx -p
 > pa55w0rd!*
 
 -   To trust the certificate, type the following command:
