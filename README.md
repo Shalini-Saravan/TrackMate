@@ -89,7 +89,7 @@ Api calls from application).
 
 ### **Deployment Setup:**
 
-In the [BlazorWebApp](https://github.com/Shalini-Saravan/BlazorWebApp) Repository, DOCKER-DEPLOY contains the necessary files required for the deployment.
+In the [TrackMate](https://github.com/Shalini-Saravan/TrackMate) Repository, DOCKER-DEPLOY contains the necessary files required for the deployment.
 
 -   Download the DOCKER_DEPLOY folder in the machine.
 
