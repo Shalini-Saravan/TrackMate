@@ -42,6 +42,11 @@ It is the Api interface that gets the requests from the Blazor server applicatio
 
 It only contains the Modal classes and this project is injected into the above two projects as a dependency, making its modal classes accessible in both of them.
 
+<br/>
+
+![TrackMate-WorkFlow](https://github.com/Shalini-Saravan/TrackMate/assets/140784069/3b63b11b-27bb-4e04-8ba6-c8a876083d38)
+
+
 ### **Some Common File Definitions:**
 
 1.  **appsettings.json**
@@ -84,7 +89,7 @@ Api calls from application).
 
 ### **Deployment Setup:**
 
-In the [BlazorWebApp](https://github.com/Shalini-Saravan/BlazorWebApp) Repository, DOCKER-DEPLOY contains the necessary files required for the deployment.
+In the [TrackMate](https://github.com/Shalini-Saravan/TrackMate) Repository, DOCKER-DEPLOY contains the necessary files required for the deployment.
 
 -   Download the DOCKER_DEPLOY folder in the machine.
 
@@ -99,7 +104,7 @@ password for the self-signed certificate for localhost.
     PowerShell and type the following command:
 
 > *dotnet dev-certs https -ep
-> $env:USERPROFILE\\.aspnet\\https\\BlazorServerAppWithIdentity.pfx -p
+> $env:USERPROFILE\\.aspnet\\https\\TrackMate.pfx -p
 > pa55w0rd!*
 
 -   To trust the certificate, type the following command:
