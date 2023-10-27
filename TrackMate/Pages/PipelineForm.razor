@@ -1,0 +1,97 @@
+﻿@page "/pipelineform/{PipeLineId}/{PipeLineName}"
+@inherits PipelineFormBase
+@attribute [Authorize]
+
+@if (message != "")
+{
+    <PipelineUnavailable PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></PipelineUnavailable>
+}
+else if (parameters == null || parameters.Count == 0)
+{
+    <div class="spinner"></div>
+}
+else if (isSubmitting)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="container container-form">
+        <a href="@runsLink" style="float:right">Runs</a>
+        <h4 class="about-head">@PipeLineName </h4>
+        @if (notification != "")
+        {
+            <div class="alert alert-success">
+                @notification
+                <span style="float:right">
+                    <button type="button" class="close icon-button" @onclick="clearNotification">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </span>
+            </div>
+        }
+        <br />
+        <form @onsubmit="RunPipeline">
+
+            @foreach (var parameter in parameters)
+            {
+                formData.TryAdd(parameter.name, parameter.Default);
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <label for="@parameter.name" class="control-label" style="font-weight:400">@parameter.displayName</label>
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+
+                            @if (parameter.values?.Count > 0)
+                            {
+                                <select asp-for="@parameter.name" class="form-control" @bind="formData[parameter.name]" @bind:event="oninput" required>
+                                    @if (parameter.name.Contains("Machine_Name") || parameter.name.Contains("MachineName"))
+                                    {
+                                        @foreach (var value in parameter.values)
+                                        {
+                                            if (!UnAvailableMachines.Contains(value.ToLower()))
+                                            {
+                                                if (ReservedMachines.Contains(value.ToLower()))
+                                                {
+                                                    <option value="@value">@value (Reserved by you)</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@value">@value</option>
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @foreach (var value in parameter.values)
+                                        {
+                                            <option value="@value">@value</option>
+                                        }
+                                    }
+                                </select>
+                            }
+                            else if (parameter.type == "boolean")
+                            {
+                                <select asp-for="@parameter.name" class="form-control" @bind="formData[parameter.name]" @bind:event="oninput" required>
+                                    <option value="false">false</option>
+                                    <option value="true">true</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <input asp-for="@parameter.name" class="form-control" @bind="formData[parameter.name]" required />
+                            }
+                        </div>
+
+                    </div>
+                    <br />
+                </div>
+            }
+            <button class="btn btn-primary btn-md" disabled="@isSubmitting" type="submit" style="float:right;width:80px;">Run</button>
+            <br />
+        </form>
+    </div>
+}

@@ -1,0 +1,141 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\TrackMate.bundle.scp.css",
+      "PackagePath": "staticwebassets\\TrackMate.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\JavaScript.js",
+      "PackagePath": "staticwebassets\\JavaScript.js"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\about-background.png",
+      "PackagePath": "staticwebassets\\images\\about-background.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\about-background1.png",
+      "PackagePath": "staticwebassets\\images\\about-background1.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\form-background1.jpeg",
+      "PackagePath": "staticwebassets\\images\\form-background1.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\form-background2.jpg",
+      "PackagePath": "staticwebassets\\images\\form-background2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\form-background3.jpg",
+      "PackagePath": "staticwebassets\\images\\form-background3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\login.png",
+      "PackagePath": "staticwebassets\\images\\login.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\login1.png",
+      "PackagePath": "staticwebassets\\images\\login1.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\login2.png",
+      "PackagePath": "staticwebassets\\images\\login2.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\loginpage.webp",
+      "PackagePath": "staticwebassets\\images\\loginpage.webp"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\logo.jpg",
+      "PackagePath": "staticwebassets\\images\\logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\profile-banner.png",
+      "PackagePath": "staticwebassets\\images\\profile-banner.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\unavailable.svg",
+      "PackagePath": "staticwebassets\\images\\unavailable.svg"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\unavailable2.png",
+      "PackagePath": "staticwebassets\\images\\unavailable2.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\web-background1.png",
+      "PackagePath": "staticwebassets\\images\\web-background1.png"
+    },
+    {
+      "Id": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate\\wwwroot\\images\\web-background2.png",
+      "PackagePath": "staticwebassets\\images\\web-background2.png"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.TrackMate.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.TrackMate.props",
+      "PackagePath": "build\\TrackMate.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.TrackMate.props",
+      "PackagePath": "buildMultiTargeting\\TrackMate.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.TrackMate.props",
+      "PackagePath": "buildTransitive\\TrackMate.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

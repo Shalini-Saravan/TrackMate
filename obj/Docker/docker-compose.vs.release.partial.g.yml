@@ -1,12 +1,12 @@
 version: '3.4'
 
 services:
-  blazorserverappwithidentity:
-    container_name: "BlazorServerAppWithIdentity_1"
+  trackmate:
+    container_name: "TrackMate"
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
-        com.microsoft.visual-studio.project-name: "BlazorServerAppWithIdentity"
+        com.microsoft.visual-studio.project-name: "TrackMate"
     volumes:
       - C:\Users\shsarava\vsdbg\vs2017u5:/remote_debugger:rw
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -20,16 +20,16 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/BlazorServerAppWithIdentity.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/TrackMate.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
-      com.microsoft.visual-studio.project-name: "BlazorServerAppWithIdentity"
+      com.microsoft.visual-studio.project-name: "TrackMate"
     tty: true
-  blazorserverappwithidentity.api:
+  trackmate.api:
     build:
       labels:
         com.microsoft.created-by: "visual-studio"
-        com.microsoft.visual-studio.project-name: "BlazorServerAppWithIdentity.Api"
+        com.microsoft.visual-studio.project-name: "TrackMate.Api"
     volumes:
       - C:\Users\shsarava\vsdbg\vs2017u5:/remote_debugger:rw
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
@@ -43,8 +43,8 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/BlazorServerAppWithIdentity.Api.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/TrackMate.Api.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
-      com.microsoft.visual-studio.project-name: "BlazorServerAppWithIdentity.Api"
+      com.microsoft.visual-studio.project-name: "TrackMate.Api"
     tty: true

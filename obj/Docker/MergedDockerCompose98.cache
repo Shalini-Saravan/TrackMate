@@ -1,0 +1,45 @@
+name: dockercompose11995320196555523729
+services:
+  trackmate:
+    build:
+      context: C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp
+      dockerfile: TrackMate/Dockerfile
+    depends_on:
+      trackmate.api:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTPS_PORT: ' "7195"'
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: trackmate
+    networks:
+      trackmate_network: null
+    ports:
+      - mode: ingress
+        target: 443
+        published: "7195"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\shsarava\AppData\Roaming\Microsoft\UserSecrets\
+        target: /root/.microsoft/usersecrets
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shsarava\.aspnet\https
+        target: /root/.aspnet/https
+        bind:
+          create_host_path: true
+  trackmate.api:
+    build:
+      context: C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp
+      dockerfile: TrackMate.Api/Dockerfile
+    container_name: api
+    image: trackmateapi
+    networks:
+      trackmate_network: null
+networks:
+  trackmate_network:
+    name: dockercompose11995320196555523729_trackmate_network
+    driver: bridge

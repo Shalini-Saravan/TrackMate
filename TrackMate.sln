@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3AFE3800-F4E9-4821-86DE-82E92F2FE27F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A35B5AD7-2BFF-4201-B71B-9C396BFB3EAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackMate", "TrackMate\TrackMate.csproj", "{A00FA9A7-DF68-4DFA-AECB-6023961B8099}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackMate.Api", "TrackMate.Api\TrackMate.Api.csproj", "{EED67C72-5FF2-4E15-8A16-FCB2586CECE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackMate.Models", "TrackMate.Models\TrackMate.Models.csproj", "{1E1DCAC6-386A-4B1E-85F6-6199EF60B7ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A35B5AD7-2BFF-4201-B71B-9C396BFB3EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35B5AD7-2BFF-4201-B71B-9C396BFB3EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35B5AD7-2BFF-4201-B71B-9C396BFB3EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35B5AD7-2BFF-4201-B71B-9C396BFB3EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00FA9A7-DF68-4DFA-AECB-6023961B8099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00FA9A7-DF68-4DFA-AECB-6023961B8099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00FA9A7-DF68-4DFA-AECB-6023961B8099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00FA9A7-DF68-4DFA-AECB-6023961B8099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED67C72-5FF2-4E15-8A16-FCB2586CECE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED67C72-5FF2-4E15-8A16-FCB2586CECE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED67C72-5FF2-4E15-8A16-FCB2586CECE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED67C72-5FF2-4E15-8A16-FCB2586CECE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E1DCAC6-386A-4B1E-85F6-6199EF60B7ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1DCAC6-386A-4B1E-85F6-6199EF60B7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1DCAC6-386A-4B1E-85F6-6199EF60B7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1DCAC6-386A-4B1E-85F6-6199EF60B7ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {638E2925-2942-4E71-AD12-2DD81FEF1A79}
+	EndGlobalSection
+EndGlobal

@@ -1,28 +1,28 @@
 version: '3.4'
 
 networks:
-  blazor_web_app_network:
+  trackmate_network:
     driver: bridge
 
 services:
-  blazorserverappwithidentity:
+  trackmate:
     ports:
         - 7195:443
-    image: ${DOCKER_REGISTRY-}blazorserverappwithidentity
+    image: ${DOCKER_REGISTRY-}trackmate
     build:
       context: .
-      dockerfile: BlazorServerAppWithIdentity/Dockerfile
+      dockerfile: TrackMate/Dockerfile
     depends_on:
-        - blazorserverappwithidentity.api
+        - trackmate.api
     networks:
-        - blazor_web_app_network
+        - trackmate_network
 
-  blazorserverappwithidentity.api:
+  trackmate.api:
     container_name: api
-    image: ${DOCKER_REGISTRY-}blazorserverappwithidentityapi
+    image: ${DOCKER_REGISTRY-}trackmateapi
     build:
       context: .
-      dockerfile: BlazorServerAppWithIdentity.Api/Dockerfile
+      dockerfile: TrackMate.Api/Dockerfile
     networks:
-        - blazor_web_app_network
+        - trackmate_network
 

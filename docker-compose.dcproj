@@ -6,7 +6,7 @@
     <ProjectGuid>a35b5ad7-2bff-4201-b71b-9c396bfb3eac</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>blazorserverappwithidentity</DockerServiceName>
+    <DockerServiceName>trackmate</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

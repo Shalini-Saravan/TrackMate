@@ -1,20 +1,20 @@
 version: '3.4'
 
 services:
-  blazorserverappwithidentity:
-    image: blazorserverappwithidentity:dev
-    container_name: "BlazorServerAppWithIdentity_1"
+  trackmate:
+    image: trackmate:dev
+    container_name: "TrackMate"
     build:
       target: base
       labels:
         com.microsoft.created-by: "visual-studio"
-        com.microsoft.visual-studio.project-name: "BlazorServerAppWithIdentity"
+        com.microsoft.visual-studio.project-name: "TrackMate"
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=
     volumes:
-      - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity:/app
+      - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate:/app
       - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp:/src
       - C:\Users\shsarava\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\shsarava\.nuget\packages\:/.nuget/packages:ro
@@ -29,23 +29,23 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net6.0/BlazorServerAppWithIdentity.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net6.0/TrackMate.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
-  blazorserverappwithidentity.api:
-    image: blazorserverappwithidentityapi:dev
+  trackmate.api:
+    image: trackmateapi:dev
     build:
       target: base
       labels:
         com.microsoft.created-by: "visual-studio"
-        com.microsoft.visual-studio.project-name: "BlazorServerAppWithIdentity.Api"
+        com.microsoft.visual-studio.project-name: "TrackMate.Api"
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
       - NUGET_FALLBACK_PACKAGES=
     volumes:
-      - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\BlazorServerAppWithIdentity.Api:/app
+      - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Api:/app
       - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp:/src
       - C:\Users\shsarava\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\shsarava\.nuget\packages\:/.nuget/packages:ro
@@ -60,7 +60,7 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net6.0/BlazorServerAppWithIdentity.Api.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net6.0/TrackMate.Api.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true

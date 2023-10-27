@@ -1,0 +1,19 @@
+﻿@page
+@using Blazored.LocalStorage;
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Identity
+@using TrackMate.Models
+@attribute [IgnoreAntiforgeryToken]
+@inject SignInManager<ApplicationUser> signInManager
+@inject ILocalStorageService LocalStorage;
+
+@functions {
+    public async Task<IActionResult> OnGet()
+    {
+        if(signInManager.IsSignedIn(User))
+        {
+            await signInManager.SignOutAsync();
+        }
+        return Redirect("/");
+    }
+}

@@ -1,0 +1,137 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TrackMate
+build_property.RootNamespace = TrackMate
+build_property.ProjectDir = C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Authorize.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aG9yaXplLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Capability.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FwYWJpbGl0eS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Machines.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFjaGluZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/PhysicalMachines.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGh5c2ljYWxNYWNoaW5lcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/PipelineForm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVGb3JtLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Pipelines.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/PipelineUnavailable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGlwZWxpbmVVbmF2YWlsYWJsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Runs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUnVucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/TabControl.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFiQ29udHJvbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/TabPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFiUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Token.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVG9rZW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Shared/LoginDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Notifications.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90aWZpY2F0aW9ucy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-rsqy7brzqi
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/VirtualMachines.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlydHVhbE1hY2hpbmVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-o4mlp4qrty
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5svvjx6d91
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-mh06x3expo
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Areas/Identity/Pages/Account/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Areas/Identity/Pages/_IdentityLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0lkZW50aXR5TGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/shsarava/source/repos/BlazorWebApp/BlazorWebApp/TrackMate/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

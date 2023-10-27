@@ -1,0 +1,151 @@
+@using Blazored.LocalStorage;
+@using Microsoft.AspNetCore.SignalR.Client;
+@using TrackMate.Services;
+@using TrackMate.Models;
+@inject AuthenticationStateProvider _auth
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">TrackMate</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass " @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <AuthorizeView Roles="Admin">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Users">
+                        <span class="oi oi-plus" aria-hidden="true"></span> Users
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+        <AuthorizeView>
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Machines">
+                        <span class="oi oi-monitor" aria-hidden="true"></span> Machines
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Pipelines">
+                        <span class="oi oi-location" aria-hidden="true"></span> PipeLines
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Notifications">
+                        <span class="oi oi-bell" aria-hidden="true"></span> Notifications &nbsp;<span class="numberCircle"><span>@NotificationCount</span></span>
+
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="Identity/Account/Logout">
+                        <span class="oi oi-lock-locked" aria-hidden="true"></span> Logout
+                    </NavLink>
+                </div>
+                
+            </Authorized>
+            <NotAuthorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="/Identity/Account/Login" Match="NavLinkMatch.All">
+                        <span class="oi oi-lock-locked" aria-hidden="true"></span> Login
+                    </NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+
+    </nav>
+</div>
+
+@code {
+    [Inject]
+    public IHttpContextAccessor HttpContextAccessor { get; set; }
+    [Inject]
+    public AzureService AzureService { get; set; }
+    [Inject]
+    public ILocalStorageService LocalStorage { get; set; }
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+    [Inject]
+    public IConfiguration configuration { get; set; }
+    [Inject]
+    public NotificationService NotificationService { get; set; }
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; }
+
+    private bool collapseNavMenu = true;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private HubConnection hubConnection;
+    protected int NotificationCount { get; set; }
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        string TokenValue = await LocalStorage.GetItemAsStringAsync("TokenValue");
+        if (HttpContextAccessor.HttpContext != null)
+        {
+            if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && (await LocalStorage.GetItemAsStringAsync("AzDoToken")) == null && (TokenValue != null))
+            {
+                AzureService.GetToken();
+
+            }
+            if (!HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                await LocalStorage.ClearAsync();
+            }
+            if (configuration != null && HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && TokenValue != null)
+            {
+                hubConnection = new HubConnectionBuilder()
+                    .WithUrl(configuration["HubUrl"], options =>
+                    {
+                        options.AccessTokenProvider = () => Task.FromResult(TokenValue??null);
+                    })
+                    .Build();
+                hubConnection.On<String>("privateNotification", OnNotificationReceived);
+                hubConnection.On<String>("privateNotification-clear", OnNotificationCleared);
+                await hubConnection.StartAsync();
+            }
+
+            NotificationCount = NotificationService.GetNotificationsCount(HttpContextAccessor.HttpContext.User.Identity.Name);
+
+        }
+
+    }
+
+    public void OnNotificationReceived(string userName)
+    {
+        NotificationCount = NotificationService.GetNotificationsCount(userName);
+        Notification latest = NotificationService.GetNotificationsByUserName(userName);
+        if (latest.Messages.Count > 0)
+        {
+            SendNotification(latest.Messages.Last().Body);
+        }
+        StateHasChanged();
+
+    }
+    public void OnNotificationCleared(string userName)
+    {
+        NotificationCount = NotificationService.GetNotificationsCount(userName);
+        StateHasChanged();
+    }
+    private void SendNotification(string body)
+    {
+            var title = "TrackMate - NI";
+            var options = new { body = body, icon = "/logo.jpg" };
+            JSRuntime.InvokeVoidAsync("showNotification", title, options);
+        
+    }
+
+}

@@ -1,0 +1,82 @@
+﻿@page "/Notifications"
+@inherits NotificationsBase
+@attribute [Authorize]
+
+<h3>Notifications</h3>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="notification-leftpanel">
+            <div>
+            <p style="font-weight:bold; float:left; font-size:12px;" >Notifications</p>
+                <a @onclick="clearAllNotification"><p class="notification-clear">Clear All</p></a>
+            </div>
+            <br/>
+            <br/>
+            @if (NotificationsList == null || NotificationsList.Messages == null || NotificationsList.Messages.Count == 0)
+            {
+                <p style="font-size:12px;">No New Notifications!</p>
+                
+            }
+            else
+            {
+                @foreach (var message in NotificationsList.Messages.OrderByDescending(o => o.TimeStamp).ToList().Take(5))
+                {
+                    <div class="alert">
+                        <span class="closebtn" @onclick="() => clearNotification(NotificationsList.Messages.FindIndex(o => o == message))">&times;</span>
+                        <div class="notification-time">@message.TimeStamp.ToString("MMM dd yyyy, h:mm tt")</div>
+                        @message.Body
+                    </div>
+                }
+            }
+            
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="notification-rightpanel">
+            <p style="font-weight:bold; font-size:12px; padding-bottom:6px;">
+                Subscriptions
+            </p>
+            <form @onsubmit="UpdateSubscription">
+            <table class="table table-borderless" style="font-size:13px">
+                <tbody>
+                    <tr>
+                        <td>Machine Check-Ins / Check-Outs</td>
+                        <td>
+                            <label class="switch">
+                                    <input type="checkbox" @bind="subscription.Machine_CheckIns_CheckOuts" />
+                                     <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td>Pipeline Build Completion</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" @bind="subscription.Pipeline_Build_Completion" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+                        <br /><br />
+                        <p style="font-weight:bold; font-size:12px; padding-bottom:6px;">
+                            Email Notifications
+                        </p>
+                    
+                        <tr>
+                            <td>Machine Timeouts & Remainder</td>
+                            <td>
+                                <label class="switch">
+                                    <input type="checkbox" @bind="subscription.Email_TimeOut_Notification" />
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+                </tbody>
+                
+            </table>
+            <button type="submit" class="btn btn-primary btn-md" disabled="@isSubmitting" style="outline:none; box-shadow:none;">Save</button>
+                </form>
+           
+        </div>
+        </div>
+</div>

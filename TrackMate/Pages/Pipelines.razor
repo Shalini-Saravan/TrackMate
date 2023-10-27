@@ -1,0 +1,53 @@
+﻿@page "/pipelines"
+@inherits PipelinesBase
+@attribute [Authorize]
+    @if (PipelinesList == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <h4>TestStand Pipelines</h4>
+    <br />
+    <div class="data-table">
+        <table class="table table-striped table-borderless">
+            <thead style="background:#1687A7; color:white">
+
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Revision
+                    </th>
+                    <th>
+                        Runs Log
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in PipelinesList)
+                {
+
+                    <tr>
+                        <td>@item.Id</td>
+
+                        <td>
+
+                            <a href="/pipelineform/@item.Id/@item.Name">
+                                @item.Name
+                            </a>
+                        </td>
+
+                        <td>@item.Revision</td>
+                        <td><a href="/pipeline/@item.Id/@item.Name/runs" style="text-decoration:none">Runs</a></td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+}
