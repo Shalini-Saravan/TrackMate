@@ -13,6 +13,8 @@ using Azure;
 using Blazored.LocalStorage;
 using TrackMate.Models;
 using TrackMate.Services;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
 namespace TrackMate.Pages
 {
@@ -20,6 +22,8 @@ namespace TrackMate.Pages
     {
         [Inject]
         public UserService? UserService { get; set; }
+        [Inject]
+        public AccountService? AccountService { get; set; }
         [Inject]
         public MachineService? MachineService { get; set; }
         [Inject]
@@ -32,6 +36,8 @@ namespace TrackMate.Pages
         public IConfiguration? configuration { get; set; }
         [Inject]
         public ILocalStorageService LocalStorageService { get; set; }
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
         public IEnumerable<ApplicationUser>? UsersList { get; set; }
 
 
@@ -62,7 +68,7 @@ namespace TrackMate.Pages
 
             try
             {
-                UsersList = UserService?.GetUsers().ToList();
+                UsersList = UserService?.GetUsers().ToList().OrderBy(o => o.Name);
                 rolesCollection = UserService?.GetRoles().ToList();
             }
             catch (Exception)
@@ -83,15 +89,16 @@ namespace TrackMate.Pages
 
                 hubConnection.On<string>("UserLoaded", OnUserLoaded);
                 hubConnection.StartAsync();
+                
             }
 
         }
-
+        
         private void OnUserLoaded(string user)
         {
             try
             {
-                UsersList = UserService?.GetUsers().ToList();
+                UsersList = UserService?.GetUsers().ToList().OrderBy(o => o.Name);
             }
             catch (Exception)
             {
@@ -103,7 +110,7 @@ namespace TrackMate.Pages
         {
             try
             {
-                UsersList = UserService?.GetUsers().ToList();
+                UsersList = UserService?.GetUsers().ToList().OrderBy(o => o.Name);
             }
             catch (Exception)
             {
@@ -137,8 +144,10 @@ namespace TrackMate.Pages
             userEdit = new User();
             userEdit.Name = _user.Name ?? "";
             userEdit.Email = _user.Email;
+            userEdit.Designation = _user.Designation;
             userEdit.Department = _user.Department ?? "";
             userEdit.Team = _user.Team ?? "";
+            userEdit.Roles = AccountService.GetUserRole(_user.Roles.FirstOrDefault().ToString());
             modalTitle = "Edit User";
             isEdit = true;
             isAdd = false;
@@ -259,9 +268,20 @@ namespace TrackMate.Pages
         {
             message = null;
         }
+        public void Esc(KeyboardEventArgs e)
+        {
+            
+            if (e.Code == "Escape" || e.Key == "Escape")
+            {
+                closeModal();
+            }
+        }
         public async ValueTask DisposeAsync()
         {
-            await hubConnection.DisposeAsync();
+            if (hubConnection != null)
+            {
+                await hubConnection.DisposeAsync();
+            }
         }
     }
 }

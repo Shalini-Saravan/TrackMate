@@ -21,7 +21,7 @@ namespace TrackMate.Services
             httpClient.DefaultRequestHeaders.Add("Authorization", "Basic " + Convert.ToBase64String(Encoding.ASCII.GetBytes(":" + PAT)));
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             await Task.Delay(1000);
-            _timer = new Timer(ReloadAgents, null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
+            _timer = new Timer(ReloadAgents, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
         }
 
         private void ReloadAgents(object? state)
@@ -29,13 +29,24 @@ namespace TrackMate.Services
             try
             {
                 List<Machine>? agentsDB = httpClient.GetFromJsonAsync<List<Machine>>("api/machine/agents").Result.OrderBy(o => o.AgentId).ToList();
-
                 var resp = httpClient.GetAsync("https://dev.azure.com/ni/_apis/distributedtask/pools/426/agents?api-version=7.1-preview.1").Result;
                 JObject response = JObject.Parse(resp.Content.ReadAsStringAsync().Result);
                 string responseBody = response.GetValue("value")?.ToString() ?? "";
                 List<Agent> agentsAPI = JsonConvert.DeserializeObject<List<Agent>>(responseBody);
                 agentsAPI = agentsAPI.OrderBy(o => o.Id).ToList();
 
+                int x = 0;
+                while(x < agentsAPI.Count)
+                {
+                    if (!agentsAPI[x].Name.StartsWith("TS-T"))
+                    {
+                        agentsAPI.Remove(agentsAPI[x]);
+                    }
+                    else
+                    {
+                        x++;
+                    }
+                }
                 int i = 0, j = 0;
                 while (i < agentsAPI.Count && j < agentsDB.Count)
                 {

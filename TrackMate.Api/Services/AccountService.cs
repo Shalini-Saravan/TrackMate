@@ -13,13 +13,15 @@ namespace TrackMate.Api.Services
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly UserService UserService;
 
-        public AccountService(UserService UserService, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        public AccountService(UserService UserService, RoleManager<ApplicationRole> roleManager, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
             _configuration = configuration;
             this.UserService = UserService;
         }
@@ -53,6 +55,19 @@ namespace TrackMate.Api.Services
             var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
             return result;
 
+        }
+
+        public async Task<string> GetUserRole(string roleId)
+        {
+            var result = await _roleManager.FindByIdAsync(roleId);
+            if (result != null)
+            {
+                return result.ToString();
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
     }

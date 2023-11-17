@@ -108,7 +108,7 @@
                                 else
                                 {
                                     <td>
-                                        @item.UserName
+                                        @item.UserName.Replace("."," ")
                                     </td>
                                 }
 
@@ -170,7 +170,7 @@
 {
     <div class="form-popup">
         <form class="form-container" @onsubmit="ApplyFilter">
-            <div class="form-group">
+            <div class="form-group" @onkeydown="Esc">
                 <label asp-for="FilterType" class="control-label">Select Category</label>
                 <select asp-for="FilterType" class="form-control" @bind="@filter.FilterType" @bind:event="oninput" required>
                     <option value="MachinePurpose">Machine Purpose</option>
@@ -215,7 +215,8 @@
                     </button>
                 </div>
                 <form @onsubmit="AssignToUser">
-                    <div class="modal-body">
+                    <div class="modal-body" @onkeydown="Esc">
+                        <p style="color:red; font-size:11px;">@validTime</p>
                         <div class="form-group">
                             <label asp-for="userId" class="control-label">Select User</label>
                             <select asp-for="userId" class="form-control" @bind="@userDet" @bind:event="oninput" required>
@@ -224,7 +225,7 @@
                                 {
                                     @foreach (var _user in UsersList)
                                     {
-                                        <option value="@_user.Id @_user.UserName">@_user.UserName</option>
+                                        <option value="@_user.Id @_user.UserName">@_user.UserName.Replace("."," ")</option>
                                     }
                                 }
                             </select>
@@ -236,7 +237,7 @@
                         </div>
                         <div class="form-group">
                             <label asp-for="endTime" class="control-label">End Time</label>
-                            <input type="datetime-local" asp-for="endTime" class="form-control" @bind="@endTime" required />
+                            <input type="datetime-local" min=@DateTime.UtcNow.AddMinutes(330).ToString("yyyy-MM-ddThh:mm") asp-for="endTime" class="form-control" @bind="@endTime" required />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -259,18 +260,19 @@
                     </button>
                 </div>
                 <form @onsubmit="ExtendTimeout">
-                    <div class="modal-body">
+                    <div class="modal-body" @onkeydown="Esc">
+                        <p style="color:red; font-size:11px;">@validTime</p>
                         <div class="form-group">
                             <label asp-for="Comments" class="control-label">Comments</label>
                             <input asp-for="Comments" class="form-control" @bind="@machine.Comments" required />
                         </div>
                         <div class="form-group">
                             <label asp-for="endTime" class="control-label">End Time</label>
-                            <input type="datetime-local" asp-for="endTime" class="form-control" @bind="@machine.EndTime" required />
+                            <input type="datetime-local" min=@DateTime.UtcNow.AddMinutes(330).ToString("yyyy-MM-ddThh:mm") asp-for="endTime" class="form-control" @bind="@machine.EndTime" required />
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() => RevokeMachine(machine)" data-dismiss="modal">Checkout</button>
+                        <button type="button" class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="() => RevokeMachine(machine)" data-dismiss="modal">UnReserve</button>
                         <button class="btn btn-green btn-md" type="submit" disabled="@isSubmitting" data-dismiss="modal">Save</button>
                     </div>
                 </form>

@@ -41,6 +41,12 @@ namespace TrackMate.Api.Controllers
             }
             return "false";
         }
+        [HttpGet("role/{roleId}")]
+        public JsonResult GetUserRole(string roleId)
+        {
+            string result = AccountService.GetUserRole(roleId).Result;
+            return new JsonResult(result);
+        }
 
     }
 

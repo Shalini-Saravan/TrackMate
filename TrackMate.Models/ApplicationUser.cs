@@ -10,6 +10,7 @@ namespace TrackMate.Models
         public string Name { get; set; }
         public string Department { get; set; }
         public string Team { get; set; }
+        public string Designation { get; set; }
 
     }
 }

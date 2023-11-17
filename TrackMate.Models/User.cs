@@ -14,6 +14,8 @@ namespace TrackMate.Models
 
         [Required]
         public string Password { get; set; } = "Welcome@2023";
+        [Required]
+        public string Designation { get; set; }
 
         [Required]
         public string Team { get; set; }

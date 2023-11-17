@@ -51,6 +51,20 @@ namespace TrackMate.Services
 
         }
 
+        public string GetUserRole(string roleId)
+        {
+            try
+            {
+                string response = httpClient.GetFromJsonAsync<string>("api/account/role/" + roleId).Result;
+
+                return response;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
 
     }
 }

@@ -1,0 +1,37 @@
+﻿@page "/Logout"
+
+<div class="modal" tabindex="-1" style="display:block; margin-top:100px;" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Logout</h4>
+                <button type="button" class="icon-button close" @onclick="closeModal">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+
+            <form @onsubmit="LogoutUser">
+                <div class="modal-body">
+
+                    Are you sure you want to logout of TrackMate?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-green btn-md" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-red btn-md" @onclick="closeModal" data-dismiss="modal">No</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@code {
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+    protected void LogoutUser()
+    {
+        NavigationManager.NavigateTo("Identity/Account/Logout", true);
+    }
+    protected void closeModal()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

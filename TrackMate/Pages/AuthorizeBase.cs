@@ -39,7 +39,7 @@ namespace TrackMate.Pages
             LocalStorage.SetItemAsStringAsync("code", code);
             var nvc = new List<KeyValuePair<string, string>>();
             nvc.Add(new KeyValuePair<string, string>("assertion", code));
-            nvc.Add(new KeyValuePair<string, string>("redirect_uri", "https://localhost:7195/authorize"));
+            nvc.Add(new KeyValuePair<string, string>("redirect_uri", "https://inrd-tstest01:7195/authorize"));
             nvc.Add(new KeyValuePair<string, string>("client_assertion", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im9PdmN6NU1fN3AtSGpJS2xGWHo5M3VfVjBabyJ9.eyJjaWQiOiJhNGEzZTA1OS0xMDgzLTRjZmUtYmNkYy0xODY5NmY5YTcxNmMiLCJjc2kiOiIwNzM5ZmE3OC1lMzk0LTQwYTEtODQ1Ny1hZWU2YmU1MDVjOWUiLCJuYW1laWQiOiI2ZTU3MzhhMS02MmZkLTY0MzUtOWQ1ZC0xNjM4YzcxNjI4ZmUiLCJpc3MiOiJhcHAudnN0b2tlbi52aXN1YWxzdHVkaW8uY29tIiwiYXVkIjoiYXBwLnZzdG9rZW4udmlzdWFsc3R1ZGlvLmNvbSIsIm5iZiI6MTY5ODIwODgyMSwiZXhwIjoxODU2MDYxNjIxfQ.I_14AciVtAf_DLKIjWqofLWzqsTIattsQViIWj4vB0lnrZp_noAEVxK7KlA83xzOaHaw9ABFdBUYc4ekr-2VRZeISk37XF4AFql4JQ9VSdntxkbmuBlMpi5MV1bt-gqcI918Uth5JSjUKGjWxl9dqk2QPij9l2YXsU9AauWfarC-Bf-lmtg7xjjXqllUMgvfu1LrUTQZ4WkR8ya8TNTi8xrA6e2crnMx3nE3GDz_wfv3MhSkR7MYuxZmES_z42Rre2PJI7ERUtO4GykU9cFlznfzas-V4ccW-NTFQpG9GStM1KcPWT6hnCmUdl2mfmH7VMnu-yxFha-OI6mRPNjnxQ"));
             nvc.Add(new KeyValuePair<string, string>("grant_type", "urn:ietf:params:oauth:grant-type:jwt-bearer"));
             nvc.Add(new KeyValuePair<string, string>("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"));

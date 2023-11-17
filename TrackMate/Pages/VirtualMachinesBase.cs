@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Security.Claims;
 using TrackMate.Models;
@@ -46,6 +47,7 @@ namespace TrackMate.Pages
         protected string? message = string.Empty;
         protected string? notification = string.Empty;
 
+        protected string? validTime = string.Empty;
         protected string isModalActive = "";
         protected string? modalTitle { get; set; }
         protected bool isFilter = false;
@@ -123,6 +125,7 @@ namespace TrackMate.Pages
             isModalActive = "page-container";
             endTime = DateTime.UtcNow.AddDays(2).AddMinutes(330);
             isAssign = true;
+            validTime = String.Empty;
         }
         protected void EditAssignedMachine(Machine machine)
         {
@@ -131,6 +134,7 @@ namespace TrackMate.Pages
             modalTitle = "Edit Machine Assignment";
             isModalActive = "page-container";
             isEditAssign = true;
+            validTime = String.Empty;
         }
         protected void ExtendTimeout()
         {
@@ -139,20 +143,27 @@ namespace TrackMate.Pages
 
             try
             {
-                if (machine != null)
+                if (machine.EndTime < DateTime.UtcNow.AddMinutes(331))
+                {
+                    validTime = "Please Enter a Valid Date & Time!";
+                    isSubmitting = false;
+                }
+                else if (machine != null)
                 {
                     machine.LastAccessed = DateTime.UtcNow;
                     string response = MachineService?.UpdateAssignedMachine(machine) ?? "Failed Operation!";
                     notification = response;
+                    closeModal();
                 }
-
+                else
+                {
+                    message = "Error! Please Retry";
+                    closeModal();
+                }
             }
             catch (Exception)
             {
                 message = "Error! Please Retry";
-            }
-            finally
-            {
                 closeModal();
             }
         }
@@ -163,35 +174,41 @@ namespace TrackMate.Pages
 
             try
             {
-                if (userDet != null)
+                if (endTime < DateTime.UtcNow.AddMinutes(331))
                 {
-                    userId = userDet.Split(" ")[0];
-                    userName = userDet.Split(" ")[1];
-                    Machine? SelectedMachine = MachineService?.GetMachineById(machineId ?? "");
-                    if (SelectedMachine != null)
-                    {
-                        SelectedMachine.LastAccessed = DateTime.UtcNow;
-
-                        if (SelectedMachine.Status == "Available")
-                        {
-                            string? response = MachineService?.AssignUser(userId, userName, comments ?? "None", endTime, SelectedMachine);
-                            notification = response;
-                        }
-                        else
-                            message = "Selected Machine is not Available!";
-                    }
+                    validTime = "Please Enter a Valid Date & Time!";
+                    isSubmitting = false;
                 }
                 else
                 {
-                    message = "Please select the user from the list to assign!";
+                    if (userDet != null)
+                    {
+                        userId = userDet.Split(" ")[0];
+                        userName = userDet.Split(" ")[1];
+                        Machine? SelectedMachine = MachineService?.GetMachineById(machineId ?? "");
+                        if (SelectedMachine != null)
+                        {
+                            SelectedMachine.LastAccessed = DateTime.UtcNow;
+
+                            if (SelectedMachine.Status == "Available")
+                            {
+                                string? response = MachineService?.AssignUser(userId, userName, comments ?? "None", endTime, SelectedMachine);
+                                notification = response;
+                            }
+                            else
+                                message = "Selected Machine is not Available!";
+                        }
+                    }
+                    else
+                    {
+                        message = "Please select the user from the list to assign!";
+                    }
+                    closeModal();
                 }
             }
             catch (Exception)
             {
                 message = "Error! Please Retry";
-            }
-            finally
-            {
                 closeModal();
             }
         }
@@ -317,6 +334,7 @@ namespace TrackMate.Pages
         protected void closeModal()
         {
             isAssign = false;
+            isFilter = false;
             isModalActive = "";
             isSubmitting = false;
             isEditAssign = false;
@@ -331,6 +349,14 @@ namespace TrackMate.Pages
             public string NoOfProcessors { get; set; } = "Any";
             public string FilterType { get; set; } = "MachinePurpose";
 
+        }
+        public void Esc(KeyboardEventArgs e)
+        {
+
+            if (e.Code == "Escape" || e.Key == "Escape")
+            {
+                closeModal();
+            }
         }
         public async ValueTask DisposeAsync()
         {

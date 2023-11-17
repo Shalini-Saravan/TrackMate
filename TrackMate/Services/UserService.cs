@@ -25,7 +25,7 @@ namespace TrackMate.Services
         }
         public List<ApplicationUser> GetUsers()
         {
-            return httpClient.GetFromJsonAsync<List<ApplicationUser>>("api/user").Result;
+            return httpClient.GetFromJsonAsync<List<ApplicationUser>>("api/user").Result.OrderBy(o => o.UserName).ToList();
         }
         public int GetUsersCount()
         {
@@ -69,5 +69,6 @@ namespace TrackMate.Services
             JObject responseJson = JObject.Parse(response.Content.ReadAsStringAsync().Result);
             return responseJson["Result"].ToString();
         }
+
     }
 }

@@ -19,11 +19,11 @@
             <AuthorizeView>
                 <Authorized>
                     <div class="dropdown">
-                        <button class="dropbtn">@context?.User?.Identity?.Name <span class="oi oi-chevron-bottom" aria-hidden="true" style="color:dimgray"></span></button>
+                        <button class="dropbtn">@context?.User?.Identity?.Name.Replace("."," ") <span class="oi oi-chevron-bottom" aria-hidden="true" style="color:dimgray"></span></button>
 
                         <div class="dropdown-content">
                             <a href="Identity/Account/ChangePassword">Change Password</a>
-                            <a href="Identity/Account/Logout">Logout</a>
+                            <a @onclick="OpenLogoutModal">Logout</a>
                         </div>
                     </div>
                 </Authorized>
@@ -36,12 +36,56 @@
         </div>
 
 
-        <article class="content body-bg px-4">
+        <article class="content body-bg px-4 @isModalActive">
             @Body
         </article>
     </main>
 </div>
+@if (isLogout)
+{
+    <div class="modal" tabindex="-1" style="display:block; margin-top:100px;" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Logout</h4>
+                    <button type="button" class="icon-button close" @onclick="closeModal">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
 
+                <form @onsubmit="LogoutUser">
+                    <div class="modal-body">
+
+                        Are you sure you want to logout of TrackMate?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-green btn-md" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-red btn-md" @onclick="closeModal" data-dismiss="modal">No</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
 @code {
+    public Boolean isLogout = false;
 
+    public string isModalActive = "";
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+    protected void LogoutUser()
+    {
+        NavigationManager.NavigateTo("Identity/Account/Logout", true);
+    }
+    protected void OpenLogoutModal()
+    {
+        isLogout = true;
+
+        isModalActive = "page-container";
+    }
+    protected void closeModal()
+    {
+        isModalActive = "";
+        isLogout = false;
+    }
 }

@@ -99,7 +99,7 @@ namespace TrackMate.Api.Services.BackgroundServices
 
                     using (SmtpClient smtp = new SmtpClient("mailout.natinst.com", 25))
                     {
-                        smtp.Credentials = new System.Net.NetworkCredential("shalini.saravanan@ni.com", "Shasha2023");
+                        smtp.Credentials = new System.Net.NetworkCredential("shalini.saravanan@ni.com", "");
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
                     }

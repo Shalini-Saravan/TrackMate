@@ -49,6 +49,7 @@ namespace TrackMate.Api.Services
                 UserName = user.Email.Substring(0, user.Email.IndexOf('@')),
                 Email = user.Email,
                 Department = user.Department,
+                Designation = user.Designation,
                 Team = user.Team
             };
 
@@ -82,9 +83,12 @@ namespace TrackMate.Api.Services
             userEdit.Name = user.Name;
             userEdit.UserName = user.Email.Substring(0, user.Email.IndexOf('@'));
             userEdit.Email = user.Email;
+            userEdit.Designation = user.Designation;
             userEdit.Department = user.Department;
             userEdit.Team = user.Team;
 
+            userEdit.Roles.Clear();
+            await _userManager.AddToRoleAsync(userEdit, user.Roles);
             IdentityResult result = await _userManager.UpdateAsync(userEdit);
             if (result.Succeeded)
             {

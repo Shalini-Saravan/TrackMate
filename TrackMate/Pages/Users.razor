@@ -1,7 +1,7 @@
 ﻿@page "/users"
 @using TrackMate.Models;
 @inherits UsersBase
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin")]
 <div class="@isModalActive">
     <h3>Users</h3>
 
@@ -38,7 +38,6 @@
                                 </Authorized>
                                 <NotAuthorized>
                                     <th>
-                                        <button class="icon-button" @onclick="AddNew"><span class="oi oi-body oi-plus" aria-hidden="true" style="color:white;"></span></button>
                                         &nbsp; Name
                                     </th>
                                 </NotAuthorized>
@@ -47,7 +46,9 @@
                             <th>
                                 Email
                             </th>
-
+                            <th>
+                                Designation
+                            </th>
                             <th>
                                 Team
                             </th>
@@ -70,13 +71,15 @@
                                             <button class="icon-button" disabled="@isSubmitting" @onclick="() => EditUser(item)"><span class="oi oi-body oi-pencil" aria-hidden="true"></span></button> &nbsp;
                                         </Authorized>
                                     </AuthorizeView>
-                                    @item.Name
+                                    @item.Name.Replace("."," ")
                                 </td>
 
                                 <td>
                                     @item.Email
                                 </td>
-
+                                <td>
+                                    @item.Designation
+                                </td>
                                 <td>
                                     @item.Team
                                 </td>
@@ -102,16 +105,17 @@
     <div class="modal" tabindex="-1" style="display:block" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+
+               
+                    <div class="modal-header" >
                     <h4 class="modal-title">@modalTitle</h4>
-                    <button type="button" class="icon-button close" @onclick="closeModal">
+                        <button type="cancel" class="icon-button close" @onclick="closeModal">
                         <span aria-hidden="true">X</span>
                     </button>
                 </div>
-
                 <form @onsubmit="SaveUser">
-                <div class="modal-body">
-
+                    <div class="modal-body" @onkeydown="@Esc">
+                    
                         <div class="form-group">
 
                             <label for="Name" class="control-label">Name</label>
@@ -124,6 +128,10 @@
                         <div class="form-group">
                             <label for="Password" class="control-label">Password</label>
                             <input for="Password" class="form-control" @bind="@user.Password" required readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="Designation" class="control-label">Designation</label>
+                            <input for="Designation" class="form-control" @bind="@user.Designation" required />
                         </div>
                         <div class="form-group">
                             <label asp-for="Team" class="control-label">Team</label>
@@ -139,6 +147,7 @@
                             <label for="Department" class="control-label">Department</label>
                             <select for="Department" class="form-control" @bind="@user.Department" @bind:event="oninput" required>
                                 <option value="">choose..</option>
+                                <option value="Test System SW">Test System SW</option>
                                 <option value="Platform HW & Drivers">Platform HW & Drivers</option>
                             </select>
                         </div>
@@ -171,28 +180,33 @@
     <div class="modal" tabindex="-1" style="display:block" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+
+                
+                    <div class="modal-header">
                     <h4 class="modal-title">@modalTitle</h4>
-                    <button type="button" class="icon-button close" @onclick="closeModal">
+                    <button type="cancel" class="icon-button close" @onclick="closeModal">
                         <span aria-hidden="true">X</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <form>
+                    <div class="modal-body" @onkeydown="Esc">
 
-                    <form>
                         <div class="form-group">
 
                             <label for="Name" class="control-label">Name</label>
-                            <input for="Name" class="form-control" @bind="@userEdit.Name" />
+                            <input for="Name" class="form-control" @bind="@userEdit.Name" required/>
                         </div>
                         <div class="form-group">
                             <label for="Email" class="control-label">Email</label>
-                            <input for="Email" class="form-control" @bind="@userEdit.Email" />
+                            <input for="Email" class="form-control" @bind="@userEdit.Email" required/>
                         </div>
-
+                        <div class="form-group">
+                            <label for="Designation" class="control-label">Designation</label>
+                            <input for="Designation" class="form-control" @bind="@userEdit.Designation" required />
+                        </div>
                         <div class="form-group">
                             <label asp-for="Team" class="control-label">Team</label>
-                            <select asp-for="Team" class="form-control" @bind="@userEdit.Team" @bind:event="oninput">
+                            <select asp-for="Team" class="form-control" @bind="@userEdit.Team" @bind:event="oninput" required>
                                 <option value="">choose..</option>
                                 <option value="TestStand">TestStand</option>
                                 <option value="TestStand User Workflow">TestStand User Workflow</option>
@@ -201,15 +215,24 @@
                         </div>
                         <div class="form-group">
                             <label for="Department" class="control-label">Department</label>
-                            <select for="Department" class="form-control" @bind="@userEdit.Department">
+                            <select for="Department" class="form-control" @bind="@userEdit.Department" required>
                                 <option value="">choose..</option>
+                                <option value="Test System SW">Test System SW</option>
                                 <option value="Platform HW & Drivers">Platform HW & Drivers</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="Roles" class="control-label">Role</label>
+                            <select for="Roles" class="form-control" @bind="@userEdit.Roles" required>
+                                <option value="">choose..</option>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
 
-
-                    </form>
+                   
                 </div>
+                </form>
                 <div class="modal-footer">
                     <button class="btn btn-red btn-md" disabled="@isSubmitting" @onclick="DeleteUser" data-dismiss="modal">Delete</button>
                     <button class="btn btn-green btn-md" disabled="@isSubmitting" @onclick="SaveEditUser" data-dismiss="modal">Save</button>
@@ -230,6 +253,7 @@
                         <span aria-hidden="true">X</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     @if (_machines?.Count == 0)
                     {
@@ -296,7 +320,7 @@
                     }
 
                 </div>
-
+               
             </div>
         </div>
     </div>

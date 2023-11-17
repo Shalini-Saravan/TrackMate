@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using Machine = TrackMate.Models.Machine;
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Configuration;
+using Azure;
+using Newtonsoft.Json.Linq;
 
 namespace TrackMate.Pages
 {
@@ -219,6 +221,8 @@ namespace TrackMate.Pages
                 {
                     notification = "Pipeline Run Success!";
                     ReserveMachines(machines);
+                    JObject resp = JObject.Parse(result.Content.ReadAsStringAsync().Result);
+                    NavigationManager.NavigateTo("https://ni.visualstudio.com/DevCentral/_build/results?buildId="+ resp["id"].ToString() + "&view=results");
                 }
             }
             finally

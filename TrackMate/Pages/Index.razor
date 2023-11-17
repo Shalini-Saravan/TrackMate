@@ -5,7 +5,7 @@
 
 <AuthorizeView>
     <Authorized>
-        <h4>Welcome, @context?.User?.Identity?.Name!</h4> 
+        <h4>Welcome, @context?.User?.Identity?.Name.Replace("."," ")!</h4>
         @if(Message != string.Empty)
         {
             <p style="color:red">Please login again to reload the contents!</p>
