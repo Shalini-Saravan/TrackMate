@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrackMate.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d52da4a2f48a0c17a7acd37935a7fedb78d02b69")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrackMate.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrackMate.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

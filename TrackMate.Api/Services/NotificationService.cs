@@ -74,6 +74,10 @@ namespace TrackMate.Api.Services
                 {
                     subscribed = false;
                 }
+                if(subscribe == null)
+                {
+                    subscribed = false;
+                }
 
 
             }

@@ -59,7 +59,11 @@ namespace TrackMate.Api.Controllers
         {
             return MachineService.GetAvailableMachineCount();
         }
-
+        [HttpGet("reserved/count")]
+        public Task<int> GetReservedCount()
+        {
+            return MachineService.GetReservedMachineCount();
+        }
 
         [HttpGet("{id}")]
         public Machine GetById(string id)
@@ -106,12 +110,13 @@ namespace TrackMate.Api.Controllers
             JObject data = JObject.Parse(strdata);
 
             Machine machine = data["machine"].ToObject<Machine>();
-            string userId = data["userId"].ToString();
+            string userId = data["userId"]?.ToString();
             string userName = data["userName"].ToString();
             string comments = data["comments"].ToString();
             DateTime endTime = Convert.ToDateTime(data["endTime"].ToString());
+            string statusValue = data["status"]?.ToString();
 
-            return new JsonResult(MachineService.AssignUser(userId, userName, machine, endTime, comments));
+            return new JsonResult(MachineService.AssignUser(userId, userName, machine, endTime, comments, statusValue));
 
         }
 

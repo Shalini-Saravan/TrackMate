@@ -81,7 +81,7 @@
     public NotificationService NotificationService { get; set; }
     [Inject]
     public IJSRuntime JSRuntime { get; set; }
-    
+
     private bool collapseNavMenu = true;
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
     private HubConnection hubConnection;
@@ -95,33 +95,37 @@
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        string TokenValue = await LocalStorage.GetItemAsStringAsync("TokenValue");
-        if (HttpContextAccessor.HttpContext != null)
+        if (!NavigationManager.Uri.Contains("authorize") && !NavigationManager.Uri.Contains("token"))
         {
-            if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && (await LocalStorage.GetItemAsStringAsync("AzDoToken")) == null && (TokenValue != null))
+            string TokenValue = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "TokenValue");
+
+            if (HttpContextAccessor.HttpContext != null)
             {
-                AzureService.GetToken();
+                if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && (await JSRuntime.InvokeAsync<string>("localStorage.getItem", "AzDoToken")) == null && (TokenValue != null))
+                {
+                    AzureService.GetToken();
+
+                }
+                if (!HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+                {
+                    await LocalStorage.ClearAsync();
+                }
+                if (configuration != null && HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && TokenValue != null)
+                {
+                    hubConnection = new HubConnectionBuilder()
+                        .WithUrl(configuration["HubUrl"], options =>
+                        {
+                            options.AccessTokenProvider = () => Task.FromResult(TokenValue ?? null);
+                        })
+                        .Build();
+                    hubConnection.On<String>("privateNotification", OnNotificationReceived);
+                    hubConnection.On<String>("privateNotification-clear", OnNotificationCleared);
+                    await hubConnection.StartAsync();
+                }
+
+                NotificationCount = NotificationService.GetNotificationsCount(HttpContextAccessor.HttpContext.User.Identity.Name);
 
             }
-            if (!HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
-            {
-                await LocalStorage.ClearAsync();
-            }
-            if (configuration != null && HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated && TokenValue != null)
-            {
-                hubConnection = new HubConnectionBuilder()
-                    .WithUrl(configuration["HubUrl"], options =>
-                    {
-                        options.AccessTokenProvider = () => Task.FromResult(TokenValue??null);
-                    })
-                    .Build();
-                hubConnection.On<String>("privateNotification", OnNotificationReceived);
-                hubConnection.On<String>("privateNotification-clear", OnNotificationCleared);
-                await hubConnection.StartAsync();
-            }
-
-            NotificationCount = NotificationService.GetNotificationsCount(HttpContextAccessor.HttpContext.User.Identity.Name);
-
         }
 
     }

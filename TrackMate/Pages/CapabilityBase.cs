@@ -48,7 +48,7 @@ namespace TrackMate.Pages
 
             if (agentCapability == null || agent == null || machine == null)
             {
-                message = "Unable to fetch Agent Details!";
+                message = "Unable to fetch Agent Details!\nMachine may have been removed from the Agent Pool.";
             }
 
         }

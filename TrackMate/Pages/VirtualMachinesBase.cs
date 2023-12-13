@@ -64,7 +64,7 @@ namespace TrackMate.Pages
                 UsersList = UserService?.GetUsers().ToList();
                 AllMachinesList = MachineService?.GetVirtualMachines().OrderBy(o => o.Name).ToList();
                 MachinesList = AllMachinesList?.ToList();
-                VirtualMachinesList = AzureService?.GetAgentsWithCapability();
+                VirtualMachinesList = await AzureService?.GetAgentsWithCapability();
             }
             catch (Exception)
             {
@@ -293,7 +293,7 @@ namespace TrackMate.Pages
 
                         }
                     }
-                    VirtualMachinesList = AzureService?.GetAgentsWithCapability();
+                    VirtualMachinesList = AzureService?.GetAgentsWithCapability().Result;
                 }
                 else
                 {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hKF9s20twBQWfZRA4pXPDSShGSQHALAI8A0YTrwMSPPMFueKYJlrnKGhLXhML6KUbg/mpY4BTMRyYfYwZRmheA==",
+  "dgSpecHash": "PGqhdrJFLotFh97arwmoLBr7cBBpGsFhrwW03We8GhLrOSP/Me9BYtI4+vVDS/jaohASMK7JyQIB9NShA0vkhQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate.Models\\TrackMate.Models.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,10 @@
     "C:\\Users\\shsarava\\.nuget\\packages\\sharpcompress\\0.23.0\\sharpcompress.0.23.0.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
-    "C:\\Users\\shsarava\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512"
+    "C:\\Users\\shsarava\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }

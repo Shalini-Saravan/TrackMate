@@ -67,11 +67,19 @@ namespace TrackMate.Api.Services
         {
             return await Task.Run(() =>
             {
-                FilterDefinition<Machine> filter = Builders<Machine>.Filter.Eq("Status", "Available");
+                FilterDefinition<Machine> filter1 = Builders<Machine>.Filter.Eq("Status", "Available");
+                FilterDefinition<Machine> filter2 = Builders<Machine>.Filter.Ne("Purpose", "Automated");
+                return (int)db.MachineRecords.CountDocuments(filter1 & filter2);
+            });
+        }
+        public async Task<int> GetReservedMachineCount()
+        {
+            return await Task.Run(() =>
+            {
+                FilterDefinition<Machine> filter = Builders<Machine>.Filter.Eq("Status", "Not Available");
                 return (int)db.MachineRecords.CountDocuments(filter);
             });
         }
-
         public async Task<Machine> GetMachineByAgentId(string agentId)
         {
             return await Task.Run(() =>
@@ -170,7 +178,7 @@ namespace TrackMate.Api.Services
             {
                 FilterDefinition<Machine> machineData = Builders<Machine>.Filter.Eq("Id", id);
                 Machine? machine = GetMachineById(id);
-                if (machine != null && machine.Status != "Available")
+                if (machine != null && machine.Status != "Not Available")
                 {
                     await RevokeUser(machine);
                 }
@@ -185,32 +193,68 @@ namespace TrackMate.Api.Services
             }
         }
 
-        public async Task<string> AssignUser(string userId, string userName, Machine? machine, DateTime endTime, string comments)
+        public async Task<string> AssignUser(string userId, string userName, Machine? machine, DateTime endTime, string comments, string statusValue)
         {
             try
             {
                 if (machine != null)
                 {
-                    var update = Builders<Machine>.Update
-                        .Set(m => m.Status, "Not Available").Set(m => m.UserId, userId)
-                        .Set(m => m.UserName, userName)
-                        .Set(m => m.Comments, comments)
-                        .Set(m => m.FromTime, DateTime.UtcNow.AddMinutes(330))
-                        .Set(m => m.EndTime, endTime);
-                    await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
-                    //inserting machine usage log
-                    var newlog = new MachineUsage
+                    Machine machine1 = GetMachineById(machine.Id);
+                    if(machine1.Status != "Available" && statusValue == null)
                     {
-                        Machine = machine,
-                        UserName = userName,
-                        StartTime = DateTime.UtcNow.AddMinutes(330),
-                        InUse = true
-                    };
+                        return "Error: Failed to Assign Machine";
+                    }
+                    
+                    if (statusValue == "InUse")
+                    {
+                        var update = Builders<Machine>.Update
+                                .Set(m => m.Status, "In Use").Set(m => m.UserId, userId)
+                                .Set(m => m.UserName, userName)
+                                .Set(m => m.Comments, comments)
+                                .Set(m => m.FromTime, DateTime.UtcNow.AddMinutes(330))
+                                .Set(m => m.EndTime, endTime);
+                        await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
+                    }
+                    else if (statusValue == "Reserved")
+                    {
+                        var update = Builders<Machine>.Update
+                                .Set(m => m.Status, "Reserved").Set(m => m.UserId, userId)
+                                .Set(m => m.UserName, userName)
+                                .Set(m => m.Comments, comments)
+                                .Set(m => m.FromTime, DateTime.UtcNow.AddMinutes(330))
+                                .Set(m => m.EndTime, endTime);
+                        await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
+                    }
+                    else
+                    {
+                        var update = Builders<Machine>.Update
+                                .Set(m => m.Status, "Not Available").Set(m => m.UserId, userId)
+                                .Set(m => m.UserName, userName)
+                                .Set(m => m.Comments, comments)
+                                .Set(m => m.FromTime, DateTime.UtcNow.AddMinutes(330))
+                                .Set(m => m.EndTime, endTime);
+                        await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
+                    }
+                    
 
-                    await db.MachineUsage.InsertOneAsync(newlog);
+                    //Automated Machines Assignment
+                    if (userId != null)
+                    {
+                        //inserting machine usage log
+                        var newlog = new MachineUsage
+                        {
+                            Machine = machine,
+                            UserName = userName,
+                            StartTime = DateTime.UtcNow.AddMinutes(330),
+                            InUse = true
+                        };
+                        await db.MachineUsage.InsertOneAsync(newlog);
+
+                        //send Private Notification
+                        await NotificationService.SendPrivateNotification(userName, "Machine " + machine.Name + " has been Reserved till " + endTime.ToString("MMM dd, h:mm tt"), "Machine_CheckIns_CheckOuts");
+                        
+                    }
                     await _hubContext.Clients.All.SendAsync("MachineLoaded", machine.ToString());
-                    //send Private Notification
-                    await NotificationService.SendPrivateNotification(userName, "Machine " + machine.Name + " has been Reserved till " + endTime.ToString("MMM dd, h:mm tt"), "Machine_CheckIns_CheckOuts");
                     return "Machine Assigned Successfully!";
                 }
                 else
@@ -246,8 +290,12 @@ namespace TrackMate.Api.Services
                     await db.MachineRecords.UpdateOneAsync(filter: g => g.Id == machine.Id, update);
 
                     await _hubContext.Clients.All.SendAsync("MachineLoaded", machine.ToString());
-                    //send Private Notification
-                    await NotificationService.SendPrivateNotification(userName, "Access to the Machine " + machine.Name + " has been Revoked!", "Machine_CheckIns_CheckOuts");
+
+                    if (userName != null)
+                    {
+                        //send Private Notification
+                        await NotificationService.SendPrivateNotification(userName, "Access to the Machine " + machine.Name + " has been Revoked!", "Machine_CheckIns_CheckOuts");
+                    }
                     return "Machine CheckedOut Successfully!";
                 }
                 else

@@ -155,7 +155,18 @@ main {
     outline: 0;
 }
 
+.btn-reserved:hover {
+    color: #fff;
+    background-color: #acacad;
+    border-color: none;
+}
 
+.btn-reserved:focus {
+    color: #fff;
+    background-color: #9E9FA5;
+    border-color: none;
+    outline: 0;
+}
 
 .btn {
     border-radius: 21px;

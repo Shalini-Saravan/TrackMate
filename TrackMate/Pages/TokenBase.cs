@@ -2,11 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
-using System.Net.Http;
-using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Http;
+using Microsoft.JSInterop;
 
 namespace TrackMate.Pages
 {
@@ -15,9 +11,11 @@ namespace TrackMate.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         [Inject]
-        public ILocalStorageService LocalStorage { get; set; }
+        public AzureService AzureService { get; set; }
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
             string token = null;
@@ -27,13 +25,22 @@ namespace TrackMate.Pages
             {
                 token = Convert.ToString(codeParam);
             }
-            SetApiToken(token);
-            NavigationManager.NavigateTo("/");
+            await SetApiToken(token);
+            AzureService.GetToken();
 
         }
-        public async void SetApiToken(string token)
+        public async Task SetApiToken(string token)
         {
-            await LocalStorage.SetItemAsStringAsync("TokenValue", token);
+            try
+            {
+                //await LocalStorage.SetItemAsStringAsync("TokenValue", token);
+                await JSRuntime.InvokeVoidAsync("localStorage.setItem", "TokenValue", token);
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception on Token setItem" + ex.Message);
+            }
         }
     }
 }

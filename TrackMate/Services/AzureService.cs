@@ -1,5 +1,4 @@
 ﻿using Azure.Core;
-using Blazored.LocalStorage;
 using TrackMate.Pages;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Caching.Memory;
@@ -24,9 +23,9 @@ namespace TrackMate.Services
         private readonly IMemoryCache _memoryCache;
         private RunsLogService RunsLogService;
         private NavigationManager NavigationManager;
-        private ILocalStorageService LocalStorage;
+        private IJSRuntime JSRuntime;
         private string userName;
-        public AzureService(ILocalStorageService localStorage, NavigationManager NavigationManager, RunsLogService RunsLogService, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMemoryCache memoryCache)
+        public AzureService(NavigationManager NavigationManager, RunsLogService RunsLogService, HttpClient httpClient, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMemoryCache memoryCache, IJSRuntime jSRuntime)
         {
             this.httpClient = httpClient;
             _configuration = configuration;
@@ -34,7 +33,6 @@ namespace TrackMate.Services
             _memoryCache = memoryCache;
             this.RunsLogService = RunsLogService;
             this.NavigationManager = NavigationManager;
-            LocalStorage = localStorage;
             httpClient.DefaultRequestHeaders.Accept.Add(
                   new MediaTypeWithQualityHeaderValue("application/json"));
             if (httpContextAccessor.HttpContext != null && httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
@@ -42,30 +40,32 @@ namespace TrackMate.Services
                 userName = httpContextAccessor.HttpContext.User.Identity.Name ?? "";
                 AddTokenHeader();
             }
-
+            JSRuntime = jSRuntime;
         }
         public async Task AddTokenHeader()
         {
-            if (await LocalStorage.GetItemAsStringAsync("AzDoToken") == null)
+            if (await JSRuntime.InvokeAsync<string>("localStorage.getItem", "AzDoToken") == null)
             {
                 GetToken();
             }
             else
             {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await LocalStorage.GetItemAsStringAsync("AzDoToken"));
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", await JSRuntime.InvokeAsync<string>("localStorage.getItem", "AzDoToken"));
             }
         }
         public void GetToken()
         {
             NavigationManager.NavigateTo("https://app.vssps.visualstudio.com/oauth2/authorize?client_id=A4A3E059-1083-4CFE-BCDC-18696F9A716C&response_type=Assertion&redirect_uri=https://inrd-tstest01:7195/authorize&scope=vso.agentpools_manage vso.build_execute vso.code_full vso.dashboards_manage vso.graph_manage vso.notification_manage vso.pipelineresources_manage vso.profile_write vso.project_manage vso.taskgroups_write vso.tokenadministration vso.work_full&state=state");
+            //NavigationManager.NavigateTo("https://app.vssps.visualstudio.com/oauth2/authorize?client_id=A4A3E059-1083-4CFE-BCDC-18696F9A716C&response_type=Assertion&redirect_uri=https://localhost:7195/authorize&scope=vso.agentpools_manage vso.build_execute vso.code_full vso.dashboards_manage vso.graph_manage vso.notification_manage vso.pipelineresources_manage vso.profile_write vso.project_manage vso.taskgroups_write vso.tokenadministration vso.work_full&state=state");
         }
 
         public async Task GetRefreshToken()
         {
-            string refreshToken = await LocalStorage.GetItemAsStringAsync("RefreshToken");
+            string refreshToken = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "RefreshToken");
             var nvc = new List<KeyValuePair<string, string>>();
             nvc.Add(new KeyValuePair<string, string>("assertion", refreshToken));
             nvc.Add(new KeyValuePair<string, string>("redirect_uri", "https://inrd-tstest01:7195/authorize"));
+            //nvc.Add(new KeyValuePair<string, string>("redirect_uri", "https://localhost:7195/authorize"));
             nvc.Add(new KeyValuePair<string, string>("client_assertion", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im9PdmN6NU1fN3AtSGpJS2xGWHo5M3VfVjBabyJ9.eyJjaWQiOiJhNGEzZTA1OS0xMDgzLTRjZmUtYmNkYy0xODY5NmY5YTcxNmMiLCJjc2kiOiIwNzM5ZmE3OC1lMzk0LTQwYTEtODQ1Ny1hZWU2YmU1MDVjOWUiLCJuYW1laWQiOiI2ZTU3MzhhMS02MmZkLTY0MzUtOWQ1ZC0xNjM4YzcxNjI4ZmUiLCJpc3MiOiJhcHAudnN0b2tlbi52aXN1YWxzdHVkaW8uY29tIiwiYXVkIjoiYXBwLnZzdG9rZW4udmlzdWFsc3R1ZGlvLmNvbSIsIm5iZiI6MTY5ODIwODgyMSwiZXhwIjoxODU2MDYxNjIxfQ.I_14AciVtAf_DLKIjWqofLWzqsTIattsQViIWj4vB0lnrZp_noAEVxK7KlA83xzOaHaw9ABFdBUYc4ekr-2VRZeISk37XF4AFql4JQ9VSdntxkbmuBlMpi5MV1bt-gqcI918Uth5JSjUKGjWxl9dqk2QPij9l2YXsU9AauWfarC-Bf-lmtg7xjjXqllUMgvfu1LrUTQZ4WkR8ya8TNTi8xrA6e2crnMx3nE3GDz_wfv3MhSkR7MYuxZmES_z42Rre2PJI7ERUtO4GykU9cFlznfzas-V4ccW-NTFQpG9GStM1KcPWT6hnCmUdl2mfmH7VMnu-yxFha-OI6mRPNjnxQ"));
             nvc.Add(new KeyValuePair<string, string>("grant_type", "refresh_token"));
             nvc.Add(new KeyValuePair<string, string>("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"));
@@ -80,8 +80,10 @@ namespace TrackMate.Services
                 using var resp = client.SendAsync(req).Result;
                 JObject response = JObject.Parse(resp.Content.ReadAsStringAsync().Result);
                 string responseBody = response.GetValue("access_token").ToString();
-                await LocalStorage.SetItemAsStringAsync("AzDoToken", responseBody);
-                await LocalStorage.SetItemAsStringAsync("RefreshToken", response.GetValue("refresh_token").ToString());
+                //await LocalStorage.SetItemAsStringAsync("AzDoToken", responseBody);
+                //await LocalStorage.SetItemAsStringAsync("RefreshToken", response.GetValue("refresh_token").ToString());
+                await JSRuntime.InvokeVoidAsync("localStorage.setItem", "AzDoToken", responseBody);
+                await JSRuntime.InvokeVoidAsync("localStorage.setItem", "RefreshToken", response.GetValue("refresh_token").ToString());
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", responseBody);
 
             }
@@ -342,14 +344,14 @@ namespace TrackMate.Services
             }
 
         }
-        public List<Agent> GetAgentsWithCapability()
+        public async Task<List<Agent>> GetAgentsWithCapability()
         {
             try
             {
                 var resp = httpClient.GetAsync("https://dev.azure.com/ni/_apis/distributedtask/pools/426/agents?includeCapabilities=true&api-version=7.1-preview.1").Result;
                 if (resp.StatusCode == System.Net.HttpStatusCode.NonAuthoritativeInformation)
                 {
-                    GetRefreshToken();
+                    await GetRefreshToken();
                     resp = httpClient.GetAsync("https://dev.azure.com/ni/_apis/distributedtask/pools/426/agents?includeCapabilities=true&api-version=7.1-preview.1").Result;
                 }
                 if (resp.StatusCode == System.Net.HttpStatusCode.OK)
@@ -418,13 +420,13 @@ namespace TrackMate.Services
                 }
                 else
                 {
-                    return new AgentCapability();
+                    return null;
                 }
 
             }
             catch (Exception)
             {
-                return new AgentCapability();
+                return null;
             }
         }
 

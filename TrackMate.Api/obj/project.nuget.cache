@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vOSN1QLJu0V3VHXRR2RH0VpRJfdQSePA9cKcHoiEEs090ZNHUTz26ChRTwGKCCzqtB6FENEpQQ3GHpJKIpWHPg==",
+  "dgSpecHash": "w7Q/w6wZ9WUow7T9f7HWPujzOlLLI65nR81WUM2eJH7RzxxlS85j0wiqUVq0ZyGhfYbogFe4CogPKc6uHnyVEQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\shsarava\\source\\repos\\BlazorWebApp\\BlazorWebApp\\TrackMate.Api\\TrackMate.Api.csproj",
   "expectedPackageFiles": [
@@ -82,7 +82,11 @@
     "C:\\Users\\shsarava\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
     "C:\\Users\\shsarava\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
-    "C:\\Users\\shsarava\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
+    "C:\\Users\\shsarava\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\shsarava\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }

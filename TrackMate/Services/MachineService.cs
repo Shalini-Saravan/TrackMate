@@ -81,7 +81,10 @@ namespace TrackMate.Services
         {
             return httpClient.GetFromJsonAsync<int>("api/machine/available/count").Result;
         }
-
+        public int GetReservedMachineCount()
+        {
+            return httpClient.GetFromJsonAsync<int>("api/machine/reserved/count").Result;
+        }
         public Machine GetMachineById(string id)
         {
             return httpClient.GetFromJsonAsync<Machine>("api/machine/" + id).Result ?? new Machine();

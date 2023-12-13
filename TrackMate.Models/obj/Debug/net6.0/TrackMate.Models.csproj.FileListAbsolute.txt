@@ -22,3 +22,4 @@ C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Models\obj\De
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Models\obj\Debug\net6.0\refint\TrackMate.Models.dll
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Models\obj\Debug\net6.0\TrackMate.Models.pdb
 C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Models\obj\Debug\net6.0\ref\TrackMate.Models.dll
+C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Models\obj\Debug\net6.0\TrackMate.Models.sourcelink.json

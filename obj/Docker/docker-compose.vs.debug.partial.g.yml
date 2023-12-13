@@ -5,6 +5,8 @@ services:
     image: trackmate:dev
     container_name: "TrackMate"
     build:
+      args:
+        BUILD_CONFIGURATION: Debug
       target: base
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -12,12 +14,13 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=
+      - NUGET_FALLBACK_PACKAGES=/.nuget/fallbackpackages
     volumes:
       - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate:/app
       - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp:/src
       - C:\Users\shsarava\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\shsarava\.nuget\packages\:/.nuget/packages:ro
+      - C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages:/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -29,13 +32,15 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net6.0/TrackMate.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages --additionalProbingPath /.nuget/fallbackpackages  \"/app/bin/Debug/net6.0/TrackMate.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
   trackmate.api:
     image: trackmateapi:dev
     build:
+      args:
+        BUILD_CONFIGURATION: Debug
       target: base
       labels:
         com.microsoft.created-by: "visual-studio"
@@ -43,12 +48,13 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=
+      - NUGET_FALLBACK_PACKAGES=/.nuget/fallbackpackages
     volumes:
       - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp\TrackMate.Api:/app
       - C:\Users\shsarava\source\repos\BlazorWebApp\BlazorWebApp:/src
       - C:\Users\shsarava\vsdbg\vs2017u5:/remote_debugger:rw
       - C:\Users\shsarava\.nuget\packages\:/.nuget/packages:ro
+      - C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages:/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
@@ -60,7 +66,7 @@ services:
     entrypoint: tail -f /dev/null
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net6.0/TrackMate.Api.dll\""
+      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages --additionalProbingPath /.nuget/fallbackpackages  \"/app/bin/Debug/net6.0/TrackMate.Api.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true

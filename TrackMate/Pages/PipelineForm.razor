@@ -6,7 +6,7 @@
 {
     <PipelineUnavailable PipeLineId="@PipeLineId" PipeLineName="@PipeLineName"></PipelineUnavailable>
 }
-else if (parameters == null || parameters.Count == 0)
+else if(!parsed)
 {
     <div class="spinner"></div>
 }

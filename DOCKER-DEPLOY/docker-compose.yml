@@ -19,9 +19,14 @@ services:
       ASPNETCORE_URLS: "https://+;http://+"
       ASPNETCORE_HTTPS_PORT: "7195"
       ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "pa55w0rd!"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/root/.aspnet/https/TrackMate.pfx"
 
   trackmate.api:
     container_name: api
+    ports:
+        - 7196:443
+        - 5138:80
     image: shalinisaravanan/api:latest
     networks:
         - trackmate_network

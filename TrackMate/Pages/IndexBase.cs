@@ -30,7 +30,7 @@ namespace TrackMate.Pages
         public IHttpContextAccessor HttpContextAccessor { get; set; }
         public int UserCount { get; set; }
         public int MachineCount { get; set; }
-        public int InUseCount { get; set; }
+        public int ReservedCount { get; set; }
         public int AvailableCount { get; set; }
         public string Message { get; set; } = string.Empty;
 
@@ -48,7 +48,7 @@ namespace TrackMate.Pages
                 UserCount = UserService.GetUsersCount();
                 MachineCount = MachineService.GetMachineCount();
                 AvailableCount = MachineService.GetAvailableMachineCount();
-                InUseCount = MachineCount - AvailableCount;
+                ReservedCount = MachineService.GetReservedMachineCount();
 
                 var authstate = await auth.GetAuthenticationStateAsync();
                 var user = authstate.User;
@@ -64,7 +64,7 @@ namespace TrackMate.Pages
                 UserCount = 0;
                 MachineCount = 0;
                 AvailableCount = 0;
-                InUseCount = MachineCount - AvailableCount;
+                ReservedCount = 0;
             }
 
         }

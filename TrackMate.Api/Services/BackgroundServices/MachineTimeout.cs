@@ -99,7 +99,7 @@ namespace TrackMate.Api.Services.BackgroundServices
 
                     using (SmtpClient smtp = new SmtpClient("mailout.natinst.com", 25))
                     {
-                        smtp.Credentials = new System.Net.NetworkCredential("shalini.saravanan@ni.com", "");
+                        smtp.Credentials = new System.Net.NetworkCredential("shalini.saravanan@ni.com", "Shasha@2023");
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
                     }
@@ -117,6 +117,10 @@ namespace TrackMate.Api.Services.BackgroundServices
             bool subscribed = true;
 
             Subscription subscribe = SubscriptionRecords.Find(o => o.UserName == userName).FirstOrDefault();
+            if(subscribe == null)
+            {
+                return;
+            }
             if (subscribe != null && !subscribe.Machine_CheckIns_CheckOuts)
             {
                 subscribed = false;

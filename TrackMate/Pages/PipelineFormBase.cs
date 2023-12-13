@@ -42,13 +42,16 @@ namespace TrackMate.Pages
         public string? runsLink { get; set; }
         public string notification { get; set; } = "";
         public string message { get; set; } = "";
+        
         public Boolean isSubmitting { get; set; } = false;
+        public Boolean parsed { get; set; } = false;
         private HubConnection hubConnection { get; set; }
         protected override async Task OnInitializedAsync()
         {
             base.OnInitialized();
             string TokenValue = await LocalStorage.GetItemAsStringAsync("TokenValue");
             runsLink = "/pipeline/" + PipeLineId + "/" + PipeLineName + "/runs";
+            parsed = false;
 
             List<string> location = await AzureService.GetPipelinePath(PipeLineId);
             yamlData = await AzureService.GetYamlFile(location);
@@ -153,7 +156,9 @@ namespace TrackMate.Pages
                     }
                 }
 
+
             }
+            parsed = true;
         }
         protected void RunPipeline()
         {
